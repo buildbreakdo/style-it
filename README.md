@@ -1,4 +1,4 @@
-# Reactive Style [![Version](http://img.shields.io/npm/v/reactive-style.svg)](https://www.npmjs.org/package/reactive-style) [![Maintenance Status](https://img.shields.io/badge/status-maintained-brightgreen.svg)](https://github.com/buildbreakdo/reactive-style/pulse) 
+# Reactive Style  [![Maintenance Status](https://img.shields.io/badge/status-maintained-brightgreen.svg)](https://github.com/buildbreakdo/reactive-style/pulse)  [![Version](http://img.shields.io/npm/v/reactive-style.svg)](https://www.npmjs.org/package/reactive-style) 
 
 Reactive Style is a simple passthrough component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
@@ -7,7 +7,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 
 | Feature               | Reactive Style | Inline Style |           |
 | --------------------- | :------------: | :----------: | --------- |
-| Nothing new to learn  | &#10004;       |              | With Reactive Style you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
+| Nothing new to learn  | &#10004;       |              | With Reactive Style, you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
 | Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and is effectively a poly-fill for sub-tree scoping (more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
 | Safe by default       | &#10004;       | &#10004;     | Escaping of CSS property-values is automatically handled for you using the same library React uses for inline styles. Like with React inline styles, Reactive Style CSS property-values are safe by default. |
@@ -64,21 +64,21 @@ export default Intro;
 Out:
 ```html
 <p class="intro _scoped-1">
-	<style type="text/css">
-		._scoped-1.intro {
-      		font-size: 13px;
-		}
-		._scoped-1 .package-name {
-			color: blue;
-		}
-		._scoped-1 .package-name:hover {
-			color: aqua;
-		}
-	</style>
+  <style type="text/css">
+    ._scoped-1.intro {
+      font-size: 13px;
+    }
+    ._scoped-1 .package-name {
+      color: blue;
+    }
+    ._scoped-1 .package-name:hover {
+      color: aqua;
+    }
+  </style>
 
-	<b class="package-name"> Reactive Style </b> has many of the benefits of 
-	inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
-	<i>without</i> the costs and quirks of Reacts inline styling.				  
+  <b class="package-name"> Reactive Style </b> has many of the benefits of 
+  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+  <i>without</i> the costs and quirks of Reacts inline styling.
 </p>
 ```
 
@@ -137,5 +137,5 @@ Using JavaScript variables in your CSS, out:
 | Small size                                |                   |              | Reactive Style is small at only 30kB. | 
 | Better composition                        | &#10004;          |              | More easily evaluate when to break down a component. CSS complexity is an oft forgotten input when evaluating component complexity (+selectors, +pseudo states). Unifying HTML-CSS-JS in one place ensures CSS complexity is a part of your -- when should I decompose -- equation. |
  
-## License
+### License
 [MIT](LICENSE). Copyright (c) 2016-present Joshua Robinson.
