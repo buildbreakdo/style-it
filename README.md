@@ -5,8 +5,8 @@ familiar CSS syntax you already know and love -- now inside of your components.
 
 ### Features
 
-| &nbsp;Feature| Reactive Style | Inline Style |           |
-| --------------------- | :------------: | :----------: | --------- |
+| Feature               | Reactive&nbsp;Style | Inline&nbsp;Style |           |
+| :-------------------- | :------------: | :----------: | :--------- |
 | Nothing&nbsp;new&nbsp;to&nbsp;learn | &#10004;       |              | With Reactive Style, you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
 | Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and is effectively a poly-fill for sub-tree scoping (more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
@@ -124,8 +124,8 @@ Using JavaScript variables in your CSS, out:
 
 ### More Features
 
-| &nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;&nbsp;&nbsp;&nbsp; | Reactive Style    | Inline Style |           |
-| ----------------------------------------- | :---------------: | :----------: | --------- |
+| Feature                                   | Reactive&nbsp;Style    | Inline&nbsp;Style |            |
+| :----------------------------------------- | :---------------: | :----------: | :--------- |
 | Faster build times                        | &#10004;          | &#10004;     | Remove the preprocessor middle man -- this is just CSS. Reactive Style brings back the simplicity of writing CSS and removes the need for managing and executing a build step. |
 | Increase readability                      | &#10004;          |              | Maintain the simplicity, symmetry, and beauty of HTML's open and close syntax. With Reactive Style you can achieve cohesion and clean seperation while still bringing component concerns together as a single self-contained unit of code. |
 | Isomorphic                                | &#10004;          | &#10004;     | Reactive Style is completely isomorphic and renders the same markup on server and client. |
