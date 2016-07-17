@@ -63,7 +63,7 @@ Out:
 <p class="intro _scoped-1">
 	<style type="text/css">
 		._scoped-1.intro {
-      			font-size: 13px;
+      		font-size: 13px;
 		}
 		._scoped-1 .package-name {
 			color: blue;
