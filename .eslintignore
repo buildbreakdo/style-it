@@ -1,0 +1,7 @@
+lib/*
+dist/*
+examples/*
+node_modules/*
+src/utils/*
+coverage
+npm-debug.log

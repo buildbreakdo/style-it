@@ -1,0 +1,71 @@
+{
+  "name": "reactive-style",
+  "version": "0.0.1",
+  "description": "Passthrough component that makes safe, scoped, and fully featured CSS-in-JS easy",
+  "main": "dist/reactive-style.js",
+  "author": "buildbreakdo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildbreakdo/reactive-style.git"
+  },
+  "bugs": {
+    "url": "https://github.com/buildbreakdo/reactive-style/issues"
+  },
+  "homepage": "https://github.com/buildbreakdo/reactive-style",
+  "scripts": {
+    "build": "webpack && babel src --out-dir lib && NODE_ENV='production' webpack && babel src --out-dir lib",
+    "prebuild": "rimraf dist lib",
+    "prepublish": "npm run build",
+    "lint": "eslint .",
+    "test": "clear && jest || true"
+  },
+  "keywords": [
+    "react-style",
+    "reactive-style",
+    "react",
+    "scope",
+    "scoped",
+    "inline",
+    "embed",
+    "embedded",
+    "style-element",
+    "style",
+    "styles",
+    "styling",
+    "css",
+    "classes",
+    "classname",
+    "classnames",
+    "util",
+    "utility",
+    "react-component"
+  ],
+  "peerDependencies": {
+    "react": "^0.14 || ^15.0.0-rc || ^15.0",
+    "react-dom": "^0.14 || ^15.0.0-rc || ^15.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.9.1",
+    "babel-eslint": "^6.0.4",
+    "babel-jest": "^12.1.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "eslint": "^2.13.0",
+    "eslint-plugin-react": "^5.2.2",
+    "jest-cli": "^12.1.1",
+    "rimraf": "^2.5.2",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "cssbeautify": "^0.3.1",
+    "react-lib-adler32": "^1.0.0",
+    "react-lib-escape-text-content-for-browser": "^1.0.0"
+  }
+}
