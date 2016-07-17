@@ -63,7 +63,7 @@ Out:
 <p class="intro _scoped-1">
 	<style type="text/css">
 		._scoped-1.intro {
-			font-size: 13px;
+      font-size: 13px;
 		}
 		._scoped-1 .package-name {
 			color: blue;
@@ -84,23 +84,23 @@ Out:
 Using JavaScript variables in your CSS, in:
 ```javascript
 ...
-	render() {
-		const introFontSize = 10;
-		
-		return (
-			<Style>
-				{` 
-					.intro { 
-						font-size: ${ introFontSize }px;
-					} 
-				`}
+render() {
+	const introFontSize = 10;
 
-				<div>
-					<p className="intro"> An intro to `reactive-style`. </p>
-				</div>
-			</Style>
-		)
-	}
+	return (
+		<Style>
+			{` 
+				.intro { 
+					font-size: ${ introFontSize }px;
+				} 
+			`}
+
+			<div>
+				<p className="intro"> An intro to `reactive-style`. </p>
+			</div>
+		</Style>
+	)
+}
 ...
 ```
 
@@ -132,7 +132,7 @@ Using JavaScript variables in your CSS, out:
 | Easily portable                           | &#10004;          |              | By simply being CSS Reactive Style makes porting styles elsewhere easy with no special syntax or quirks to transform. |
 | Share styles                              | &#10004;          | &#10004;     | Easily share styles across multiple components by leveraging JavaScript import notation you already know.|
 | Small size                                |                   |              | Reactive Style is small at only 30kB. | 
-| Better composition                        | &#10004;          |              | More easily evaluate when to break down a component further. CSS complexity is an oft forgotten input into a components complexity (selector complexity and pseudo states). Unifying HTML-CSS-JS into one place ensures CSS complexity is a part of your -- when should I decompose -- equation. |
+| Better composition                        | &#10004;          |              | More easily evaluate when to break down a component. CSS complexity is an oft forgotten input when evaluating component complexity (+selectors, +pseudo states). Unifying HTML-CSS-JS in one place ensures CSS complexity is a part of your -- when should I decompose -- equation. |
  
 ## License
 [MIT](LICENSE). Copyright (c) 2016-present Joshua Robinson.
