@@ -5,7 +5,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 
 ### Features
 
-| Feature               | Reactive Style | Inline Style |           |
+| &nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;&nbsp;&nbsp;&nbsp; | Reactive Style | Inline Style |           |
 | --------------------- | :------------: | :----------: | --------- |
 | Nothing new to learn  | &#10004;       |              | With Reactive Style, you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
@@ -124,7 +124,7 @@ Using JavaScript variables in your CSS, out:
 
 ### More Features
 
-| Feature                                   | Reactive Style    | Inline Style |           |
+| &nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;&nbsp;&nbsp;&nbsp; | Reactive Style    | Inline Style |           |
 | ----------------------------------------- | :---------------: | :----------: | --------- |
 | Faster build times                        | &#10004;          | &#10004;     | Remove the preprocessor middle man -- this is just CSS. Reactive Style brings back the simplicity of writing CSS and removes the need for managing and executing a build step. |
 | Increase readability                      | &#10004;          |              | Maintain the simplicity, symmetry, and beauty of HTML's open and close syntax. With Reactive Style you can achieve cohesion and clean seperation while still bringing component concerns together as a single self-contained unit of code. |
