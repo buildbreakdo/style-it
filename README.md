@@ -6,7 +6,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 ### Features
 
 | Feature               | Reactive Style | Inline Style |           |
-| --------------------- | -------------- | ------------ | --------- |
+| --------------------- | :------------: | :----------: | --------- |
 | Nothing new to learn  | &#10004;       |              | With Reactive Style you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
 | Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and is effectively a poly-fill for sub-tree scoping (more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
@@ -14,7 +14,10 @@ familiar CSS syntax you already know and love -- now inside of your components.
 | Increase cohesion     | &#10004;       | &#10004;     | Self contained and complete components. With Reactive Style there is no need to fragment your component by creating an external CSS file when you need to use pseudo-classes, pseudo-selectors, at-media rules, or one of Reacts unsupported vendor prefixes (like flexbox or cursor grab). |
 | Write less code       | &#10004;       |              | Use the right tool for the right job. With Reactive Style the full power of CSS is avaialble so we can stop reimplementing CSS language features like `:hover` and `nth-of-type` in JavaScript. |
 
-[SEE MORE &vee;](#more-features)
+
+<p align="right"> 
+    <a href="#user-content-more-features">SEE MORE &raquo;</a>
+</p>
 
 ### Usage
 
@@ -31,26 +34,26 @@ import Style from 'reactive-style';
 
 class Intro extends Component {  
   render() {
-		return (
-			<Style>
-				{`
-					.intro {
-						font-size: 13px;
-					}
-					.package-name {
-						color: blue;
-					}
-					.package-name:hover {
-						color: aqua;
-					}
-				`}
+    return (
+      <Style>
+        {`
+          .intro {
+            font-size: 13px;
+          }
+          .package-name {
+            color: blue;
+          }
+          .package-name:hover {
+            color: aqua;
+          }
+       `}
 
-				<p className="intro"> 
-					<b className="package-name"> Reactive Style </b> has many of the benefits of 
-					inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
-					<i>without</i> the costs and quirks of Reacts inline styling.
-				</p>
-			</Style>
+        <p className="intro"> 
+          <b className="package-name"> Reactive Style </b> has many of the benefits of 
+          inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+          <i>without</i> the costs and quirks of Reacts inline styling.
+        </p>
+      </Style>
     );
   }
 }
@@ -122,7 +125,7 @@ Using JavaScript variables in your CSS, out:
 ### More Features
 
 | Feature                                   | Reactive Style    | Inline Style |           |
-| ----------------------------------------- | ----------------- | ------------ | --------- |
+| ----------------------------------------- | :---------------: | :----------: | --------- |
 | Faster build times                        | &#10004;          | &#10004;     | Remove the preprocessor middle man -- this is just CSS. Reactive Style brings back the simplicity of writing CSS and removes the need for managing and executing a build step. |
 | Increase readability                      | &#10004;          |              | Maintain the simplicity, symmetry, and beauty of HTML's open and close syntax. With Reactive Style you can achieve cohesion and clean seperation while still bringing component concerns together as a single self-contained unit of code. |
 | Isomorphic                                | &#10004;          | &#10004;     | Reactive Style is completely isomorphic and renders the same markup on server and client. |
