@@ -1,4 +1,4 @@
-# Reactive Style [<img title="Maintenance Status" align="right" src="https://img.shields.io/badge/status-maintained-brightgreen.svg" />] (https://github.com/buildbreakdo/reactive-style/pulse)  [<img title="Version" align="right" src="http://img.shields.io/npm/v/reactive-style.svg" />](https://www.npmjs.org/package/reactive-style) 
+# Reactive Style [<img title="Version" align="right" src="http://img.shields.io/npm/v/reactive-style.svg" />](https://www.npmjs.org/package/reactive-style) [<img title="License" align="right" src="https://img.shields.io/npm/l/express.svg?maxAge=2592000" />](https://github.com/buildbreakdo/reactive-style/blob/master/LICENSE) [<img title="Maintenance Status" align="right" src="https://img.shields.io/badge/status-maintained-brightgreen.svg" />] (https://github.com/buildbreakdo/reactive-style/pulse)
 
 Reactive Style is a simple passthrough component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
@@ -15,7 +15,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 
 
 <p align="right"> 
-    <a href="#user-content-more-features">SEE MORE &raquo;</a>
+    <b><a href="#user-content-more-features">SEE MORE &raquo;</a></b>
 </p>
 
 ## Usage
