@@ -1,4 +1,4 @@
-# Reactive Style  [![Maintenance Status](https://img.shields.io/badge/status-maintained-brightgreen.svg)](https://github.com/buildbreakdo/reactive-style/pulse)  [![Version](http://img.shields.io/npm/v/reactive-style.svg)](https://www.npmjs.org/package/reactive-style) 
+# Reactive Style [<img title="Maintenance Status" align="right" src="https://img.shields.io/badge/status-maintained-brightgreen.svg" />] (https://github.com/buildbreakdo/reactive-style/pulse)  [<img title="Version" align="right" src="http://img.shields.io/npm/v/reactive-style.svg" />](https://www.npmjs.org/package/reactive-style) 
 
 Reactive Style is a simple passthrough component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
@@ -11,8 +11,6 @@ familiar CSS syntax you already know and love -- now inside of your components.
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
 | Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and is effectively a polyfill for sub-tree scoping (learn more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
 | Safe by default       | &#10004;       | &#10004;     | Escaping of CSS property-values is automatically handled for you using the same library React uses for inline styles. Like with React inline styles, Reactive Style CSS property-values are safe by default. |
-| Increase cohesion     | &#10004;       | &#10004;     | Self contained and complete components. With Reactive Style there is no need to fragment your component by creating an external CSS file when you need to use pseudo-classes, pseudo-selectors, at-media rules, or one of Reacts unsupported vendor prefixes (like flexbox or cursor grab). |
-| Write less code       | &#10004;       |              | Use the right tool for the right job. With Reactive Style the full power of CSS is available so we can stop reimplementing CSS language features like `:hover` and `nth-of-type` in JavaScript. |
 | [Layout styling](#layout-styling) | &#10004;       |              | Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
 
 
@@ -221,6 +219,8 @@ Out:
 
 | Feature                                   | Reactive&nbsp;Style    | Inline&nbsp;Style |            |
 | :----------------------------------------- | :---------------: | :----------: | :--------- |
+| Increase cohesion     | &#10004;       | &#10004;     | Self contained and complete components. With Reactive Style there is no need to fragment your component by creating an external CSS file when you need to use pseudo-classes, pseudo-selectors, at-media rules, or one of Reacts unsupported vendor prefixes (like flexbox or cursor grab). |
+| Write less code       | &#10004;       |              | Use the right tool for the right job. With Reactive Style the full power of CSS is available so we can stop reimplementing CSS language features like `:hover` and `nth-of-type` in JavaScript. |
 | Faster build times                        | &#10004;          | &#10004;     | Remove the preprocessor middle man -- this is just CSS. Reactive Style brings back the simplicity of writing CSS and removes the need for managing and executing a build step. |
 | Increase readability                      | &#10004;          |              | Maintain the simplicity, symmetry, and beauty of HTML's open and close syntax. With Reactive Style you can achieve cohesion and clean separation while still bringing component concerns together as a single self-contained unit of code. |
 | Isomorphic                                | &#10004;          | &#10004;     | Reactive Style is completely isomorphic and renders the same markup on server and client. |
