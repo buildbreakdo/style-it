@@ -3,7 +3,7 @@
 Reactive Style is a simple passthrough component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
 
-### Features
+## Features
 
 | Feature               | Reactive&nbsp;Style | Inline&nbsp;Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
@@ -13,13 +13,14 @@ familiar CSS syntax you already know and love -- now inside of your components.
 | Safe by default       | &#10004;       | &#10004;     | Escaping of CSS property-values is automatically handled for you using the same library React uses for inline styles. Like with React inline styles, Reactive Style CSS property-values are safe by default. |
 | Increase cohesion     | &#10004;       | &#10004;     | Self contained and complete components. With Reactive Style there is no need to fragment your component by creating an external CSS file when you need to use pseudo-classes, pseudo-selectors, at-media rules, or one of Reacts unsupported vendor prefixes (like flexbox or cursor grab). |
 | Write less code       | &#10004;       |              | Use the right tool for the right job. With Reactive Style the full power of CSS is available so we can stop reimplementing CSS language features like `:hover` and `nth-of-type` in JavaScript. |
+| [Layout styling](#layout-styling) | &#10004;       |              | Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
 
 
 <p align="right"> 
     <a href="#user-content-more-features">SEE MORE &raquo;</a>
 </p>
 
-### Usage
+## Usage
 
 Install with npm.
 
@@ -82,47 +83,141 @@ Out:
 </p>
 ```
 
-### Additional Usage
+## Additional Usage
 
-Using JavaScript variables in your CSS, in:
-```javascript
-...
-render() {
-	const introFontSize = 10;
+### JavaScript variables in your CSS. 
+```js
+import React, { Component } from 'react';
+import Style from 'reactive-style';
 
-	return (
-		<Style>
-			{` 
-				.intro { 
-					font-size: ${ introFontSize }px;
-				} 
-			`}
+class Intro extends Component {  
+  render() {
+    const introFontSize = 13;
+  
+    return (
+      <Style>
+        {`
+          .intro {
+            font-size: ${ introFontSize }px;
+          }
+          .package-name {
+            color: blue;
+          }
+          .package-name:hover {
+            color: aqua;
+          }
+       `}
 
-			<div>
-				<p className="intro"> An intro to `reactive-style`. </p>
-			</div>
-		</Style>
-	)
+        <p className="intro"> 
+          <b className="package-name"> Reactive Style </b> has many of the benefits of 
+          inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+          <i>without</i> the costs and quirks of Reacts inline styling.
+        </p>
+      </Style>
+    );
+  }
 }
-...
+
+export default Intro;
 ```
 
-Using JavaScript variables in your CSS, out:
+Out:
 ```html
-...
-	<div className="_scoped-1">
-		<style type="text/css">
-			._scoped-1 .intro {
-				font-size: 10px;
-			}
-		</style>
+<p class="intro _scoped-1">
+  <style type="text/css">
+    ._scoped-1.intro {
+      font-size: 13px;
+    }
+    ._scoped-1 .package-name {
+      color: blue;
+    }
+    ._scoped-1 .package-name:hover {
+      color: aqua;
+    }
+  </style>
 
-		<p class="intro"> An intro to `reactive-style`. </p>
-	</div>
-...
+  <b class="package-name"> Reactive Style </b> has many of the benefits of 
+  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+  <i>without</i> the costs and quirks of Reacts inline styling.
+</p>
 ```
 
-### More Features
+### Layout styling
+Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles.
+```js
+import React, { Component } from 'react';
+import Style from 'reactive-style';
+
+class App extends Component {  
+  render() {
+    return (
+      <div>
+        <Style>
+          {`
+            body {
+              font-size: small;
+              font-family: arial,sans-serif;
+            }
+            h1 {
+              font-size: large;
+            }
+            h2 {
+              font-size: medium;
+            }
+            h3 {
+              font-size: small;
+            }
+            a {
+              color: blue;
+            }
+            a:hover {
+              color: aqua;
+            }
+         `}
+        </Style>
+        
+        <Header />
+        <Main />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+Out:
+```html
+<div>
+  <Style>
+    body {
+      font-size: small;
+      font-family: arial,sans-serif;
+    }
+    h1 {
+      font-size: large;
+    }
+    h2 {
+      font-size: medium;
+    }
+    h3 {
+      font-size: small;
+    }
+    a {
+      color: blue;
+    }
+    a:hover {
+      color: aqua;
+    }
+  </Style>
+  
+  <header> Header Content </header>
+  <main> Main Content </main>
+  <footer> Footer Content </footer>
+</div>
+```
+## More Features
 
 | Feature                                   | Reactive&nbsp;Style    | Inline&nbsp;Style |            |
 | :----------------------------------------- | :---------------: | :----------: | :--------- |
@@ -137,5 +232,5 @@ Using JavaScript variables in your CSS, out:
 | Small size                                |                   |              | Reactive Style is small at only 30kB. | 
 | Better composition                        | &#10004;          |              | More easily evaluate when to break down a component. CSS complexity is an oft forgotten input when evaluating component complexity (+selectors, +pseudo states). Unifying HTML-CSS-JS in one place ensures CSS complexity is a part of your -- when should I decompose -- equation. |
  
-### License
+## License
 [MIT](LICENSE). Copyright © 2016-present Joshua Robinson.
