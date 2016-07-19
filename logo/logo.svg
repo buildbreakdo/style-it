@@ -1,0 +1,15 @@
+<svg  width="276" height="49" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs> 
+    <pattern id="style-stripes" width="90" height="49" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="11"   x2="90"  y2="11"  style="stroke: #E03A3E; stroke-width:12;" />
+      <line x1="0" y1="23"  x2="90"  y2="23" style="stroke: #963D97; stroke-width:12;" />
+      <line x1="0" y1="35"  x2="90"  y2="35" style="stroke: #009DDC; stroke-width:12;" />
+      <line x1="0" y1="47"   x2="90"  y2="47"  style="stroke: #61BB46; stroke-width:12;" />
+    </pattern>
+  </defs>
+  
+  <g fill="url(#style-stripes)" stroke="none" font-size="48" font-family="serif">
+    <text x="0" y="38" style="fill:#333;fill-opacity:1;">Reactive</text>
+    <text x="176" y="38">Style</text>
+  </g>
+</svg>
