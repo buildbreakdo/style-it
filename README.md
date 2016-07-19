@@ -3,14 +3,13 @@
 Reactive Style is a simple passthrough component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
 
-## Features
+<h2 style="border-bottom: none;"> Features </h2>
 
 | Feature               | Reactive&nbsp;Style | Inline&nbsp;Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
 | Nothing&nbsp;new&nbsp;to&nbsp;learn | &#10004;       |              | With Reactive Style, you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
 | Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and is effectively a polyfill for sub-tree scoping (learn more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
-| Safe by default       | &#10004;       | &#10004;     | Escaping of CSS property-values is automatically handled for you using the same library React uses for inline styles. Like with React inline styles, Reactive Style CSS property-values are safe by default. |
 | [Layout styling](#layout-styling) | &#10004;       |              | Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
 
 
@@ -81,7 +80,7 @@ Out:
 </p>
 ```
 
-## Additional Usage
+<h2 style="border-bottom: none;"> Additional Usage </h2>
 
 ### JavaScript variables in your CSS. 
 ```js
@@ -215,10 +214,11 @@ Out:
   <footer> Footer Content </footer>
 </div>
 ```
-## More Features
+<h2 style="border-bottom: none;"> More Features </h2>
 
 | Feature                                   | Reactive&nbsp;Style    | Inline&nbsp;Style |            |
 | :----------------------------------------- | :---------------: | :----------: | :--------- |
+| Safe by default       | &#10004;       | &#10004;     | Escaping of CSS property-values is automatically handled for you using the same library React uses for inline styles. Like with React inline styles, Reactive Style CSS property-values are safe by default. |
 | Increase cohesion     | &#10004;       | &#10004;     | Self contained and complete components. With Reactive Style there is no need to fragment your component by creating an external CSS file when you need to use pseudo-classes, pseudo-selectors, at-media rules, or one of Reacts unsupported vendor prefixes (like flexbox or cursor grab). |
 | Write less code       | &#10004;       |              | Use the right tool for the right job. With Reactive Style the full power of CSS is available so we can stop reimplementing CSS language features like `:hover` and `nth-of-type` in JavaScript. |
 | Faster build times                        | &#10004;          | &#10004;     | Remove the preprocessor middle man -- this is just CSS. Reactive Style brings back the simplicity of writing CSS and removes the need for managing and executing a build step. |
@@ -232,5 +232,5 @@ Out:
 | Small size                                |                   |              | Reactive Style is small at only 30kB. | 
 | Better composition                        | &#10004;          |              | More easily evaluate when to break down a component. CSS complexity is an oft forgotten input when evaluating component complexity (+selectors, +pseudo states). Unifying HTML-CSS-JS in one place ensures CSS complexity is a part of your -- when should I decompose -- equation. |
  
-## License
+<h2 style="border-bottom: none;"> License </h2>
 [MIT](LICENSE). Copyright © 2016-present Joshua Robinson.
