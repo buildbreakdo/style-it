@@ -1,6 +1,6 @@
 # Reactive Style [<img title="Version" align="right" src="http://img.shields.io/npm/v/reactive-style.svg?stye=flat-square" />](https://www.npmjs.org/package/reactive-style) [<img title="License" align="right" src="https://img.shields.io/npm/l/express.svg?maxAge=2592000&?stye=flat-square" />](https://github.com/buildbreakdo/reactive-style/blob/master/LICENSE) [<img title="Maintenance Status" align="right" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?stye=flat-square" />] (https://github.com/buildbreakdo/reactive-style/pulse)
 
-Reactive Style is a simple passthrough component that allows you to write the same 
+Reactive Style is a simple component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
 
 | Feature               | Reactive&nbsp;Style | Inline&nbsp;Style |           |
@@ -8,7 +8,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 | Nothing&nbsp;new&nbsp;to&nbsp;learn | &#10004;       |              | With Reactive Style, you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
 | Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and acts as a polyfill for sub-tree scoping (learn more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
-| [Layout styling](#layout-styling) | &#10004;       |              | Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
+| [Layout styling](#layout-styling) | &#10004;       |              | Style your layout without using an external CSS file. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
 
 
 <p align="right"> 
@@ -138,7 +138,7 @@ Out:
 ```
 
 #### Layout styling
-Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles.
+Style your layout without using an external CSS file. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles.
 ```js
 import React, { Component } from 'react';
 import Style from 'reactive-style';
