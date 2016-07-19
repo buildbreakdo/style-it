@@ -3,13 +3,11 @@
 Reactive Style is a simple passthrough component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
 
-<h2 style="border-bottom: none;"> Features </h2>
-
 | Feature               | Reactive&nbsp;Style | Inline&nbsp;Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
 | Nothing&nbsp;new&nbsp;to&nbsp;learn | &#10004;       |              | With Reactive Style, you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
 | Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
-| Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and is effectively a polyfill for sub-tree scoping (learn more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
+| Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and acts as a polyfill for sub-tree scoping (learn more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
 | [Layout styling](#layout-styling) | &#10004;       |              | Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
 
 
@@ -17,7 +15,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
     <b><a href="#user-content-more-features">SEE MORE &raquo;</a></b>
 </p>
 
-## Usage
+### Usage
 
 Install with npm.
 
@@ -80,9 +78,9 @@ Out:
 </p>
 ```
 
-<h2 style="border-bottom: none;"> Additional Usage </h2>
+### Additional Usage
 
-### JavaScript variables in your CSS. 
+#### JavaScript variables in your CSS. 
 ```js
 import React, { Component } from 'react';
 import Style from 'reactive-style';
@@ -139,7 +137,7 @@ Out:
 </p>
 ```
 
-### Layout styling
+#### Layout styling
 Style your layout right in your <App /> component. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles.
 ```js
 import React, { Component } from 'react';
@@ -214,7 +212,7 @@ Out:
   <footer> Footer Content </footer>
 </div>
 ```
-<h2 style="border-bottom: none;"> More Features </h2>
+### More Features
 
 | Feature                                   | Reactive&nbsp;Style    | Inline&nbsp;Style |            |
 | :----------------------------------------- | :---------------: | :----------: | :--------- |
@@ -232,5 +230,5 @@ Out:
 | Small size                                |                   |              | Reactive Style is small at only 30kB. | 
 | Better composition                        | &#10004;          |              | More easily evaluate when to break down a component. CSS complexity is an oft forgotten input when evaluating component complexity (+selectors, +pseudo states). Unifying HTML-CSS-JS in one place ensures CSS complexity is a part of your -- when should I decompose -- equation. |
  
-<h2 style="border-bottom: none;"> License </h2>
+### License
 [MIT](LICENSE). Copyright © 2016-present Joshua Robinson.
