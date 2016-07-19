@@ -6,7 +6,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 | Feature               | Reactive Style | Inline Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
 | Nothing&nbsp;new to learn | &#10004;       |              | With Reactive Style, you use the same familiar CSS syntax you already know and love -- now inside of your components. Just wrap your component with Reactive Style and start writing CSS. |
-| Fully&nbsp;featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
+| Fully featured        | &#10004;       |              | There is no abstraction to go through -- Reactive Style is just CSS. Use any CSS feature available. |
 | Scoped selectors      | &#10004;       |              | Move your CSS out of the global name space. Reactive Style automatically scopes selectors for you to the component's root element and acts as a polyfill for sub-tree scoping (learn more on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). |
 | [Layout&nbsp;styling](#layout-styling) | &#10004;       |              | Style your layout without using an external CSS file. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
 
@@ -36,16 +36,16 @@ class Intro extends React.Component {
           .intro {
             font-size: 13px;
           }
-          .package-name {
+          .package {
             color: blue;
           }
-          .package-name:hover {
+          .package:hover {
             color: aqua;
           }
        `}
 
         <p className="intro"> 
-          <b className="package-name"> Reactive Style </b> has many of the benefits of 
+          <b className="package">Reactive Style</b> has many of the benefits of 
           inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
           <i>without</i> the costs and quirks of Reacts inline styling.
         </p>
@@ -72,7 +72,7 @@ Out:
     }
   </style>
 
-  <b class="package-name"> Reactive Style </b> has many of the benefits of 
+  <b class="package">Reactive Style</b> has many of the benefits of 
   inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
   <i>without</i> the costs and quirks of Reacts inline styling.
 </p>
@@ -95,16 +95,16 @@ class Intro extends React.Component {
           .intro {
             font-size: ${ fontSize }px;
           }
-          .package-name {
+          .package {
             color: blue;
           }
-          .package-name:hover {
+          .package:hover {
             color: aqua;
           }
        `}
 
         <p className="intro"> 
-          <b className="package-name">Reactive Style</b> has many of the benefits of 
+          <b className="package">Reactive Style</b> has many of the benefits of 
           inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
           <i>without</i> the costs and quirks of Reacts inline styling.
         </p>
@@ -123,15 +123,15 @@ Out:
     ._scoped-1.intro {
       font-size: 13px;
     }
-    ._scoped-1 .package-name {
+    ._scoped-1 .package {
       color: blue;
     }
-    ._scoped-1 .package-name:hover {
+    ._scoped-1 .package:hover {
       color: aqua;
     }
   </style>
 
-  <b class="package-name">Reactive Style</b> has many of the benefits of 
+  <b class="package">Reactive Style</b> has many of the benefits of 
   inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
   <i>without</i> the costs and quirks of Reacts inline styling.
 </p>
@@ -222,9 +222,8 @@ Out:
 | Faster build times                        | &#10004;          | &#10004;     | Remove the preprocessor middle man -- this is just CSS. Reactive Style brings back the simplicity of writing CSS and removes the need for managing and executing a build step. |
 | Increase readability                      | &#10004;          |              | Maintain the simplicity, symmetry, and beauty of HTML's open and close syntax. With Reactive Style you can achieve cohesion and clean separation while still bringing component concerns together as a single self-contained unit of code. |
 | Isomorphic                                | &#10004;          | &#10004;     | Reactive Style is completely isomorphic and renders the same markup on server and client. |
-| Increase&nbsp;new hire productivity | &#10004;          | &#10004;     | On boarding of new developers is quick and easy with Reactive Style -- there is nothing new to learn. Get your new developers styling today! |
-| Better&nbsp;workflow                           | &#10004;          |              | Better workflow, a classic workflow. Not often we are able to say that, because Reactive Style requires no transformations to your CSS you can make adjustments in your browser and simply copy and paste the style rules into your component. |
-| Write less code                           | &#10004;          |              | Use the right tool for the right job. With Reactive Style the full power of CSS is avaialble so we can stop reimplementing CSS language features like `:hover` and `nth-of-type` in JavaScript. |
+| Increase new&nbsp;hire productivity | &#10004;          | &#10004;     | On boarding of new developers is quick and easy with Reactive Style -- there is nothing new to learn. Get your new developers styling today! |
+| Better workflow                           | &#10004;          |              | Better workflow, a classic workflow. Not often we are able to say that, because Reactive Style requires no transformations to your CSS you can make adjustments in your browser and simply copy and paste the style rules into your component. |
 | Easily&nbsp;portable                           | &#10004;          |              | By simply being CSS Reactive Style makes porting styles elsewhere easy with no special syntax or quirks to transform. |
 | Share styles                              | &#10004;          | &#10004;     | Easily share styles across multiple components by leveraging JavaScript import notation you already know.|
 | Small size                                |                   |              | Reactive Style is small at only 30kB. | 
