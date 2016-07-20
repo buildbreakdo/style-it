@@ -23,6 +23,8 @@ Install with npm.
 npm install reactive-style --save
 ```
 
+Alternatively, if you are not using npm as your package manager the files can be downloaded directly from the [npm content delivery network](https://npmcdn.com/reactive-style/).
+
 ### Usage
 
 In:
