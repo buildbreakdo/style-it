@@ -1,6 +1,6 @@
 {
   "name": "reactive-style",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Passthrough component that makes safe, scoped, and fully featured CSS-in-JS easy",
   "main": "dist/reactive-style.js",
   "author": "buildbreakdo",

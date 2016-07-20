@@ -1,15 +1,15 @@
-<svg  width="276" height="51" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <defs> 
-    <pattern id="style-stripes" width="90" height="51" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="11"   x2="90"  y2="11"  style="stroke: #E03A3E; stroke-width:12;" />
-      <line x1="0" y1="23"  x2="90"  y2="23" style="stroke: #963D97; stroke-width:12;" />
-      <line x1="0" y1="35"  x2="90"  y2="35" style="stroke: #009DDC; stroke-width:12;" />
-      <line x1="0" y1="47"   x2="90"  y2="47"  style="stroke: #61BB46; stroke-width:12;" />
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="120" preserveAspectRatio="none" version="1.1">
+  <defs>
+    <pattern id="style-stripes" width="90" height="129" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="16" x2="90" style="stroke: #E03A3E; stroke-width:30;" y2="16" />
+      <line x1="0" y1="46" x2="90" y2="46" style="stroke: #963D97; stroke-width:31;" />
+      <line x1="0" y1="76.5" x2="90" y2="76.5" style="stroke: #009DDC; stroke-width:31.5;" />
+      <line x1="0" y1="107.5" x2="90" y2="107.5" style="stroke: #61BB46; stroke-width:31;" />
     </pattern>
   </defs>
-  
-  <g fill="url(#style-stripes)" stroke="none" font-size="48" font-family="serif">
-    <text x="0" y="38" style="fill:#333;fill-opacity:1;">Reactive</text>
-    <text x="176" y="38">Style</text>
+
+  <g fill="url(#style-stripes)" stroke="none" font-size="129" font-family="serif">
+    <text x="0" y="91" style="fill:#303030;fill-opacity:1;">Reactive</text>
+    <text x="483.5" y="91">Style</text>
   </g>
 </svg>
