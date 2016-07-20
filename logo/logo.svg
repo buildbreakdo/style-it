@@ -3,8 +3,8 @@
     <pattern id="style-stripes" width="90" height="129" patternUnits="userSpaceOnUse">
       <line x1="0" y1="16" x2="90" style="stroke: #E03A3E; stroke-width:30;" y2="16" />
       <line x1="0" y1="46" x2="90" y2="46" style="stroke: #963D97; stroke-width:31;" />
-      <line x1="0" y1="76.5" x2="90" y2="76.5" style="stroke: #009DDC; stroke-width:31.5;" />
-      <line x1="0" y1="107.5" x2="90" y2="107.5" style="stroke: #61BB46; stroke-width:31;" />
+      <line x1="0" y1="77" x2="90" y2="77" style="stroke: #009DDC; stroke-width:34;" />
+      <line x1="0" y1="109.5" x2="90" y2="109.5" style="stroke: #61BB46; stroke-width:31;" />
     </pattern>
   </defs>
 
