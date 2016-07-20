@@ -1,4 +1,4 @@
-# <img alt="Reactive Style" src="https://github.com/buildbreakdo/reactive-style/blob/master/logo/logo.png" />
+# <img alt="Reactive Style" height="60" style="width: auto;" src="https://github.com/buildbreakdo/reactive-style/blob/master/logo/logo.png" />
 
 Reactive Style is a simple component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
