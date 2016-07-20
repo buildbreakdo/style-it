@@ -3,7 +3,7 @@
 Reactive Style is a simple component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
 
-[<img title="Version" src="http://img.shields.io/npm/v/reactive-style.svg?stye=flat-square" />](https://www.npmjs.org/package/reactive-style) [<img title="License" src="https://img.shields.io/npm/l/express.svg?maxAge=2592000&?stye=flat-square" />](https://github.com/buildbreakdo/reactive-style/blob/master/LICENSE) [<img title="Maintenance Status" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?stye=flat-square" />] (https://github.com/buildbreakdo/reactive-style/pulse)
+[<img title="Version" src="http://img.shields.io/npm/v/reactive-style.svg?stye=flat-square" />](https://www.npmjs.org/package/reactive-style) [<img title="License" src="https://img.shields.io/npm/l/express.svg?maxAge=2592000&?stye=flat-square" />](https://github.com/buildbreakdo/reactive-style/blob/master/LICENSE) [<img title="Maintenance Status" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?stye=flat-square" />](https://github.com/buildbreakdo/reactive-style/pulse)
 
 | Feature               | Reactive Style | Inline Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
