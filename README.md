@@ -1,4 +1,4 @@
-# <img alt="Reactive Style" src="https://github.com/buildbreakdo/reactive-style/blob/master/logo/logo.svg" /> [<img title="Version" align="right" src="http://img.shields.io/npm/v/reactive-style.svg?stye=flat-square" />](https://www.npmjs.org/package/reactive-style) [<img title="License" align="right" src="https://img.shields.io/npm/l/express.svg?maxAge=2592000&?stye=flat-square" />](https://github.com/buildbreakdo/reactive-style/blob/master/LICENSE) [<img title="Maintenance Status" align="right" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?stye=flat-square" />] (https://github.com/buildbreakdo/reactive-style/pulse)
+# <img alt="Reactive Style" src="https://github.com/buildbreakdo/reactive-style/blob/master/logo/logo.png" /> [<img title="Version" align="right" src="http://img.shields.io/npm/v/reactive-style.svg?stye=flat-square" />](https://www.npmjs.org/package/reactive-style) [<img title="License" align="right" src="https://img.shields.io/npm/l/express.svg?maxAge=2592000&?stye=flat-square" />](https://github.com/buildbreakdo/reactive-style/blob/master/LICENSE) [<img title="Maintenance Status" align="right" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?stye=flat-square" />] (https://github.com/buildbreakdo/reactive-style/pulse)
 
 Reactive Style is a simple component that allows you to write the same 
 familiar CSS syntax you already know and love -- now inside of your components.
@@ -15,13 +15,17 @@ familiar CSS syntax you already know and love -- now inside of your components.
     <b><a href="#user-content-more-features">SEE MORE &raquo;</a></b>
 </p>
 
-### Usage
+### Installation
 
 Install with npm.
 
 ```sh
 npm install reactive-style --save
 ```
+
+Alternatively, if you are not using npm as your package manager the files can be downloaded directly from the [npm content delivery network](https://npmcdn.com/reactive-style/).
+
+### Usage
 
 In:
 ```js
@@ -80,7 +84,7 @@ Out:
 
 ### Additional Usage
 
-#### JavaScript variables in your CSS. 
+#### JavaScript variables in your CSS
 ```js
 import React from 'react';
 import Style from 'reactive-style';
