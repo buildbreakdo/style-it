@@ -15,13 +15,15 @@ familiar CSS syntax you already know and love -- now inside of your components.
     <b><a href="#user-content-more-features">SEE MORE &raquo;</a></b>
 </p>
 
-### Usage
+### Installation
 
 Install with npm.
 
 ```sh
 npm install reactive-style --save
 ```
+
+### Usage
 
 In:
 ```js
@@ -80,7 +82,7 @@ Out:
 
 ### Additional Usage
 
-#### JavaScript variables in your CSS. 
+#### JavaScript variables in your CSS
 ```js
 import React from 'react';
 import Style from 'reactive-style';
