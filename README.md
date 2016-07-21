@@ -104,7 +104,7 @@ class Intro extends React.Component {
       <Style>
         {`
           .intro {
-            font-size: ${ fontSize }px;
+            font-size: ${ fontSize }px;  // ES2015 / ES6 Template Literal string interpolation
           }
           .package {
             color: blue;
