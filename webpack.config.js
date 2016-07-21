@@ -22,7 +22,7 @@ module.exports = {
     library: 'Root'
   },
   externals: {
-	 	'react': 'React',
+	 	'react': 'react',
  		'react-dom' : 'ReactDOM'
   },
   plugins: __DEV__ ? [
