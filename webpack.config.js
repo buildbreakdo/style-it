@@ -21,6 +21,10 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'Root'
   },
+  externals: {
+	 	'react': 'React',
+ 		'react-dom' : 'ReactDOM'
+  },
   plugins: __DEV__ ? [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({

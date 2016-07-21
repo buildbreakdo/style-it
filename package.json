@@ -1,7 +1,7 @@
 {
   "name": "reactive-style",
-  "version": "0.0.5",
-  "description": "Passthrough component that makes safe, scoped, and fully featured CSS-in-JS easy",
+  "version": "0.0.6",
+  "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/reactive-style.js",
   "author": "buildbreakdo",
   "license": "MIT",
@@ -60,6 +60,9 @@
     "eslint": "^2.13.0",
     "eslint-plugin-react": "^5.2.2",
     "jest-cli": "^12.1.1",
+    "react": "^15.2.1",
+    "react-addons-test-utils": "^15.2.1",
+    "react-dom": "^15.2.1",
     "rimraf": "^2.5.2",
     "webpack": "^1.13.1"
   },
