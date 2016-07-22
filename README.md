@@ -1,4 +1,4 @@
-# <img alt="Reactive Style" height="60" src="https://s3.amazonaws.com/reactive-style/reactive-style-logo.svg?1123" />
+# <img alt="Reactive Style" height="60" src="https://s3.amazonaws.com/reactive-style/reactive-style-logo.svg?11263" />
 Reactive Style is a component for writing plaintext CSS in JavaScript apps. Use the same 
 familiar CSS syntax you already know and love -- now inside of your components.
 
