@@ -29,7 +29,7 @@ Alternatively, if you are not using npm as your package manager the files can be
 ### Usage
 Reactive Style takes advantage of ES2015 / ES6 specification for Template Literals (previously "template strings") to write plaintext CSS in JavaScript. Use of Template Literals enables multi-line strings, string interpolation, and use of curley brackets / braces to declare CSS rules in JSX.
 
-Template literals are enclosed by the back-tick (\` \`) (grave accent) character instead of double or single quotes. Learn more about Template literals on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+Template Literals are enclosed by the back-tick (\` \`) (grave accent) character instead of double or single quotes. Learn more about Template Literals on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
 ####JSX syntax
 
