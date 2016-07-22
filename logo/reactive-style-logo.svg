@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 65">
+
+  <defs>
+    <pattern id="style-stripes" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <rect x="0" y="0" fill="#E03A3E" width="1" height=".25"/>
+      <rect x="0" y=".24" fill="#963D97" width="1" height=".26"/>
+      <rect x="0" y=".49" fill="#009DDC" width="1" height=".26"/>
+      <rect x="0" y=".74" fill="#61BB46" width="1" height=".26"/>
+    </pattern>
+  </defs>
+
+  <g font-size="60px" font-family="serif" transform="translate(0, 50)">
+    <text>
+    	<tspan fill="#303030">Reactive</tspan>
+    	<tspan fill="url(#style-stripes)">Style</tspan>
+    </text>
+  </g>
+</svg>
