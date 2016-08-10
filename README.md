@@ -31,9 +31,9 @@ Reactive Style takes advantage of ES2015 / ES6 specification for Template Litera
 
 Template Literals are enclosed by the back-tick (\` \`) (grave accent) character instead of double or single quotes. Learn more about Template Literals on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
-####JSX syntax
+####JSX syntax [<img title="Version" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/1/)
 
-In:
+In: 
 ```js
 import React from 'react';
 import Style from 'reactive-style';
@@ -90,7 +90,8 @@ Out:
 
 ### Additional Usage
 
-#### JavaScript variables in your CSS
+#### JavaScript variables in your CSS [<img title="Version" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/3/)
+In:
 ```js
 import React from 'react';
 import Style from 'reactive-style';
@@ -147,8 +148,10 @@ Out:
 </p>
 ```
 
-#### Layout styling
+#### Layout styling [<img title="Version" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/5/)
 Style your layout without using an external CSS file. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles.
+
+In: 
 ```js
 import React from 'react';
 import Style from 'reactive-style';
