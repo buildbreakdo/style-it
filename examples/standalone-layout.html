@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../node_modules/react/dist/react.js"></script>
+    <script src="../node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="../node_modules/babel-standalone/babel.js"></script>
+
+    <title>Example - Reactive Style</title>
+    <script src="../dist/reactive-style-standalone.js"></script>
+  </head>
+  <meta charset="utf-8" />
+  <body>
+    <div id="container"></div>
+
+    <script type="text/babel">
+      class Intro extends React.Component {
+        render() {
+          return (
+            <div>
+              <Style>
+                {`
+                  html {
+                    color: #222;
+                  }
+                  header {
+                    font-size: 20px;
+                  }
+                  main {
+                    font-size: 16px;
+                  }
+                  footer {
+                    font-size: 10px;
+                  }
+                  p {
+                    line-height: 1.4;
+                  }
+                `}
+              </Style>
+
+              <header>
+                <h1>Standalone Layout Example - Reactive Style</h1>
+                <p>For usage without babel / webpack</p>
+              </header>
+              <main>
+                <p>
+                  For layout styling, use an opening and closing Style tag (JSX) containing no other elements.
+                </p>
+              </main>
+              <footer>
+                Copyright &copy; Joshua Robinson 2016-present. MIT Licensed.
+              </footer>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Intro />, document.getElementById('container'));
+    </script>
+  </body>
+<html>

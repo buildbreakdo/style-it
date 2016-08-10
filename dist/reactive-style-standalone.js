@@ -417,7 +417,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return Style;
 	}(_react.Component);
 
-	exports.default = Style;
+	module.exports = Style;
 
 /***/ },
 /* 1 */

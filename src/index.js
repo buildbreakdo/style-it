@@ -64,9 +64,7 @@ class Style extends Component {
   if (!styleString && rootChild) { // Passthrough; no style actions
     return cloneElement(rootChild, {...rootChild.props}, [<style type="text/css" key="_scoped-" />].concat(rootChild.props.children));
   } else if (styleString && !rootChild) { // Global styling with no scoping
-    let processedStyleString = this.processStyleString(
-      styleString, '.' + scopedClassName, rootSelectors
-    );
+    let processedStyleString = this.processStyleString(styleString);
 
     if (__DEV__) {
       processedStyleString = cssbeautify(processedStyleString);

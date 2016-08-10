@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 
 var __DEV__ = JSON.parse(process.env.NODE_ENV !== 'production');
+var __STANDALONE__ = process.argv.some(function(arg) {return arg === '--standalone'});
 
 module.exports = {
   entry: './src/index.js',
@@ -17,32 +18,50 @@ module.exports = {
     ]
   },
   output: {
-    filename: __DEV__ ? 'dist/reactive-style.js' : 'dist/reactive-style.min.js',
+    filename: __STANDALONE__ ?
+      (
+        'dist/reactive-style-standalone.js'
+      )
+    :
+      (
+        __DEV__ ?
+          'dist/reactive-style.js'
+        :
+          'dist/reactive-style.min.js'
+      )
+    ,
     libraryTarget: 'umd',
-    library: 'Root'
+    library: 'Style'
   },
   externals: {
-	 	'react': 'react',
+	 	'react': 'React',
  		'react-dom' : 'ReactDOM'
   },
-  plugins: __DEV__ ? [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ] : [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    })
-  ]
+  plugins: __DEV__ ?
+    [
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+      })
+    ]
+  :
+    [
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compressor: {
+          warnings: false,
+        },
+        mangle: {
+          except: ['Style', 'exports', 'default']
+        }
+      })
+    ]
+  ,
 };
