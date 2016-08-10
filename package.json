@@ -1,6 +1,6 @@
 {
   "name": "reactive-style",
-  "version": "0.0.11",
+  "version": "0.1.11",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/reactive-style.js",
   "author": "buildbreakdo",
