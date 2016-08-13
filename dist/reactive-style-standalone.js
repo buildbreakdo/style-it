@@ -249,6 +249,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bool = object.hasOwnProperty('_owner');
 	      }
 	      return bool;
+	    }, _this.isVoidElement = function (type) {
+	      return ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].some(function (voidType) {
+	        return type === voidType;
+	      });
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
@@ -283,6 +287,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Remove from array; there should be only 1 of each
 	        rootChild = rootChild[0];
 	        styleString = styleString[0];
+
+	        if (__DEV__) {
+	          if (this.isVoidElement(rootChild.type)) {
+	            throw new Error('Self-closing void elements like ' + rootChild.type + ' must be wrapped ' + 'in an enclosing tag. Reactive Style must be able to nest a style element ' + 'inside of the root element and void element content models never allow' + 'it to have contents under any circumstances.');
+	          }
+	        }
 
 	        // Must be only child; determine if only child a style object
 	      } else if (!this.isComponent(this.props.children)) {
@@ -401,6 +411,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *    "false"
 	     *
 	     * @param {*} object Object to inspect for ReactDOMComponent properties
+	     * @return {!bool} bool True or false
+	     */
+
+
+	    /**
+	     * Checks if a tag type is a self-closing void element
+	     *
+	     *    > isVoidElement( "img" )
+	     *    "true"
+	     *
+	     * @param {*} string Element type to check
 	     * @return {!bool} bool True or false
 	     */
 
