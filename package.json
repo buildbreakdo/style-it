@@ -1,6 +1,6 @@
 {
   "name": "reactive-style",
-  "version": "0.1.11",
+  "version": "0.2.12",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/reactive-style.js",
   "author": "buildbreakdo",
@@ -23,6 +23,9 @@
     "prepublish": "npm run build",
     "lint": "eslint .",
     "test": "clear && jest || true"
+  },
+  "jest": {
+    "automock": false
   },
   "keywords": [
     "react-style",
@@ -102,11 +105,14 @@
     "babel-standalone": "^6.10.3",
     "eslint": "^2.13.0",
     "eslint-plugin-react": "^5.2.2",
+    "jest": "^14.1.0",
     "jest-cli": "^12.1.1",
     "npm-run-all": "^2.3.0",
     "react": "^15.2.1",
-    "react-addons-test-utils": "^15.2.1",
+    "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.2.1",
+    "react-test-renderer": "^15.3.0",
+    "react-tools": "^0.13.3",
     "rimraf": "^2.5.2",
     "shx": "^0.1.2",
     "uglify-js": "^2.7.0",

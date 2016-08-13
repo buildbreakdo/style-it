@@ -10,7 +10,6 @@ import React, { Component, cloneElement } from 'react';
 
 import adler32 from 'react-lib-adler32';
 import escapeTextContentForBrowser from 'react-lib-escape-text-content-for-browser';
-import cssbeautify from 'cssbeautify';
 const __DEV__ = (process.env.NODE_ENV !== 'production');
 
 class Style extends Component {
@@ -66,10 +65,6 @@ class Style extends Component {
   } else if (styleString && !rootChild) { // Global styling with no scoping
     let processedStyleString = this.processStyleString(styleString);
 
-    if (__DEV__) {
-      processedStyleString = cssbeautify(processedStyleString);
-    }
-
     return (
       <style type="text/css" dangerouslySetInnerHTML={{
         __html: processedStyleString
@@ -103,13 +98,13 @@ class Style extends Component {
       );
       rootSelectors = rootSelectors.concat(classNames);
     }
+    if (!rootSelectors.length) {
+      rootSelectors.push(rootChild.type);
+    }
 
     let processedStyleString = this.processStyleString(
       styleString, '.' + scopedClassName, rootSelectors
     );
-    if (__DEV__) {
-      processedStyleString = cssbeautify(processedStyleString);
-    }
 
     const styleEl = (
       <style type="text/css" key={scopedClassName}
@@ -118,12 +113,13 @@ class Style extends Component {
 
     const newClassName =  (rootChild.props.className || '') + ' ' + scopedClassName;
 
-    // To avoid destructuring add className as second time; will override the
+    // To avoid destructuring add className second time; will override the
     // className declared through ...rootChild.props;
     return cloneElement(
       rootChild,
       {...rootChild.props, className: newClassName },
-      [styleEl].concat(rootChild.props.children));
+      [styleEl].concat(rootChild.props.children)
+    );
   }
 }
 
@@ -145,6 +141,7 @@ processStyleString = (styleString, scopedClassName, rootSelectors) => {
   // TODO: If dev lint and provide feedback
   // if linting fails we need to error out because
   // the style string will not be parsed correctly
+
 
   return styleString.trim().replace(/\s\s+/g, ' ').split('}').map((fragment) => {
     const isDeclarationBodyPattern = /;/g;
@@ -178,6 +175,8 @@ processStyleString = (styleString, scopedClassName, rootSelectors) => {
             return selector;
           }
         }
+
+      // Pretty print in dev
       }).join('{')
   }).join('}');
 }
@@ -206,14 +205,14 @@ scopeSelector = (scopedClassName, selector, rootSelectors) => {
   let unionSelector; // [data-scoped="54321"].someClass (account for root)
   for (let i = 0; i < selectors.length; i++) {
     if (rootSelectors.length && rootSelectors.some((rootSelector)=>(selector.match(rootSelector)))) {
-      let unionSelector = selectors[i];
+      unionSelector = selectors[i];
 
       // Can't just add them together because of selector combinator complexity
       // like '.rootClassName.someClass.otherClass > *' or :not('.rootClassName'),
       // replace must be used
       rootSelectors.forEach((rootSelector) => {
         const escapedRootSelector = rootSelector.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-        unionSelector = unionSelector.replace(new RegExp(escapedRootSelector, 'g'), scopedClassName + rootSelector);
+        unionSelector = unionSelector.replace(new RegExp(escapedRootSelector, 'g'), rootSelector +  scopedClassName);
       });
 
       scopedSelector += unionSelector;
@@ -227,8 +226,8 @@ scopeSelector = (scopedClassName, selector, rootSelectors) => {
 }
 
 /**
- * Flattens a component tree into an array; removes all circular references; and
- * calls JSON stringify. Used to help generate unique checksums using data throughout
+ * Flattens a component tree into an array; removes all circular references and
+ * JSON stringifies. Adds uniqueness to checksums using data from
  * the component tree
  *
  *    > stringifyComponent( ReactDOMComponent )
@@ -283,7 +282,7 @@ stringifyComponent = (component) => {
 }
 
 /**
- * Creates a scoping className by generating a checksum from a styleString
+ * Creates a className used as a CSS scope by generating a checksum from a styleString
  *
  *    > scoped( 'footer { color: red; }' )
  *    "_scoped-182938591"
@@ -296,7 +295,7 @@ scoped = (styleString) => (
 );
 
 /**
- * Checks if an object is a React component
+ * Checks if object is a React component
  *
  *    > isComponent( "this is a string not a component" )
  *    "false"

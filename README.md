@@ -1,5 +1,5 @@
 # <img alt="Reactive Style" height="60" src="https://s3.amazonaws.com/reactive-style/reactive-style-logo.svg?11263" />
-Reactive Style is a component for writing plaintext CSS in JavaScript apps. Use the same 
+Reactive Style is a component for writing plaintext CSS in JavaScript apps. Use the same
 familiar CSS syntax you already know and love -- now inside of your components.
 
 [<img title="Version" src="https://img.shields.io/npm/v/reactive-style.svg?style=flat-square" />](https://www.npmjs.org/package/reactive-style) [<img title="License" src="https://img.shields.io/dub/l/vibe-d.svg?maxAge=2592000?style=flat-square" />](https://github.com/buildbreakdo/reactive-style/blob/master/LICENSE) [<img title="Maintenance Status" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?style=flat-square" />](https://github.com/buildbreakdo/reactive-style/pulse)
@@ -12,7 +12,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 | [Layout styling](#layout-styling) | &#10004;       |              | Style your layout without using an external CSS file. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles. |
 
 
-<p align="right"> 
+<p align="right">
     <b><a href="#user-content-more-features">SEE MORE &raquo;</a></b>
 </p>
 
@@ -33,12 +33,12 @@ Template Literals are enclosed by the back-tick (\` \`) (grave accent) character
 
 ####JSX syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/1/)
 
-In: 
+In:
 ```js
 import React from 'react';
 import Style from 'reactive-style';
 
-class Intro extends React.Component {  
+class Intro extends React.Component {
   render() {
     return (
       <Style>
@@ -54,9 +54,9 @@ class Intro extends React.Component {
           }
        `}
 
-        <p className="intro"> 
-          <b className="package">Reactive Style</b> has many of the benefits of 
-          inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+        <p className="intro">
+          <b className="package">Reactive Style</b> has many of the benefits of
+          inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
           <i>without</i> the costs and quirks of Reacts inline styling.
         </p>
       </Style>
@@ -82,8 +82,8 @@ Out:
     }
   </style>
 
-  <b class="package">Reactive Style</b> has many of the benefits of 
-  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+  <b class="package">Reactive Style</b> has many of the benefits of
+  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
   <i>without</i> the costs and quirks of Reacts inline styling.
 </p>
 ```
@@ -96,10 +96,10 @@ In:
 import React from 'react';
 import Style from 'reactive-style';
 
-class Intro extends React.Component {  
+class Intro extends React.Component {
   render() {
     const fontSize = 13;
-  
+
     return (
       <Style>
         {`
@@ -114,9 +114,9 @@ class Intro extends React.Component {
           }
        `}
 
-        <p className="intro"> 
-          <b className="package">Reactive Style</b> has many of the benefits of 
-          inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+        <p className="intro">
+          <b className="package">Reactive Style</b> has many of the benefits of
+          inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
           <i>without</i> the costs and quirks of Reacts inline styling.
         </p>
       </Style>
@@ -142,8 +142,8 @@ Out:
     }
   </style>
 
-  <b class="package">Reactive Style</b> has many of the benefits of 
-  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files -- 
+  <b class="package">Reactive Style</b> has many of the benefits of
+  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
   <i>without</i> the costs and quirks of Reacts inline styling.
 </p>
 ```
@@ -151,12 +151,12 @@ Out:
 #### Layout styling [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/5/)
 Style your layout without using an external CSS file. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles.
 
-In: 
+In:
 ```js
 import React from 'react';
 import Style from 'reactive-style';
 
-class App extends React.Component {  
+class App extends React.Component {
   render() {
     return (
       <div>
@@ -183,7 +183,7 @@ class App extends React.Component {
             }
          `}
         </Style>
-        
+
         <Header />
         <Main />
         <Footer />
@@ -219,7 +219,7 @@ Out:
       color: aqua;
     }
   </Style>
-  
+
   <header> Header Content </header>
   <main> Main Content </main>
   <footer> Footer Content </footer>
@@ -239,8 +239,8 @@ Out:
 | Better workflow                           | &#10004;          |              | Better workflow, a classic workflow. Not often we are able to say that, because Reactive Style requires no transformations to your CSS you can make adjustments in your browser and simply copy and paste the style rules into your component. |
 | Easily&nbsp;portable                           | &#10004;          |              | By simply being CSS Reactive Style makes porting styles elsewhere easy with no special syntax or quirks to transform. |
 | Share styles                              | &#10004;          | &#10004;     | Easily share styles across multiple components by leveraging JavaScript import notation you already know.|
-| Small size                                |                   |              | Reactive Style is tiny at only 2.71kB gzipped. | 
+| Small size                                |                   |              | Reactive Style is tiny at only 1.84kB gzipped. |
 | Better composition                        | &#10004;          |              | More easily evaluate when to break down a component. CSS complexity is an oft forgotten input when evaluating component complexity (+selectors, +pseudo states). Unifying HTML-CSS-JS in one place ensures CSS complexity is a part of your -- when should I decompose -- equation. |
- 
+
 ### License
 [MIT](LICENSE). Copyright © 2016-present Joshua Robinson.
