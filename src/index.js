@@ -226,7 +226,11 @@ class Style extends Component {
           unionSelector = unionSelector.replace(new RegExp(escapedRootSelector, 'g'), rootSelector +  scopedClassName);
         });
 
-        scopedSelector += unionSelector;
+        // Do both union and contains selectors because of case <div><div></div></div>
+        // or <div className="foo"><div className="foo"></div></div>
+        containsSelector = scopedClassName + ' ' + selectors[i];
+
+        scopedSelector += unionSelector + ', ' + containsSelector;
       } else {
         containsSelector = scopedClassName + ' ' + selectors[i];
         scopedSelector += containsSelector;

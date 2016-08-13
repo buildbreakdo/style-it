@@ -20,7 +20,67 @@ describe('Style', () => {
     expect(styleNode.textContent).toEqual(`body { font-size: 13px; }`);
   });
 
-  it('creates a union selector scope when <Style> wraps a single element', () => {
+  it('creates a union and contains selector scope for root selectors', () => {
+    const style = TestUtils.renderIntoDocument(
+      <Style>
+        {`
+          .foo {
+            color: red;
+          }
+        `}
+
+        <div className="foo">
+          <div className="foo"></div>
+        </div>
+      </Style>
+    );
+
+    const styleNode = ReactDOM.findDOMNode(style);
+
+    expect(styleNode.textContent).toEqual(`.foo._scoped-1591558118 , ._scoped-1591558118 .foo { color: red; }`);
+  });
+
+  it('creates a contains selector scope when no root selector is present', () => {
+    const style = TestUtils.renderIntoDocument(
+      <Style>
+        {`
+          .foo {
+            color: red;
+          }
+        `}
+
+        <div>
+          <div className="foo"></div>
+        </div>
+      </Style>
+    );
+
+    const styleNode = ReactDOM.findDOMNode(style);
+
+    expect(styleNode.textContent).toEqual(`._scoped-1468021321 .foo { color: red; }`);
+  });
+
+  it('creates a contains selector scope when selector targets nothing and no root selector is present', () => {
+    const style = TestUtils.renderIntoDocument(
+      <Style>
+        {`
+          .foo {
+            color: red;
+          }
+        `}
+
+        <div>
+          <div></div>
+        </div>
+      </Style>
+    );
+
+    const styleNode = ReactDOM.findDOMNode(style);
+
+    expect(styleNode.textContent).toEqual(`._scoped--1473432404 .foo { color: red; }`);
+  });
+
+  it('creates a contains and union selector when selecting an element type', () => {
     const style = TestUtils.renderIntoDocument(
       <Style>
         {`
@@ -29,13 +89,14 @@ describe('Style', () => {
           }
         `}
 
-        <div></div>
+        <div>
+          <div></div>
+        </div>
       </Style>
     );
 
     const styleNode = ReactDOM.findDOMNode(style);
-
-    expect(styleNode.textContent).toEqual(`div._scoped--1652744130 { color: red; }`);
+    expect(styleNode.textContent).toEqual(`div._scoped--2025376643 , ._scoped--2025376643 div { color: red; }`);
   });
 
   it('errors out when the root element is a void element type', () => {
@@ -60,6 +121,7 @@ describe('Style', () => {
     }
 
     // Fail
-    throw new Error('Void type cannot be allowed to be root');
+    throw new Error('Void element type cannot be allowed to be root');
   });
+
 });
