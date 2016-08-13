@@ -53,8 +53,8 @@ describe('Style', () => {
           <img src="#" />
         </Style>
       );
-
     } catch (e) {
+        // Errored out as expected
         // Pass
         return undefined;
     }
