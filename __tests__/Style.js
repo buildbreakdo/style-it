@@ -32,8 +32,6 @@ describe('Style', () => {
 
     const styleNode = ReactDOM.findDOMNode(style);
 
-    console.log(styleNode);
-
     expect(styleNode.textContent).toEqual(`div._scoped--1652744130 { color: red; }`);
 
   });
