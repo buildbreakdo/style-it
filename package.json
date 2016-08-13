@@ -1,6 +1,6 @@
 {
   "name": "reactive-style",
-  "version": "0.2.12",
+  "version": "0.2.14",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/reactive-style.js",
   "author": "buildbreakdo",
@@ -119,7 +119,6 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "cssbeautify": "^0.3.1",
     "react-lib-adler32": "^1.0.0",
     "react-lib-escape-text-content-for-browser": "^1.0.0"
   }

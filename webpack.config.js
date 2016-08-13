@@ -34,7 +34,7 @@ module.exports = {
     library: 'Style'
   },
   externals: {
-	 	'react': 'React',
+	 	'react': 'react',
  		'react-dom' : 'ReactDOM'
   },
   plugins: __DEV__ ?
