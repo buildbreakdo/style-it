@@ -1,6 +1,6 @@
 {
   "name": "reactive-style",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/reactive-style.js",
   "author": "buildbreakdo",
@@ -20,12 +20,13 @@
     "build:umd:dev": "webpack && babel src --out-dir lib",
     "build:umd:production": "NODE_ENV='production' webpack && babel src --out-dir lib",
     "prebuild": "rimraf dist lib",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && npm test",
     "lint": "eslint .",
     "test": "clear && jest || true"
   },
   "jest": {
-    "automock": false
+    "automock": false,
+    "bail": true
   },
   "keywords": [
     "react-style",
@@ -87,8 +88,8 @@
     "react-media-queries"
   ],
   "peerDependencies": {
-    "react": "^0.14 || ^15.0.0-rc || ^15.0",
-    "react-dom": "^0.14 || ^15.0.0-rc || ^15.0"
+    "react": ">= 0.14",
+    "react-dom": ">= 0.14"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
