@@ -88,7 +88,7 @@
     "react-media-queries"
   ],
   "peerDependencies": {
-    "react": "*"
+    "react": "15.x"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
