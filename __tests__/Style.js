@@ -143,4 +143,30 @@ describe('Style', () => {
     throw new Error('Void element type cannot be allowed to be root');
   });
 
+    it('@media should be unscoped while .button selector should be scoped', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {`
+            @media (max-width: 480px) {
+              .button {
+                width: 160px;
+              }
+            }
+          `}
+
+          <div className="container">
+            <button className="button">Click me!</button>
+          </div>
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('container _scoped--1820239830');
+    expect(styleNode.textContent).toEqual(`@media (max-width: 480px) {._scoped--1820239830  .button { width: 160px; }}`);
+  });
+
 });
