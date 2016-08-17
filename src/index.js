@@ -44,7 +44,7 @@ const Style = (props) => {
       throw new Error(
         'Adjacent JSX elements must be wrapped in an enclosing tag (' +
         rootChild.length + ' root elements detected): ' +
-        JSON.stringify(makeNonCircularReferencing(rootChild))
+        stringify(rootChild)
       );
     }
 
@@ -52,8 +52,7 @@ const Style = (props) => {
       throw new Error(
         'Multiple style objects as direct descedents of a ' +
         'Style component are not supported (' + styleString.length +
-        ' style objects detected): \n\n' +
-        JSON.stringify(styleString)
+        ' style objects detected): \n\n' + stringify(styleString)
       );
     }
   }
@@ -102,7 +101,7 @@ const Style = (props) => {
     // are collected from the entire tree; self-references are excluded (these
     // would break JSON stringify). Additionally users can add a "salt" to an
     // object to add additional uniqueness.
-    const styleStringPepper = stringifyComponent(rootChild);
+    const styleStringPepper = stringify(rootChild);
 
     const scopedClassName = scoped(styleString + styleStringPepper);
 
@@ -255,62 +254,6 @@ const scopeSelector = (scopedClassName, selector, rootSelectors) => {
   }
 
   return scopedSelector;
-}
-
-/**
- * Flattens a component tree into an array; removes all circular references and
- * JSON stringifies. Adds uniqueness to checksums using data from
- * the component tree
- *
- *    > stringifyComponent( ReactDOMComponent )
- *    "[{...ReactDOMComponent}, {...ReactDOMComponent}, ...]"
- *
- * @param {ReactDOMComponent} component
- * @return {!string} Flattened JSON stringified component tree with no circular references
- */
-
-const stringifyComponent = (component) => {
-  let toFlatten = [component];
-  const toDereference = [];
-
-  while (toFlatten.length) {
-    const thisComponent = toFlatten.splice(0,1)[0];
-    if (thisComponent.props && thisComponent.props.children) {
-      toFlatten = toFlatten.concat(thisComponent.props.children);
-    }
-
-    toDereference.push(thisComponent);
-  }
-
-  return JSON.stringify(toDereference.map((item) => {
-    if (isComponent(item)) {
-      const newComponent = {props:{}};
-      const blacklistedKeys = ['_owner', 'props', 'children'];
-
-      for (let key in item) {
-        if (!item.hasOwnProperty(key) || blacklistedKeys.some((blacklistedKey) => (
-          blacklistedKey === key)
-        )) {
-          continue;
-        }
-
-        newComponent[key] = item[key];
-      }
-
-      for (let key in item['props']) {
-        if (!item['props'].hasOwnProperty(key) || blacklistedKeys.some((blacklistedKey) => (
-          blacklistedKey === key)
-        )) {
-          continue;
-        }
-        newComponent['props'][key] = item['props'][key];
-      }
-
-      return newComponent;
-    } else {
-      return item;
-    }
-  }));
 }
 
 /**

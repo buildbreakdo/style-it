@@ -42,8 +42,8 @@ describe('Style', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('foo _scoped-1300250854');
-    expect(styleNode.textContent).toEqual(`.foo._scoped-1300250854 , ._scoped-1300250854 .foo { color: red; }`);
+    expect(rootNode.className).toEqual('foo _scoped-1426214355');
+    expect(styleNode.textContent).toEqual(`.foo._scoped-1426214355 , ._scoped-1426214355 .foo { color: red; }`);
   });
 
   it('creates a contains selector scope when no root selector is present', () => {
@@ -66,8 +66,8 @@ describe('Style', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('_scoped-891501385');
-    expect(styleNode.textContent).toEqual(`._scoped-891501385 .foo { color: red; }`);
+    expect(rootNode.className).toEqual('_scoped-1081231370');
+    expect(styleNode.textContent).toEqual(`._scoped-1081231370 .foo { color: red; }`);
   });
 
   it('creates a contains selector scope when selector targets nothing and no root selector is present', () => {
@@ -90,8 +90,8 @@ describe('Style', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('_scoped-1959802284');
-    expect(styleNode.textContent).toEqual(`._scoped-1959802284 .foo { color: red; }`);
+    expect(rootNode.className).toEqual('_scoped--1084800403');
+    expect(styleNode.textContent).toEqual(`._scoped--1084800403 .foo { color: red; }`);
   });
 
   it('creates a contains and union selector when selecting an element type', () => {
@@ -114,8 +114,8 @@ describe('Style', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('_scoped-1385182589');
-    expect(styleNode.textContent).toEqual(`div._scoped-1385182589 , ._scoped-1385182589 div { color: red; }`);
+    expect(rootNode.className).toEqual('_scoped--1770307010');
+    expect(styleNode.textContent).toEqual(`div._scoped--1770307010 , ._scoped--1770307010 div { color: red; }`);
   });
 
   it('errors out when the root element is a void element type', () => {
