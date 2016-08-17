@@ -88,8 +88,7 @@
     "react-media-queries"
   ],
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
+    "react": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
