@@ -10,7 +10,6 @@ import React, { Component, cloneElement } from 'react';
 
 import adler32 from 'react-lib-adler32';
 import escapeTextContentForBrowser from 'react-lib-escape-text-content-for-browser';
-import stringify from 'json-stringify-safe';
 
 const __DEV__ = (process.env.NODE_ENV !== 'production');
 
@@ -288,6 +287,62 @@ const isComponent = (object) => {
     bool = object.hasOwnProperty('_owner');
   }
   return bool;
+}
+
+ /**
+ * Flattens a component tree into an array; removes all circular references and
+ * JSON stringifies. Adds uniqueness to checksums using data from
+ * the component tree
+ *
+ *    > stringifyComponent( ReactDOMComponent )
+ *    "[{...ReactDOMComponent}, {...ReactDOMComponent}, ...]"
+ *
+ * @param {ReactDOMComponent} component
+ * @return {!string} Flattened JSON stringified component tree with no circular references
+ */
+
+const stringify = (component) => {
+  let toFlatten = [component];
+  const toDereference = [];
+
+  while (toFlatten.length) {
+    const thisComponent = toFlatten.splice(0,1)[0];
+    if (thisComponent.props && thisComponent.props.children) {
+      toFlatten = toFlatten.concat(thisComponent.props.children);
+    }
+
+    toDereference.push(thisComponent);
+  }
+
+  return JSON.stringify(toDereference.map((item) => {
+    if (isComponent(item)) {
+      const newComponent = {props:{}};
+      const blacklistedKeys = ['_owner', 'props', 'children'];
+
+      for (let key in item) {
+        if (!item.hasOwnProperty(key) || blacklistedKeys.some((blacklistedKey) => (
+          blacklistedKey === key)
+        )) {
+          continue;
+        }
+
+        newComponent[key] = item[key];
+      }
+
+      for (let key in item['props']) {
+        if (!item['props'].hasOwnProperty(key) || blacklistedKeys.some((blacklistedKey) => (
+          blacklistedKey === key)
+        )) {
+          continue;
+        }
+        newComponent['props'][key] = item['props'][key];
+      }
+
+      return newComponent;
+    } else {
+      return item;
+    }
+  }));
 }
 
 /**

@@ -7,7 +7,7 @@
 		exports["Style"] = factory(require("React"));
 	else
 		root["Style"] = factory(root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_4__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -68,21 +68,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                   *
 	                                                                                                                                                                                                                                                                   */
 
-	var _react = __webpack_require__(4);
+	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactLibAdler = __webpack_require__(2);
+	var _reactLibAdler = __webpack_require__(1);
 
 	var _reactLibAdler2 = _interopRequireDefault(_reactLibAdler);
 
-	var _reactLibEscapeTextContentForBrowser = __webpack_require__(3);
+	var _reactLibEscapeTextContentForBrowser = __webpack_require__(2);
 
 	var _reactLibEscapeTextContentForBrowser2 = _interopRequireDefault(_reactLibEscapeTextContentForBrowser);
-
-	var _jsonStringifySafe = __webpack_require__(1);
-
-	var _jsonStringifySafe2 = _interopRequireDefault(_jsonStringifySafe);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -115,11 +111,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (__DEV__) {
 	      if (rootChild.length > 1) {
-	        throw new Error('Adjacent JSX elements must be wrapped in an enclosing tag (' + rootChild.length + ' root elements detected): ' + JSON.stringify(makeNonCircularReferencing(rootChild)));
+	        throw new Error('Adjacent JSX elements must be wrapped in an enclosing tag (' + rootChild.length + ' root elements detected): ' + stringify(rootChild));
 	      }
 
 	      if (styleString.length > 1) {
-	        throw new Error('Multiple style objects as direct descedents of a ' + 'Style component are not supported (' + styleString.length + ' style objects detected): \n\n' + JSON.stringify(styleString));
+	        throw new Error('Multiple style objects as direct descedents of a ' + 'Style component are not supported (' + styleString.length + ' style objects detected): \n\n' + stringify(styleString));
 	      }
 	    }
 
@@ -162,7 +158,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // are collected from the entire tree; self-references are excluded (these
 	    // would break JSON stringify). Additionally users can add a "salt" to an
 	    // object to add additional uniqueness.
-	    var styleStringPepper = (0, _jsonStringifySafe2.default)(rootChild);
+	    var styleStringPepper = stringify(rootChild);
 
 	    var scopedClassName = scoped(styleString + styleStringPepper);
 
@@ -342,6 +338,74 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
+	* Flattens a component tree into an array; removes all circular references and
+	* JSON stringifies. Adds uniqueness to checksums using data from
+	* the component tree
+	*
+	*    > stringifyComponent( ReactDOMComponent )
+	*    "[{...ReactDOMComponent}, {...ReactDOMComponent}, ...]"
+	*
+	* @param {ReactDOMComponent} component
+	* @return {!string} Flattened JSON stringified component tree with no circular references
+	*/
+
+	var stringify = function stringify(component) {
+	  var toFlatten = [component];
+	  var toDereference = [];
+
+	  while (toFlatten.length) {
+	    var thisComponent = toFlatten.splice(0, 1)[0];
+	    if (thisComponent.props && thisComponent.props.children) {
+	      toFlatten = toFlatten.concat(thisComponent.props.children);
+	    }
+
+	    toDereference.push(thisComponent);
+	  }
+
+	  return JSON.stringify(toDereference.map(function (item) {
+	    if (isComponent(item)) {
+	      var newComponent = { props: {} };
+	      var blacklistedKeys = ['_owner', 'props', 'children'];
+
+	      var _loop = function _loop(key) {
+	        if (!item.hasOwnProperty(key) || blacklistedKeys.some(function (blacklistedKey) {
+	          return blacklistedKey === key;
+	        })) {
+	          return 'continue';
+	        }
+
+	        newComponent[key] = item[key];
+	      };
+
+	      for (var key in item) {
+	        var _ret = _loop(key);
+
+	        if (_ret === 'continue') continue;
+	      }
+
+	      var _loop2 = function _loop2(_key) {
+	        if (!item['props'].hasOwnProperty(_key) || blacklistedKeys.some(function (blacklistedKey) {
+	          return blacklistedKey === _key;
+	        })) {
+	          return 'continue';
+	        }
+	        newComponent['props'][_key] = item['props'][_key];
+	      };
+
+	      for (var _key in item['props']) {
+	        var _ret2 = _loop2(_key);
+
+	        if (_ret2 === 'continue') continue;
+	      }
+
+	      return newComponent;
+	    } else {
+	      return item;
+	    }
+	  }));
+	};
+
+	/**
 	 * Checks if a tag type is a self-closing void element
 	 *
 	 *    > isVoidElement( "img" )
@@ -360,39 +424,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
-
-	exports = module.exports = stringify
-	exports.getSerialize = serializer
-
-	function stringify(obj, replacer, spaces, cycleReplacer) {
-	  return JSON.stringify(obj, serializer(replacer, cycleReplacer), spaces)
-	}
-
-	function serializer(replacer, cycleReplacer) {
-	  var stack = [], keys = []
-
-	  if (cycleReplacer == null) cycleReplacer = function(key, value) {
-	    if (stack[0] === value) return "[Circular ~]"
-	    return "[Circular ~." + keys.slice(0, stack.indexOf(value)).join(".") + "]"
-	  }
-
-	  return function(key, value) {
-	    if (stack.length > 0) {
-	      var thisPos = stack.indexOf(this)
-	      ~thisPos ? stack.splice(thisPos + 1) : stack.push(this)
-	      ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key)
-	      if (~stack.indexOf(value)) value = cycleReplacer.call(this, key, value)
-	    }
-	    else stack.push(value)
-
-	    return replacer == null ? value : replacer.call(this, key, value)
-	  }
-	}
-
-
-/***/ },
-/* 2 */
 /***/ function(module, exports) {
 
 	/**
@@ -440,7 +471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = adler32;
 
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports) {
 
 	/**
@@ -483,10 +514,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = escapeTextContentForBrowser;
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }
 /******/ ])
