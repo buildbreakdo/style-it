@@ -104,10 +104,11 @@ const Style = (props) => {
 
     const scopedClassName = scoped(styleString + styleStringPepper);
 
+
     // Collect all root selectors so we can transform any root selector
     // in the styleString to a union selector (.e.g., .root => ._scoped-123.root)
     let rootSelectors = [];
-    if (rootChild.id) rootSelectors.push('#' + rootChild.id);
+    if (rootChild.props.id) rootSelectors.push('#' + rootChild.props.id);
     if (rootChild.props.className) {
       const classNames = (
         rootChild.props.className
@@ -183,7 +184,7 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
         // note in docs that selector statements are not escaped and should
         // not be generated from user provided strings
         if (statement.match(isDeclarationBodyPattern)) {
-          return escapeTextContentForBrowser(statement);
+          return escapeTextContentForBrowser(__DEV__ ? statement.replace(';', ';\n') : statement);
         } else { // Statement is a selector
           const selector = statement;
 
@@ -203,8 +204,8 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
         }
 
       // Pretty print in dev
-      }).join('{')
-  }).join('}');
+      }).join(__DEV__ ? '{\n' : '{')
+  }).join(__DEV__ ? '\n}\n' : '}');
 }
 
 /**

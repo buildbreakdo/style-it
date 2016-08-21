@@ -249,8 +249,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      // Pretty print in dev
-	    }).join('{');
-	  }).join('}');
+	    }).join(__DEV__ ? '{\n' : '{');
+	  }).join(__DEV__ ? '}\n' : '}');
 	};
 
 	/**
