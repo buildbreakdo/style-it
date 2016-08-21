@@ -19,7 +19,7 @@ describe('Style', () => {
     const styleNode = findDOMNode(wrapper).children[0];
 
     // Verify that stylecontent
-    expect(styleNode.textContent).toEqual(`body {\n font-size: 13px;\n \n}\n`);
+    expect(styleNode.textContent).toEqual(`body {\n font-size: 13px;\n }\n`);
   });
 
   it('creates a union and contains selector scope for root selectors', () => {
@@ -43,7 +43,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('foo _scoped-1300250854');
-    expect(styleNode.textContent).toEqual(`.foo._scoped-1300250854 , ._scoped-1300250854 .foo {\n color: red;\n \n}\n`);
+    expect(styleNode.textContent).toEqual(`.foo._scoped-1300250854 , ._scoped-1300250854 .foo {\n color: red;\n }\n`);
   });
 
   it('creates a contains selector scope when no root selector is present', () => {
@@ -67,7 +67,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped-891501385');
-    expect(styleNode.textContent).toEqual(`._scoped-891501385 .foo {\n color: red;\n \n}\n`);
+    expect(styleNode.textContent).toEqual(`._scoped-891501385 .foo {\n color: red;\n }\n`);
   });
 
   it('creates a contains selector scope when selector targets nothing and no root selector is present', () => {
@@ -91,7 +91,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped-1959802284');
-    expect(styleNode.textContent).toEqual(`._scoped-1959802284 .foo {\n color: red;\n \n}\n`);
+    expect(styleNode.textContent).toEqual(`._scoped-1959802284 .foo {\n color: red;\n }\n`);
   });
 
   it('creates a contains and union selector when selecting an element type', () => {
@@ -115,7 +115,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped-1385182589');
-    expect(styleNode.textContent).toEqual(`div._scoped-1385182589 , ._scoped-1385182589 div {\n color: red;\n \n}\n`);
+    expect(styleNode.textContent).toEqual(`div._scoped-1385182589 , ._scoped-1385182589 div {\n color: red;\n }\n`);
   });
 
   it('errors out when the root element is a void element type', () => {
@@ -144,7 +144,7 @@ describe('Style', () => {
   });
 
 
-    it('@media should be unscoped while .button selector should be scoped', () => {
+  it('@media should be unscoped while .button selector should be contains scoped', () => {
     const wrapper = TestUtils.renderIntoDocument(
       <div>
         <Style>
@@ -160,7 +160,27 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('container _scoped-182931118');
-    expect(styleNode.textContent).toEqual(`@media (max-width: 480px) {\n._scoped-182931118  .button {\n width: 160px;\n \n}\n\n}\n`);
+    expect(styleNode.textContent).toEqual(`@media (max-width: 480px) {\n._scoped-182931118  .button {\n width: 160px;\n }\n}\n`);
+  });
+
+  it('@media should be unscoped while #button selector should be contains and union scoped', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {'@media (max-width: 480px) { #button { width: 160px; } }'}
+          <div className="container" id="button">
+            <button className="button">Click me!</button>
+          </div>
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('container _scoped-933843706');
+    expect( styleNode.textContent.replace(/(\r\n|\n|\r)/gm, '') )
+      .toEqual('@media (max-width: 480px) { #button._scoped-933843706 , ._scoped-933843706  #button { width: 160px; }}');
   });
 
 });

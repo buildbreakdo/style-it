@@ -165,7 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Collect all root selectors so we can transform any root selector
 	    // in the styleString to a union selector (.e.g., .root => ._scoped-123.root)
 	    var rootSelectors = [];
-	    if (rootChild.id) rootSelectors.push('#' + rootChild.id);
+	    if (rootChild.props.id) rootSelectors.push('#' + rootChild.props.id);
 	    if (rootChild.props.className) {
 	      var classNames = rootChild.props.className.trim().replace(/  +/g, ' ') // Replace multiple whitespaces with single
 	      .split(' ').map(function (thisClassName) {
@@ -229,7 +229,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // note in docs that selector statements are not escaped and should
 	      // not be generated from user provided strings
 	      if (statement.match(isDeclarationBodyPattern)) {
-	        return (0, _reactLibEscapeTextContentForBrowser2.default)(statement);
+	        return (0, _reactLibEscapeTextContentForBrowser2.default)(__DEV__ ? statement.replace(';', ';\n') : statement);
 	      } else {
 	        // Statement is a selector
 	        var selector = statement;
@@ -250,7 +250,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      // Pretty print in dev
 	    }).join(__DEV__ ? '{\n' : '{');
-	  }).join(__DEV__ ? '}\n' : '}');
+	  }).join(__DEV__ ? '\n}\n' : '}');
 	};
 
 	/**
