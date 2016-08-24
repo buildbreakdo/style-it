@@ -171,8 +171,9 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
 
 
   return styleString.trim().replace(/\s\s+/g, ' ').split('}').map((fragment) => {
-    const isDeclarationBodyPattern = /;/g;
-    const isAtRulePattern = /@/g;
+    const isDeclarationBodyPattern = /.*:.*;/g;
+    const isAtRulePattern = /\s*@/g;
+    const isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)/g;
     // Split fragment into selector and declarationBody; escape declaration body
     return fragment.split('{').map((statement) => {
         // Avoid processing whitespace
@@ -190,10 +191,10 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
 
           if (scopedClassName) {
             // Prefix the scope to the selector if it is not an at-rule
-            if (!selector.match(isAtRulePattern)) {
+            if (!selector.match(isAtRulePattern) && !selector.match(isKeyframeOffsetPattern)) {
               return scopeSelector(scopedClassName, selector, rootSelectors);
             } else {
-              // Is at-rule and should not be scoped
+              // Is at-rule or keyframe offset and should not be scoped
               return selector;
             }
 

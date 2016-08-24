@@ -216,8 +216,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // the style string will not be parsed correctly
 
 	  return styleString.trim().replace(/\s\s+/g, ' ').split('}').map(function (fragment) {
-	    var isDeclarationBodyPattern = /;/g;
-	    var isAtRulePattern = /@/g;
+	    var isDeclarationBodyPattern = /.*:.*;/g;
+	    var isAtRulePattern = /\s*@/g;
+	    var isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)/g;
 	    // Split fragment into selector and declarationBody; escape declaration body
 	    return fragment.split('{').map(function (statement) {
 	      // Avoid processing whitespace
@@ -236,10 +237,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        if (scopedClassName) {
 	          // Prefix the scope to the selector if it is not an at-rule
-	          if (!selector.match(isAtRulePattern)) {
+	          if (!selector.match(isAtRulePattern) && !selector.match(isKeyframeOffsetPattern)) {
 	            return scopeSelector(scopedClassName, selector, rootSelectors);
 	          } else {
-	            // Is at-rule and should not be scoped
+	            // Is at-rule or keyframe offset and should not be scoped
 	            return selector;
 	          }
 	        } else {
@@ -250,7 +251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      // Pretty print in dev
 	    }).join(__DEV__ ? '{\n' : '{');
-	  }).join(__DEV__ ? '\n}\n' : '}');
+	  }).join(__DEV__ ? '}\n' : '}');
 	};
 
 	/**

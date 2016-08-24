@@ -1,6 +1,6 @@
 {
   "name": "reactive-style",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/reactive-style.js",
   "author": "buildbreakdo",
@@ -87,9 +87,6 @@
     "stile",
     "react-media-queries"
   ],
-  "peerDependencies": {
-    "react": "0.14.x || 15.x"
-  },
   "devDependencies": {
     "babel-cli": "^6.10.1",
     "babel-core": "^6.9.1",

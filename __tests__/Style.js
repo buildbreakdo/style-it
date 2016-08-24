@@ -4,6 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 
 // import DummyPassthroughComponent from './components/DummyPassthroughComponent';
 // import DummyWrapperComponent from './components/DummyWrapperComponent';
+const removeNewlines = (string) => (string.replace(/(\r\n|\n|\r)/gm, ''))
 
 import Style from '../src/index.js';
 
@@ -163,7 +164,7 @@ describe('Style', () => {
     expect(styleNode.textContent).toEqual(`@media (max-width: 480px) {\n._scoped-182931118  .button {\n width: 160px;\n }\n}\n`);
   });
 
-  it('@media should be unscoped while #button selector should be contains and union scoped', () => {
+  it('should not scope @media while #button selector should be contains and union scoped', () => {
     const wrapper = TestUtils.renderIntoDocument(
       <div>
         <Style>
@@ -179,8 +180,50 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('container _scoped-933843706');
-    expect( styleNode.textContent.replace(/(\r\n|\n|\r)/gm, '') )
+    expect( removeNewlines( styleNode.textContent) )
       .toEqual('@media (max-width: 480px) { #button._scoped-933843706 , ._scoped-933843706  #button { width: 160px; }}');
+  });
+
+  it('does not scope keyframes or keyframe offsets', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {`
+            @-webkit-keyframes NAME-YOUR-ANIMATION {
+              0%   { opacity: 0; }
+              100% { opacity: 1; }
+            }
+            @-moz-keyframes NAME-YOUR-ANIMATION {
+              0%   { opacity: 0; }
+              100% { opacity: 1; }
+            }
+            @-o-keyframes NAME-YOUR-ANIMATION {
+              0%   { opacity: 0; }
+              100% { opacity: 1; }
+            }
+            @keyframes NAME-YOUR-ANIMATION {
+              0%   { opacity: 0; }
+              100% { opacity: 1; }
+            }
+
+            #box {
+              -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */
+              -moz-animation:    NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */
+              -o-animation:      NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */
+              animation:         NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */
+            }
+          `}
+          <div id="box"></div>
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('_scoped-704047996');
+    expect( removeNewlines(styleNode.textContent) )
+      .toEqual('@-webkit-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @-moz-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @-o-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box._scoped-704047996 , ._scoped-704047996  #box { -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */ -moz-animation: NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */ -o-animation: NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */ animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
   });
 
 });
