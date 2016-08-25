@@ -184,7 +184,7 @@ describe('Style', () => {
       .toEqual('@media (max-width: 480px) { #button._scoped-933843706 , ._scoped-933843706  #button { width: 160px; }}');
   });
 
-  it('does not scope keyframes or keyframe offsets', () => {
+  it('does not scope keyframe selectors or keyframe offset % syntax', () => {
     const wrapper = TestUtils.renderIntoDocument(
       <div>
         <Style>
@@ -225,5 +225,48 @@ describe('Style', () => {
     expect( removeNewlines(styleNode.textContent) )
       .toEqual('@-webkit-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @-moz-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @-o-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box._scoped-704047996 , ._scoped-704047996  #box { -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */ -moz-animation: NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */ -o-animation: NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */ animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
   });
+
+  it('does not scope keyframe "from" and "to" syntax', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {`
+            @-webkit-keyframes NAME-YOUR-ANIMATION {
+              from   { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @-moz-keyframes NAME-YOUR-ANIMATION {
+              from   { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @-o-keyframes NAME-YOUR-ANIMATION {
+              from   { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @keyframes NAME-YOUR-ANIMATION {
+              from   { opacity: 0; }
+              to { opacity: 1; }
+            }
+
+            #box {
+              -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */
+              -moz-animation:    NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */
+              -o-animation:      NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */
+              animation:         NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */
+            }
+          `}
+          <div id="box"></div>
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('_scoped--178851412');
+    expect( removeNewlines(styleNode.textContent) )
+      .toEqual('@-webkit-keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} @-moz-keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} @-o-keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} @keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} #box._scoped--178851412 , ._scoped--178851412  #box { -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */ -moz-animation: NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */ -o-animation: NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */ animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
+  });
+
 
 });
