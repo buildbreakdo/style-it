@@ -218,7 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return styleString.trim().replace(/\s\s+/g, ' ').split('}').map(function (fragment) {
 	    var isDeclarationBodyPattern = /.*:.*;/g;
 	    var isAtRulePattern = /\s*@/g;
-	    var isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)/g;
+	    var isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
 	    // Split fragment into selector and declarationBody; escape declaration body
 	    return fragment.split('{').map(function (statement) {
 	      // Avoid processing whitespace
