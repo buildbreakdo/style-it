@@ -215,7 +215,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // if linting fails we need to error out because
 	  // the style string will not be parsed correctly
 
-	  return styleString.trim().replace(/\s\s+/g, ' ').split('}').map(function (fragment) {
+	  return styleString.replace(/s*\/\/.*/g, '') // Strip javascript style comments
+	  .replace(/\s\s+/g, ' ') // Convert multiple to single whitespace
+	  .split('}') // Start breaking down statements
+	  .map(function (fragment) {
 	    var isDeclarationBodyPattern = /.*:.*;/g;
 	    var isAtRulePattern = /\s*@/g;
 	    var isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
@@ -250,8 +253,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      // Pretty print in dev
-	    }).join(__DEV__ ? '{\n' : '{');
-	  }).join(__DEV__ ? '}\n' : '}');
+	    }).join('{\n');
+	  }).join('}\n');
 	};
 
 	/**

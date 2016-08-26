@@ -44,7 +44,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('foo _scoped-1300250854');
-    expect(styleNode.textContent).toEqual(`.foo._scoped-1300250854 , ._scoped-1300250854 .foo {\n color: red;\n }\n`);
+    expect(removeNewlines(styleNode.textContent)).toEqual(` .foo._scoped-1300250854 , ._scoped-1300250854  .foo { color: red; }`);
   });
 
   it('creates a contains selector scope when no root selector is present', () => {
@@ -68,7 +68,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped-891501385');
-    expect(styleNode.textContent).toEqual(`._scoped-891501385 .foo {\n color: red;\n }\n`);
+    expect(removeNewlines(styleNode.textContent)).toEqual(`._scoped-891501385  .foo { color: red; }`);
   });
 
   it('creates a contains selector scope when selector targets nothing and no root selector is present', () => {
@@ -92,7 +92,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped-1959802284');
-    expect(styleNode.textContent).toEqual(`._scoped-1959802284 .foo {\n color: red;\n }\n`);
+    expect(removeNewlines(styleNode.textContent)).toEqual(`._scoped-1959802284  .foo { color: red; }`);
   });
 
   it('creates a contains and union selector when selecting an element type', () => {
@@ -116,7 +116,7 @@ describe('Style', () => {
     const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped-1385182589');
-    expect(styleNode.textContent).toEqual(`div._scoped-1385182589 , ._scoped-1385182589 div {\n color: red;\n }\n`);
+    expect(removeNewlines(styleNode.textContent)).toEqual(` div._scoped-1385182589 , ._scoped-1385182589  div { color: red; }`);
   });
 
   it('errors out when the root element is a void element type', () => {
@@ -189,27 +189,12 @@ describe('Style', () => {
       <div>
         <Style>
           {`
-            @-webkit-keyframes NAME-YOUR-ANIMATION {
-              0%   { opacity: 0; }
-              100% { opacity: 1; }
-            }
-            @-moz-keyframes NAME-YOUR-ANIMATION {
-              0%   { opacity: 0; }
-              100% { opacity: 1; }
-            }
-            @-o-keyframes NAME-YOUR-ANIMATION {
-              0%   { opacity: 0; }
-              100% { opacity: 1; }
-            }
             @keyframes NAME-YOUR-ANIMATION {
               0%   { opacity: 0; }
               100% { opacity: 1; }
             }
 
             #box {
-              -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */
-              -moz-animation:    NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */
-              -o-animation:      NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */
               animation:         NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */
             }
           `}
@@ -221,9 +206,9 @@ describe('Style', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('_scoped-704047996');
+    expect(rootNode.className).toEqual('_scoped--1705750484');
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual('@-webkit-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @-moz-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @-o-keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box._scoped-704047996 , ._scoped-704047996  #box { -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */ -moz-animation: NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */ -o-animation: NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */ animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
+      .toEqual(' @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box._scoped--1705750484 , ._scoped--1705750484  #box { animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
   });
 
   it('does not scope keyframe "from" and "to" syntax', () => {
@@ -231,27 +216,12 @@ describe('Style', () => {
       <div>
         <Style>
           {`
-            @-webkit-keyframes NAME-YOUR-ANIMATION {
-              from   { opacity: 0; }
-              to { opacity: 1; }
-            }
-            @-moz-keyframes NAME-YOUR-ANIMATION {
-              from   { opacity: 0; }
-              to { opacity: 1; }
-            }
-            @-o-keyframes NAME-YOUR-ANIMATION {
-              from   { opacity: 0; }
-              to { opacity: 1; }
-            }
             @keyframes NAME-YOUR-ANIMATION {
               from   { opacity: 0; }
               to { opacity: 1; }
             }
 
             #box {
-              -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */
-              -moz-animation:    NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */
-              -o-animation:      NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */
               animation:         NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */
             }
           `}
@@ -263,10 +233,36 @@ describe('Style', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('_scoped--178851412');
+    expect(rootNode.className).toEqual('_scoped-656626104');
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual('@-webkit-keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} @-moz-keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} @-o-keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} @keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} #box._scoped--178851412 , ._scoped--178851412  #box { -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */ -moz-animation: NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */ -o-animation: NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */ animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
+      .toEqual(' @keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} #box._scoped-656626104 , ._scoped-656626104  #box { animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
   });
 
+  it('strips javascript style comments', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {`
+            // Required to use short syntax for Safarri in order to have
+            // flex property work. See https://css-tricks.com/almanac/properties/f/flex-wrap/
+            // comment section
+            @media all and (orientation: portrait) {
+              #box {
+                flex: 1 0 50%;
+              }
+            }
+          `}
 
+          <div id="box"></div>
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('_scoped-456357045');
+    expect( removeNewlines(styleNode.textContent) )
+      .toEqual(' @media all and (orientation: portrait) { #box._scoped-456357045 , ._scoped-456357045  #box { flex: 1 0 50%; }}');
+  });
 });

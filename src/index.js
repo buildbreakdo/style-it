@@ -170,12 +170,16 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
   // the style string will not be parsed correctly
 
 
-  return styleString.trim().replace(/\s\s+/g, ' ').split('}').map((fragment) => {
-    const isDeclarationBodyPattern = /.*:.*;/g;
-    const isAtRulePattern = /\s*@/g;
-    const isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
-    // Split fragment into selector and declarationBody; escape declaration body
-    return fragment.split('{').map((statement) => {
+  return styleString
+    .replace(/s*\/\/.*/g, '') // Strip javascript style comments
+    .replace(/\s\s+/g, ' ') // Convert multiple to single whitespace
+    .split('}') // Start breaking down statements
+    .map((fragment) => {
+      const isDeclarationBodyPattern = /.*:.*;/g;
+      const isAtRulePattern = /\s*@/g;
+      const isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
+      // Split fragment into selector and declarationBody; escape declaration body
+      return fragment.split('{').map((statement) => {
         // Avoid processing whitespace
         if (!statement.trim().length) {
           return;
