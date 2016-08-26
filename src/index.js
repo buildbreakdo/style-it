@@ -171,7 +171,7 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
 
 
   return styleString
-    .replace(/s*\/\/.*/g, '') // Strip javascript style comments
+    .replace(/\s*\/\/(?![^\(]*\)).*/g, '') // Strip javascript style comments
     .replace(/\s\s+/g, ' ') // Convert multiple to single whitespace
     .split('}') // Start breaking down statements
     .map((fragment) => {
@@ -189,7 +189,10 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
         // note in docs that selector statements are not escaped and should
         // not be generated from user provided strings
         if (statement.match(isDeclarationBodyPattern)) {
-          return escapeTextContentForBrowser(__DEV__ ? statement.replace(';', ';\n') : statement);
+          return escapeTextContentForBrowser(
+            statement.replace(';', ';\n') // Add formatting
+              .replace(/['"]/g, '') // Remove single and double quotes
+            );
         } else { // Statement is a selector
           const selector = statement;
 

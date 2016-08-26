@@ -238,7 +238,7 @@ describe('Style', () => {
       .toEqual(' @keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} #box._scoped-656626104 , ._scoped-656626104  #box { animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
   });
 
-  it('strips javascript style comments', () => {
+  it('strips JavasSript style comments', () => {
     const wrapper = TestUtils.renderIntoDocument(
       <div>
         <Style>
@@ -264,5 +264,31 @@ describe('Style', () => {
     expect(rootNode.className).toEqual('_scoped-456357045');
     expect( removeNewlines(styleNode.textContent) )
       .toEqual(' @media all and (orientation: portrait) { #box._scoped-456357045 , ._scoped-456357045  #box { flex: 1 0 50%; }}');
+  });
+
+  it('removes single and double quotes from CSS declaration bodies', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {`
+            @media all and (orientation: portrait) {
+              #box {
+                background-image: url('http://google.com/');
+                font-family: 'Helvetica', "Arial";
+              }
+            }
+          `}
+
+          <div id="box"></div>
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('_scoped-1452756925');
+    expect( removeNewlines(styleNode.textContent) )
+      .toEqual(` @media all and (orientation: portrait) { #box._scoped-1452756925 , ._scoped-1452756925  #box { background-image: url(http:\/\/google.com/); font-family: Helvetica, Arial; }}`);
   });
 });
