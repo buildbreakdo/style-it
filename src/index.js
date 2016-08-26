@@ -205,8 +205,8 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
         }
 
       // Pretty print in dev
-      }).join(__DEV__ ? '{\n' : '{')
-  }).join(__DEV__ ? '}\n' : '}');
+      }).join('{\n')
+  }).join('}\n');
 }
 
 /**
