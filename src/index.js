@@ -190,7 +190,7 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
         // not be generated from user provided strings
         if (statement.match(isDeclarationBodyPattern)) {
           return escapeTextContentForBrowser(
-            statement.replace(';', ';\n') // Add formatting
+            statement.replace(/;/g, ';\n') // Add formatting
               .replace(/['"]/g, '') // Remove single and double quotes
             );
         } else { // Statement is a selector
