@@ -245,10 +245,22 @@ const scopeSelector = (scopedClassName, selector, rootSelectors) => {
       // Can't just add them together because of selector combinator complexity
       // like '.rootClassName.someClass.otherClass > *' or :not('.rootClassName'),
       // replace must be used
-      rootSelectors.forEach((rootSelector) => {
-        const escapedRootSelector = rootSelector.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-        unionSelector = unionSelector.replace(new RegExp(escapedRootSelector, 'g'), rootSelector +  scopedClassName);
-      });
+
+      // Escape valid CSS special characters that are also RegExp special characters
+      const escapedRootSelectors = rootSelectors.map(rootSelector => (
+        rootSelector.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+      ));
+
+      unionSelector = unionSelector.replace(new RegExp(
+          '(' +                             // Start capture group
+          escapedRootSelectors.join('|') +  // Match any one root selector
+          ')'                               // End capture group
+        )
+      ,
+        '$1' + scopedClassName              // Combine any one root selector match with scoping class
+      );
+
+      //'.bar.foo'.replace(/(.bar|.too)/, '$1' + '._scoped-1')
 
       // Do both union and contains selectors because of case <div><div></div></div>
       // or <div className="foo"><div className="foo"></div></div>

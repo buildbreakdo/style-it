@@ -291,4 +291,25 @@ describe('Style', () => {
     expect( removeNewlines(styleNode.textContent) )
       .toEqual(` @media all and (orientation: portrait) { #box._scoped-1452756925 , ._scoped-1452756925  #box { background-image: url(http:\/\/google.com/); font-family: Helvetica, Arial; }}`);
   });
+
+  it('removes single and double quotes from CSS declaration bodies', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {`
+            #box.rootClass { color: red; }
+          `}
+
+          <div id="box" className="rootClass" />
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('rootClass _scoped-1356475730');
+    expect( removeNewlines(styleNode.textContent) )
+      .toEqual(` #box._scoped-1356475730.rootClass , ._scoped-1356475730  #box.rootClass { color: red; }`);
+  });
 });
