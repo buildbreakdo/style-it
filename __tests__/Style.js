@@ -292,7 +292,7 @@ describe('Style', () => {
       .toEqual(` @media all and (orientation: portrait) { #box._scoped-1452756925 , ._scoped-1452756925  #box { background-image: url(http:\/\/google.com/); font-family: Helvetica, Arial; }}`);
   });
 
-  it('removes single and double quotes from CSS declaration bodies', () => {
+  it('scopes only one root selector if a selector is union root selector', () => {
     const wrapper = TestUtils.renderIntoDocument(
       <div>
         <Style>
