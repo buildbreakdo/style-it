@@ -332,7 +332,7 @@ describe('Style', () => {
 
     expect(rootNode.className).toEqual('Slide _scoped--944360157');
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` .Slide._scoped--944360157:before , ._scoped--944360157  .Slide:before { content: ' test ' } .Slide._scoped--944360157:after , ._scoped--944360157  .Slide:after { content: ' ' }`);
+      .toEqual(` .Slide._scoped--944360157:before , ._scoped--944360157  .Slide:before { content: ' test '; } .Slide._scoped--944360157:after , ._scoped--944360157  .Slide:after { content: ' '; }`);
   });
 
 });
