@@ -148,7 +148,7 @@ Out:
 </p>
 ```
 
-#### Layout styling [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/12/)
+#### Layout styling[<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/12/)
 Style your layout without using an external CSS file. Reactive Style makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles.
 
 In:
