@@ -165,11 +165,10 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
   // TODO: Look into using memoizeStringOnly from fbjs/lib for escaped strings;
   // can avoid much of the computation as long as scoped doesn't come into play
   // which would be unique
+
   // TODO: If dev lint and provide feedback
   // if linting fails we need to error out because
   // the style string will not be parsed correctly
-
-
   return styleString
     .replace(/\s*\/\/(?![^\(]*\)).*/g, '') // Strip javascript style comments
     .replace(/\s\s+/g, ' ') // Convert multiple to single whitespace
@@ -178,6 +177,7 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
       const isDeclarationBodyPattern = /.*:.*;/g;
       const isAtRulePattern = /\s*@/g;
       const isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
+      // const isContent
       // Split fragment into selector and declarationBody; escape declaration body
       return fragment.split('{').map((statement) => {
         // Avoid processing whitespace
@@ -190,9 +190,13 @@ const processStyleString = (styleString, scopedClassName, rootSelectors) => {
         // not be generated from user provided strings
         if (statement.match(isDeclarationBodyPattern)) {
           return escapeTextContentForBrowser(
-            statement.replace(/;/g, ';\n') // Add formatting
+            statement // Have to deal with special case of CSS property "content", breaks without quotes
+              .replace(/lsquo|rsquo/g, '') // Prevent manipulation
+              .replace(/content\s*:\s*(['"])(.*)(['")])\s*;/g, 'content: lsquo;$2rsquo;') // "Entify" content property
               .replace(/['"]/g, '') // Remove single and double quotes
-            );
+            ).replace(/lsquo;|rsquo;/g, "'") // De-"entify" content property
+             .replace(/;/g, ';\n'); // Add formatting;
+
         } else { // Statement is a selector
           const selector = statement;
 

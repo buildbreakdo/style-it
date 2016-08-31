@@ -312,4 +312,27 @@ describe('Style', () => {
     expect( removeNewlines(styleNode.textContent) )
       .toEqual(` #box._scoped-1356475730.rootClass , ._scoped-1356475730  #box.rootClass { color: red; }`);
   });
+
+  it('preserves quotes for the CSS property "content"', () => {
+    const wrapper = TestUtils.renderIntoDocument(
+      <div>
+        <Style>
+          {`
+            .Slide:before { content: " test "; }
+            .Slide:after { content: " "; }
+          `}
+
+          <div className="Slide" />
+        </Style>
+      </div>
+    );
+
+    const rootNode = findDOMNode(wrapper).children[0];
+    const styleNode = rootNode.children[0];
+
+    expect(rootNode.className).toEqual('Slide _scoped--944360157');
+    expect( removeNewlines(styleNode.textContent) )
+      .toEqual(` .Slide._scoped--944360157:before , ._scoped--944360157  .Slide:before { content: ' test ' } .Slide._scoped--944360157:after , ._scoped--944360157  .Slide:after { content: ' ' }`);
+  });
+
 });
