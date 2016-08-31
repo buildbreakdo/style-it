@@ -318,9 +318,20 @@ describe('Style', () => {
       <div>
         <Style>
           {`
-            .Slide:before { content: " test "; }
-            .Slide:after { content: " "; }
-          `}
+              .Slide:before { content: " test "; }
+              .Slide:after { content: " "; }
+
+              .Foo:after {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 100%;
+                backgroud-color: rgba( 0, 0, 0, .7);
+                top: 0;
+                left: 0;
+                z-index: 1;
+              }
+            `}
 
           <div className="Slide" />
         </Style>
@@ -330,9 +341,9 @@ describe('Style', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('Slide _scoped--944360157');
+    expect(rootNode.className).toEqual('Slide _scoped-1502704505');
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` .Slide._scoped--944360157:before , ._scoped--944360157  .Slide:before { content: ' test '; } .Slide._scoped--944360157:after , ._scoped--944360157  .Slide:after { content: ' '; }`);
+      .toEqual(` .Slide._scoped-1502704505:before , ._scoped-1502704505  .Slide:before { content: ' test ' } .Slide._scoped-1502704505:after , ._scoped-1502704505  .Slide:after { content: ' ' }._scoped-1502704505  .Foo:after { position: absolute; content: '' width: 100%; height: 100%; backgroud-color: rgba( 0, 0, 0, .7); top: 0; left: 0; z-index: 1; }`);
   });
 
 });
