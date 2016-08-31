@@ -343,7 +343,7 @@ describe('Style', () => {
 
     expect(rootNode.className).toEqual('Slide _scoped-1502704505');
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` .Slide._scoped-1502704505:before , ._scoped-1502704505  .Slide:before { content: ' test ' } .Slide._scoped-1502704505:after , ._scoped-1502704505  .Slide:after { content: ' ' }._scoped-1502704505  .Foo:after { position: absolute; content: '' width: 100%; height: 100%; backgroud-color: rgba( 0, 0, 0, .7); top: 0; left: 0; z-index: 1; }`);
+      .toEqual(` .Slide._scoped-1502704505:before , ._scoped-1502704505  .Slide:before { content: ' test '; } .Slide._scoped-1502704505:after , ._scoped-1502704505  .Slide:after { content: ' '; }._scoped-1502704505  .Foo:after { position: absolute; content: ''; width: 100%; height: 100%; backgroud-color: rgba( 0, 0, 0, .7); top: 0; left: 0; z-index: 1; }`);
   });
 
 });

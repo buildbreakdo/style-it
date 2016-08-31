@@ -236,7 +236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (statement.match(isDeclarationBodyPattern)) {
 	        return (0, _reactLibEscapeTextContentForBrowser2.default)(statement // Have to deal with special case of CSS property "content", breaks without quotes
 	        .replace(/lsquo|rsquo/g, '') // Prevent manipulation
-	        .replace(/content\s*:\s*['"](.*)['"]\s*;/, 'content: lsquo;$1rsquo;') // "Entify" content property
+	        .replace(/content\s*:\s*['"](.*)['"]\s*;/, 'content: lsquo;$1rsquo;;') // "Entify" content property
 	        .replace(/['"]/g, '') // Remove single and double quotes
 	        ).replace(/lsquo;|rsquo;/g, "'") // De-"entify" content property
 	        .replace(/;/g, ';\n'); // Add formatting;
