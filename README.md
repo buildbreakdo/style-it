@@ -140,11 +140,7 @@ class Intro extends React.Component {
         color: aqua;
       }
     `,
-      <p className="intro">
-        <b className="package">Style It</b> has many of the benefits of
-        inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
-        <i>without</i> the costs and quirks of Reacts inline styling.
-      </p>
+      <p className="intro">CSS-in-JS made simple -- just Style It.</p>
     );
   }
 }
@@ -167,9 +163,7 @@ Out:
     }
   </style>
 
-  <b class="package">Style It</b> has many of the benefits of
-  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
-  <i>without</i> the costs and quirks of Reacts inline styling.
+  CSS-in-JS made simple -- just Style It.
 </p>
 ```
 
