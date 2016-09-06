@@ -191,9 +191,9 @@ class App extends React.Component {
          `}
         </Style>
 
-        <Header />
-        <Main />
-        <Footer />
+        <header />
+        <main />
+        <footer />
       </div>
     );
   }
@@ -227,9 +227,9 @@ Out:
     }
   </style>
 
-  <header> Header Content </header>
-  <main> Main Content </main>
-  <footer> Footer Content </footer>
+  <header></header>
+  <main></main>
+  <footer></footer>
 </div>
 ```
 ### More Features
