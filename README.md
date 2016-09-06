@@ -31,7 +31,7 @@ Style It takes advantage of ES2015 / ES6 specification for Template Literals (pr
 
 Template Literals are enclosed by the back-tick (\` \`) (grave accent) character instead of double or single quotes. Learn more about Template Literals on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
-####JSX syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/24/)
+####Functional syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/24/)
 
 In:
 ```js
@@ -68,9 +68,52 @@ Out:
     }
   </style>
 
-  <b class="package">Style It</b> has many of the benefits of
-  inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
-  <i>without</i> the costs and quirks of Reacts inline styling.
+  CSS-in-JS made simple -- just Style It.
+</p>
+```
+
+####JSX syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/24/)
+
+In:
+```js
+import React from 'react';
+import Style from 'style-it';
+
+class Intro extends React.Component {
+  render() {
+    return (
+        <Style>
+            {`
+                .intro {
+                  font-size: 40px;
+                }
+            `}
+        
+            <p className="intro">CSS-in-JS made simple -- just Style It.</p>
+        </Style>
+    );
+  }
+}
+
+export default Intro;
+```
+
+Out:
+```html
+<p class="intro _scoped-1">
+  <style type="text/css">
+    ._scoped-1.intro {
+      font-size: 13px;
+    }
+    ._scoped-1 .package-name {
+      color: blue;
+    }
+    ._scoped-1 .package-name:hover {
+      color: aqua;
+    }
+  </style>
+
+  CSS-in-JS made simple -- just Style It.
 </p>
 ```
 
