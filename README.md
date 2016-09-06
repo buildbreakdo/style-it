@@ -1,4 +1,4 @@
-# <img alt="Style It" height="60" src="https://s3.amazonaws.com/style-it/style-it-logo.svg?11263" />
+# <img alt="Style It" height="60" src="https://s3.amazonaws.com/style-it/style-it.svg" />
 Style It is a component for writing plaintext CSS in JavaScript apps. Use the same
 familiar CSS syntax you already know and love -- now inside of your components.
 
