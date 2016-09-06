@@ -11,8 +11,8 @@
 
   <g font-size="60px" font-family="serif" transform="translate(0, 50)">
     <text>
-    	<tspan fill="#303030">Reactive</tspan>
-    	<tspan fill="url(#style-stripes)">Style</tspan>
+    	<tspan fill="#303030">Style</tspan>
+    	<tspan fill="url(#style-stripes)">It</tspan>
     </text>
   </g>
 </svg>
