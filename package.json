@@ -1,22 +1,22 @@
 {
-  "name": "reactive-style",
+  "name": "style-it",
   "version": "1.2.0",
   "description": "Component for writing plaintext CSS in JavaScript apps",
-  "main": "dist/reactive-style.js",
+  "main": "dist/style-it.js",
   "author": "buildbreakdo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/buildbreakdo/reactive-style.git"
+    "url": "https://github.com/buildbreakdo/style-it.git"
   },
   "bugs": {
-    "url": "https://github.com/buildbreakdo/reactive-style/issues"
+    "url": "https://github.com/buildbreakdo/style-it/issues"
   },
-  "homepage": "https://github.com/buildbreakdo/reactive-style",
+  "homepage": "https://github.com/buildbreakdo/style-it",
   "scripts": {
     "build": "npm run build:standalone:dev && npm run build:standalone:production && npm run build:umd:dev && npm run build:umd:production",
-    "build:standalone:dev": "webpack --standalone && replace 'exports.default' 'module.exports' dist/reactive-style-standalone.js",
-    "build:standalone:production": "uglifyjs --compress --mangle -- dist/reactive-style-standalone.js >> dist/reactive-style-standalone.min.js",
+    "build:standalone:dev": "webpack --standalone && replace 'exports.default' 'module.exports' dist/style-it-standalone.js",
+    "build:standalone:production": "uglifyjs --compress --mangle -- dist/style-it-standalone.js >> dist/style-it-standalone.min.js",
     "build:umd:dev": "webpack && babel src --out-dir lib",
     "build:umd:production": "NODE_ENV='production' webpack && babel src --out-dir lib",
     "prebuild": "rimraf dist lib",
@@ -30,7 +30,7 @@
   },
   "keywords": [
     "react-style",
-    "reactive-style",
+    "style-it",
     "react",
     "scope",
     "scoped",

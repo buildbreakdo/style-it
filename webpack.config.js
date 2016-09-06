@@ -20,14 +20,14 @@ module.exports = {
   output: {
     filename: __STANDALONE__ ?
       (
-        'dist/reactive-style-standalone.js'
+        'dist/style-it-standalone.js'
       )
     :
       (
         __DEV__ ?
-          'dist/reactive-style.js'
+          'dist/style-it.js'
         :
-          'dist/reactive-style.min.js'
+          'dist/style-it.min.js'
       )
     ,
     libraryTarget: 'umd',
