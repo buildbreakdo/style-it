@@ -58,13 +58,7 @@ Out:
 <p class="intro _scoped-1">
   <style type="text/css">
     ._scoped-1.intro {
-      font-size: 13px;
-    }
-    ._scoped-1 .package-name {
-      color: blue;
-    }
-    ._scoped-1 .package-name:hover {
-      color: aqua;
+      font-size: 40px;
     }
   </style>
 
@@ -103,13 +97,7 @@ Out:
 <p class="intro _scoped-1">
   <style type="text/css">
     ._scoped-1.intro {
-      font-size: 13px;
-    }
-    ._scoped-1 .package-name {
-      color: blue;
-    }
-    ._scoped-1 .package-name:hover {
-      color: aqua;
+      font-size: 40px;
     }
   </style>
 
