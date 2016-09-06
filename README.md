@@ -41,11 +41,11 @@ import Style from 'style-it';
 class Intro extends React.Component {
   render() {
     return Style.it(`
-        .intro {
-          font-size: 40px;
-        }
-      `,
-        <p className="intro">CSS-in-JS made simple -- just Style It.</p>
+      .intro {
+        font-size: 40px;
+      }
+    `,
+      <p className="intro">CSS-in-JS made simple -- just Style It.</p>
     );
   }
 }
@@ -82,15 +82,15 @@ import Style from 'style-it';
 class Intro extends React.Component {
   render() {
     return (
-        <Style>
-            {`
-                .intro {
-                  font-size: 40px;
-                }
-            `}
-        
-            <p className="intro">CSS-in-JS made simple -- just Style It.</p>
-        </Style>
+      <Style>
+        {`
+          .intro {
+            font-size: 40px;
+          }
+        `}
+      
+        <p className="intro">CSS-in-JS made simple -- just Style It.</p>
+      </Style>
     );
   }
 }
@@ -130,21 +130,21 @@ class Intro extends React.Component {
     const fontSize = 13;
 
     return Style.it(`
-          .intro {
-            font-size: ${ fontSize }px;  // ES2015 & ES6 Template Literal string interpolation
-          }
-          .package {
-            color: blue;
-          }
-          .package:hover {
-            color: aqua;
-          }
-     `,
-        <p className="intro">
-          <b className="package">Style It</b> has many of the benefits of
-          inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
-          <i>without</i> the costs and quirks of Reacts inline styling.
-        </p>
+      .intro {
+        font-size: ${ fontSize }px;  // ES2015 & ES6 Template Literal string interpolation
+      }
+      .package {
+        color: blue;
+      }
+      .package:hover {
+        color: aqua;
+      }
+    `,
+      <p className="intro">
+        <b className="package">Style It</b> has many of the benefits of
+        inline styling like: scoping, ↑ cohesion, and ↓ coupling of files --
+        <i>without</i> the costs and quirks of Reacts inline styling.
+      </p>
     );
   }
 }
