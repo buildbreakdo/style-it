@@ -180,7 +180,7 @@ export default App;
 Out:
 ```html
 <div>
-  <Style>
+  <style type="text/css">
     body {
       font-size: small;
       font-family: arial;
@@ -200,7 +200,7 @@ Out:
     a:hover {
       color: aqua;
     }
-  </Style>
+  </style>
 
   <header> Header Content </header>
   <main> Main Content </main>
