@@ -1,6 +1,6 @@
 {
   "name": "style-it",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/style-it.js",
   "author": "buildbreakdo",
@@ -22,7 +22,7 @@
     "prebuild": "rimraf dist lib",
     "prepublish": "npm run build && npm test",
     "lint": "eslint .",
-    "test": "clear && jest || true",
+    "test": "node --harmony_proxies node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "coverage": "jest --coverage"
   },
   "jest": {
@@ -101,6 +101,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-standalone": "^6.10.3",
+    "coveralls": "^2.11.12",
     "eslint": "^2.13.0",
     "eslint-plugin-react": "^5.2.2",
     "jest": "^14.1.0",
