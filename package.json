@@ -20,7 +20,7 @@
     "build:umd:dev": "webpack && babel src --out-dir lib",
     "build:umd:production": "NODE_ENV='production' webpack && babel src --out-dir lib",
     "prebuild": "rimraf dist lib",
-    "prepublish": "npm run build && npm run coverage",
+    "prepublish": "npm run build && npm run coveralls",
     "lint": "eslint .",
     "test": "clear && jest || true",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
