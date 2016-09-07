@@ -23,7 +23,7 @@
     "prepublish": "npm run build && npm run coverage",
     "lint": "eslint .",
     "test": "clear && jest || true",
-    "coveralls": "node node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
     "automock": false,
