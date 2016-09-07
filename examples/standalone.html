@@ -5,40 +5,37 @@
     <script src="../node_modules/react-dom/dist/react-dom.js"></script>
     <script src="../node_modules/babel-standalone/babel.js"></script>
 
-    <title>Example - Reactive Style</title>
-    <script src="../dist/reactive-style-standalone.js"></script>
+    <title>Example - Style It</title>
+    <script src="../dist/style-it-standalone.js"></script>
   </head>
   <meta charset="utf-8" />
   <body>
     <div id="container">  <!-- This element's contents will be replaced with your component. --> </div>
 
     <script type="text/babel">
+      /* Leverages Function Syntax */
       class Intro extends React.Component {
         render() {
-          return (
-            <Style>
-              {`
-                div {
-                  color: red;
-                }
-              `}
-
-              <div>
-                <header>
-                  <h1>Standalone Example - Reactive Style</h1>
-                  <p>For usage without babel / webpack</p>
-                </header>
-                <main>
-                  <p>Reactive Style is just CSS -- unlike with inline styling
-                  you can use all CSS features like pseudo-selectors, pseudo-classes,
-                  animations, media queries, etc.
-                  </p>
-                </main>
-                <footer>
-                  Copyright &copy; Joshua Robinson 2016-present. MIT Licensed.
-                </footer>
-              </div>
-            </Style>
+          return Style.it(`
+            div {
+              color: red;
+            }
+          `,
+            <div>
+              <header>
+                <h1>Standalone Example - Reactive Style</h1>
+                <p>For usage without babel / webpack</p>
+              </header>
+              <main>
+                <p>Reactive Style is just CSS -- unlike with inline styling
+                you can use all CSS features like pseudo-selectors, pseudo-classes,
+                animations, media queries, etc.
+                </p>
+              </main>
+              <footer>
+                Copyright &copy; Joshua Robinson 2016-present. MIT Licensed.
+              </footer>
+            </div>
           );
         }
       }
