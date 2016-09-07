@@ -107,7 +107,7 @@ Out:
 
 ### Additional Usage
 
-#### JavaScript variables in your CSS [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/43/)
+#### JavaScript variables in your CSS [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/44/)
 In:
 ```js
 import React from 'react';
@@ -155,7 +155,7 @@ Out:
 </p>
 ```
 
-#### Layout styling[<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/12/)
+#### Layout styling[<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/45/)
 Style your layout without using an external CSS file. Style It makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles (uses JSX syntax).
 
 In:
