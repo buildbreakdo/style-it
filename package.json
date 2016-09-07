@@ -22,7 +22,8 @@
     "prebuild": "rimraf dist lib",
     "prepublish": "npm run build && npm test",
     "lint": "eslint .",
-    "test": "clear && jest || true"
+    "test": "clear && jest || true",
+    "coverage": "jest --coverage"
   },
   "jest": {
     "automock": false,
