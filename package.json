@@ -15,7 +15,7 @@
   "homepage": "https://github.com/buildbreakdo/style-it",
   "scripts": {
     "build": "npm run build:standalone:dev && npm run build:standalone:production && npm run build:umd:dev && npm run build:umd:production",
-    "build:standalone:dev": "webpack --standalone && replace 'exports.default' 'module.exports' dist/style-it-standalone.js",
+    "build:standalone:dev": "webpack --standalone && shx sed -i 's/exports.default/module.exports/' dist/style-it-standalone.js",
     "build:standalone:production": "uglifyjs --compress --mangle -- dist/style-it-standalone.js >> dist/style-it-standalone.min.js",
     "build:umd:dev": "webpack && babel src --out-dir lib",
     "build:umd:production": "NODE_ENV='production' webpack && babel src --out-dir lib",
@@ -112,7 +112,7 @@
     "react-test-renderer": "^15.3.0",
     "react-tools": "^0.13.3",
     "rimraf": "^2.5.2",
-    "shx": "^0.1.2",
+    "shx": "^0.1.4",
     "uglify-js": "^2.7.0",
     "webpack": "^1.13.1"
   },
