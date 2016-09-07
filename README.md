@@ -2,7 +2,7 @@
 Style It is a component for writing plaintext CSS in JavaScript apps. Use the same
 familiar CSS syntax you already know and love -- now inside of your components.
 
-[<img title="Version" src="https://img.shields.io/npm/v/style-it.svg?style=flat-square" />](https://www.npmjs.org/package/style-it) [<img title="License" src="https://img.shields.io/dub/l/vibe-d.svg?maxAge=2592000?style=flat-square" />](https://github.com/buildbreakdo/style-it/blob/master/LICENSE) [<img title="Maintenance Status" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?style=flat-square" />](https://github.com/buildbreakdo/style-it/pulse) [<img title="Build Status" src="https://travis-ci.org/buildbreakdo/style-it.svg?branch=master" />](https://travis-ci.org/buildbreakdo/style-it/)
+[<img title="Version" src="https://img.shields.io/npm/v/style-it.svg?style=flat-square" />](https://www.npmjs.org/package/style-it) [<img title="License" src="https://img.shields.io/dub/l/vibe-d.svg?maxAge=2592000?style=flat-square" />](https://github.com/buildbreakdo/style-it/blob/master/LICENSE) [<img title="Maintenance Status" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?style=flat-square" />](https://github.com/buildbreakdo/style-it/pulse) [<img title="Build Status" src="https://travis-ci.org/buildbreakdo/style-it.svg?branch=master" />](https://travis-ci.org/buildbreakdo/style-it/) [![Coverage Status](https://coveralls.io/repos/github/buildbreakdo/style-it/badge.svg?branch=master)](https://coveralls.io/github/buildbreakdo/style-it?branch=master)
 
 | Feature               | Style It | Inline Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
