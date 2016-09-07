@@ -1,6 +1,6 @@
 {
   "name": "style-it",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/style-it.js",
   "author": "buildbreakdo",
@@ -20,10 +20,10 @@
     "build:umd:dev": "webpack && babel src --out-dir lib",
     "build:umd:production": "NODE_ENV='production' webpack && babel src --out-dir lib",
     "prebuild": "rimraf dist lib",
-    "prepublish": "npm run build && npm test",
+    "prepublish": "npm run build && npm coverage",
     "lint": "eslint .",
-    "test": "node --harmony_proxies node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "coverage": "jest --coverage"
+    "test": "clear && jest || true",
+    "coverage": "node --harmony_proxies node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "jest": {
     "automock": false,
