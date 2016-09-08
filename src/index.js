@@ -258,7 +258,7 @@ class Style extends Component {
    * @return {!string} Union or contains selector scoped with the scoping className
    */
   scopeSelector = (scopedClassName, selector, rootSelectors) => {
-    let scopedSelector = '';
+    let scopedSelector = [];
 
     // Matches comma-delimiters in multi-selectors (".fooClass, .barClass {...}" => "," );
     // ignores commas-delimiters inside of brackets and parenthesis ([attr=value], :not()..)
@@ -266,9 +266,10 @@ class Style extends Component {
 
     const selectors = selector.split(groupOfSelectorsPattern);
 
-    let containsSelector; // [data-scoped="54321"] .someClass
-    let unionSelector; // [data-scoped="54321"].someClass (account for root)
     for (let i = 0; i < selectors.length; i++) {
+      let containsSelector; // [data-scoped="54321"] .someClass
+      let unionSelector; // [data-scoped="54321"].someClass (account for root)
+
       if (rootSelectors.length && rootSelectors.some((rootSelector)=>(selector.match(rootSelector)))) {
         unionSelector = selectors[i];
 
@@ -288,19 +289,19 @@ class Style extends Component {
           )
         ,
           '$1' + scopedClassName              // Replace any one root selector match with a union
-        );                                    // of the root selector and scoping class (e.g., .rootSelector._scoped-1)
+        );                                    // of the root selector and scoping class (e.g., .rootSelector._scoped-1). Order matters here because of type-class union support like div._scoped-1
 
         // Do both union and contains selectors because of case <div><div></div></div>
         // or <div className="foo"><div className="foo"></div></div>
         containsSelector = scopedClassName + ' ' + selectors[i];
-        scopedSelector += unionSelector + ', ' + containsSelector;
+        scopedSelector.push(unionSelector, containsSelector);
       } else {
         containsSelector = scopedClassName + ' ' + selectors[i];
-        scopedSelector += containsSelector;
+        scopedSelector.push(containsSelector);
       }
     }
 
-    return scopedSelector;
+    return scopedSelector.join(', ');
   }
 
   /**
