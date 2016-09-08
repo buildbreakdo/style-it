@@ -227,7 +227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }).join('{\n');
 	      }).join('}\n');
 	    }, _this.scopeSelector = function (scopedClassName, selector, rootSelectors) {
-	      var scopedSelector = '';
+	      var scopedSelector = [];
 
 	      // Matches comma-delimiters in multi-selectors (".fooClass, .barClass {...}" => "," );
 	      // ignores commas-delimiters inside of brackets and parenthesis ([attr=value], :not()..)
@@ -235,9 +235,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var selectors = selector.split(groupOfSelectorsPattern);
 
-	      var containsSelector = void 0; // [data-scoped="54321"] .someClass
-	      var unionSelector = void 0; // [data-scoped="54321"].someClass (account for root)
 	      for (var i = 0; i < selectors.length; i++) {
+	        var containsSelector = void 0; // [data-scoped="54321"] .someClass
+	        var unionSelector = void 0; // [data-scoped="54321"].someClass (account for root)
+
 	        if (rootSelectors.length && rootSelectors.some(function (rootSelector) {
 	          return selector.match(rootSelector);
 	        })) {
@@ -256,19 +257,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	          escapedRootSelectors.join('|') + // Match any one root selector
 	          ')' // End capture group
 	          ), '$1' + scopedClassName // Replace any one root selector match with a union
-	          ); // of the root selector and scoping class (e.g., .rootSelector._scoped-1)
+	          ); // of the root selector and scoping class (e.g., .rootSelector._scoped-1). Order matters here because of type-class union support like div._scoped-1
 
 	          // Do both union and contains selectors because of case <div><div></div></div>
 	          // or <div className="foo"><div className="foo"></div></div>
 	          containsSelector = scopedClassName + ' ' + selectors[i];
-	          scopedSelector += unionSelector + ', ' + containsSelector;
+	          scopedSelector.push(unionSelector, containsSelector);
 	        } else {
 	          containsSelector = scopedClassName + ' ' + selectors[i];
-	          scopedSelector += containsSelector;
+	          scopedSelector.push(containsSelector);
 	        }
 	      }
 
-	      return scopedSelector;
+	      return scopedSelector.join(', ');
 	    }, _this.getScopeClassName = function (styleString) {
 	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString);
 	    }, _this.isVoidElement = function (type) {
