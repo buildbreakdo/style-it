@@ -395,6 +395,7 @@ class Style extends Component {
   */
   getNewChildrenForCloneElement = (cssText, rootElement) => {
     if (__MOUNTED__) {
+      this.addCSSTextToHead(cssText);
       return rootElement.props.children;
     } else {
       return [this.createStyleElement(cssText)].concat(rootElement.props.children)
