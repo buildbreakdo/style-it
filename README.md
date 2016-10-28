@@ -142,7 +142,7 @@ The child component is a typical passthrough component, that takes the props (in
 
 A core feature of Style It are scopes, you do not have to worry about global CSS name collisions because each CSS rule is scoped to it's own sub-tree (poly-like fill for [scoped attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped)). To achieve this, a scoping className is added. This works automagically when component root nodes are types like `<div>`, `<span>`, `<p>`, etc. When the root node of a component is another component, this becomes a much more tricky problem because it is not known how deep the component root node nesting will go (e.g., multiple passthrough components composed inside of one another).
 
-For this reason, components which serve as root nodes for other components must have their `className` attribute set to `this.props.className` to have the CSS scoping class name properly set (without the scope class name CSS styles will not apply). So the ChildComponent (since it is used as a root node in the ParentComponent) simply becomes:
+For this reason, components which serve as root nodes for other components must have their `className` attribute set to `this.props.className` to have the CSS scoping class name properly set (without the scope class name CSS styles will not apply). So the ChildComponent (since it is used as a root node in the ParentComponent) becomes:
 
 ```js
 ...
@@ -158,7 +158,7 @@ class ChildComponent extends Component {
 ...
 ```
 
-So all we added was an explicit className assignment from props (this snippet `className={this.props.className}`). Would argue that this is best practices anyway for a component that can be a root node; likely should simply use the spread operator (e.g., `{...this.props}`) to cover all your bases and include events a would be user of your component may attach. 
+So all we added was an explicit className assignment from props (this snippet `className={this.props.className}`). Would argue that this is best practices anyway for a component that can be a root node; likely should use the spread operator (e.g., `{...this.props}`) to cover all your bases and include events a would be user of your component may attach. 
 
 If you would like to play with this scenario online, you can [open this example in JSFIDDLE](https://jsfiddle.net/1332n40w/3/).
 
