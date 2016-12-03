@@ -20,7 +20,7 @@ describe('Style-07', () => {
     );
 
     const rootNode = findDOMNode(wrapper).children[0];
-    const styleNode = document.head.querySelector('.reactive-style');
+    const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('container _scoped--93711919');
     expect(styleNode.textContent).toEqual(`@media (max-width: 480px) {\n._scoped--93711919  .button {\n width: 160px;\n }\n}\n`);

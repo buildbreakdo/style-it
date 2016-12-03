@@ -28,7 +28,7 @@ describe('Style-11', () => {
     );
 
     const rootNode = findDOMNode(wrapper).children[0];
-    const styleNode = document.head.querySelector('.reactive-style');
+    const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped-137125138');
     expect( removeNewlines(styleNode.textContent) )

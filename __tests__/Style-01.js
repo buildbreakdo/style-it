@@ -15,7 +15,8 @@ describe('Style-01', () => {
       </div>
     );
 
-    const styleNode = document.head.querySelector('.reactive-style');
+    const rootNode = findDOMNode(wrapper)
+    const styleNode = rootNode.children[0];
 
     // Verify that stylecontent
     expect(styleNode.textContent).toEqual(`body {\n font-size: 13px;\n }\n`);

@@ -14,8 +14,6 @@ import escapeTextContentForBrowser from 'react-lib-escape-text-content-for-brows
 
 const __DEV__ = (process.env.NODE_ENV !== 'production');
 
-let __MOUNTED__;
-
 class Style extends Component {
 
   render() {
@@ -47,28 +45,6 @@ class Style extends Component {
           rootElement
         )
       );
-    }
-  }
-
-  componentDidMount() {
-    // Trip mounted flag, future style renderings are added to head instead of
-    // being injected as an embedded style element
-    __MOUNTED__ = true;
-
-    if (!window._reactiveStyle) {
-      const styleEl = document.createElement('style');
-      styleEl.className = 'reactive-style';
-      styleEl.type = 'text/css';
-      styleEl.innerHTML = this._style.innerHTML;
-      document.head.appendChild(styleEl);
-      window._reactiveStyle = {
-        el: styleEl,
-        cssTextHashesAddedToHead: [adler32(this._style.innerHTML)]
-      }
-      this.forceUpdate();
-    } else if (this._style) {
-      this.addCSSTextToHead(this._style.innerHTML);
-      this.forceUpdate();
     }
   }
 
@@ -375,7 +351,7 @@ class Style extends Component {
   * @return {ReactDOMComponent} component
   */
   createStyleElement = (cssText) => {
-      return <style type="text/css" key="-0" ref={(c) => (this._style = c)}
+      return <style className="style-it" type="text/css" key="-0" ref={(c) => (this._style = c)}
         dangerouslySetInnerHTML={{
           __html: cssText || ''
       }}/>
@@ -394,12 +370,7 @@ class Style extends Component {
   * @return {ReactDOMComponent} component
   */
   getNewChildrenForCloneElement = (cssText, rootElement) => {
-    if (__MOUNTED__) {
-      this.addCSSTextToHead(cssText);
-      return rootElement.props.children;
-    } else {
-      return [this.createStyleElement(cssText)].concat(rootElement.props.children)
-    }
+    return [this.createStyleElement(cssText)].concat(rootElement.props.children)
   }
 
   /**

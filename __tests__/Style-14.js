@@ -33,7 +33,7 @@ describe('Style-14', () => {
     );
 
     const rootNode = findDOMNode(wrapper).children[0];
-    const styleNode = document.head.querySelector('.reactive-style');
+    const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('Slide _scoped-864836516');
     expect( removeNewlines(styleNode.textContent) )

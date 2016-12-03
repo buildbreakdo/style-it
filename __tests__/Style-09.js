@@ -18,7 +18,7 @@ describe('Style-09', () => {
             }
 
             #box {
-              animation:         NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */
+              animation: NAME-YOUR-ANIMATION 5s infinite;
             }
           `}
           <div id="box"></div>
@@ -27,10 +27,10 @@ describe('Style-09', () => {
     );
 
     const rootNode = findDOMNode(wrapper).children[0];
-    const styleNode = document.head.querySelector('.reactive-style');
+    const styleNode = rootNode.children[0];
 
-    expect(rootNode.className).toEqual('_scoped--1444792183');
+    expect(rootNode.className).toEqual('_scoped--1609485443');
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(' @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box._scoped--1444792183 , ._scoped--1444792183  #box { animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
+      .toEqual(' @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box._scoped--1609485443 , ._scoped--1609485443  #box { animation: NAME-YOUR-ANIMATION 5s infinite; }');
   });
 });

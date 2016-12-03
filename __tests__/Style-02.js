@@ -25,7 +25,7 @@ describe('Style-02', () => {
     );
 
     const rootNode = findDOMNode(wrapper).children[0];
-    const styleNode = document.head.querySelector('.reactive-style');
+    const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('foo _scoped--989459294');
     expect(removeNewlines(styleNode.textContent)).toEqual(` .foo._scoped--989459294 , ._scoped--989459294  .foo { color: red; }`);

@@ -27,9 +27,10 @@ describe('Style-10', () => {
     );
 
     const rootNode = findDOMNode(wrapper).children[0];
-    const styleNode = document.head.querySelector('.reactive-style');
+    const styleNode = rootNode.children[0];
 
     expect(rootNode.className).toEqual('_scoped--926008811');
+    console.log(document.head);
     expect( removeNewlines(styleNode.textContent) )
       .toEqual(' @keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} #box._scoped--926008811 , ._scoped--926008811  #box { animation: NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */ }');
   });

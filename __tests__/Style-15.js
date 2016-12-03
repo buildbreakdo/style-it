@@ -25,7 +25,7 @@ describe('Style-15', () => {
     );
 
     const rootNode = findDOMNode(wrapper).children[0];
-    const styleNode = document.head.querySelector('.reactive-style');
+    const styleNode = rootNode.children[0];
 
 
     expect(rootNode.id).toEqual('heart');

@@ -1,6 +1,6 @@
 {
   "name": "style-it",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/style-it.js",
   "author": "buildbreakdo",
@@ -22,7 +22,7 @@
     "prebuild": "rimraf dist lib",
     "prepublish": "npm run build && npm run test",
     "lint": "eslint .",
-    "test": "clear && jest || true",
+    "test": "clear && jest --runInBand || true",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {

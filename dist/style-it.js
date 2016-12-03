@@ -96,8 +96,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __DEV__ = ("production") !== 'production';
 
-	var __MOUNTED__ = void 0;
-
 	var Style = function (_Component) {
 	  _inherits(Style, _Component);
 
@@ -292,18 +290,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        })();
 	      }
 	    }, _this.createStyleElement = function (cssText) {
-	      return _react2.default.createElement('style', { type: 'text/css', key: '-0', ref: function ref(c) {
+	      return _react2.default.createElement('style', { className: 'style-it', type: 'text/css', key: '-0', ref: function ref(c) {
 	          return _this._style = c;
 	        },
 	        dangerouslySetInnerHTML: {
 	          __html: cssText || ''
 	        } });
 	    }, _this.getNewChildrenForCloneElement = function (cssText, rootElement) {
-	      if (__MOUNTED__) {
-	        return rootElement.props.children;
-	      } else {
-	        return [_this.createStyleElement(cssText)].concat(rootElement.props.children);
-	      }
+	      return [_this.createStyleElement(cssText)].concat(rootElement.props.children);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
@@ -330,29 +324,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return (0, _react.cloneElement)(rootElement, _extends({}, rootElement.props, {
 	          className: '' + (rootElement.props.className ? rootElement.props.className + ' ' : '') + scopeClassName
 	        }), this.getNewChildrenForCloneElement(this.processCSSText(styleString, '.' + scopeClassName, this.getRootSelectors(rootElement)), rootElement));
-	      }
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      // Trip mounted flag, future style renderings are added to head instead of
-	      // being injected as an embedded style element
-	      __MOUNTED__ = true;
-
-	      if (!window._reactiveStyle) {
-	        var styleEl = document.createElement('style');
-	        styleEl.className = 'reactive-style';
-	        styleEl.type = 'text/css';
-	        styleEl.innerHTML = this._style.innerHTML;
-	        document.head.appendChild(styleEl);
-	        window._reactiveStyle = {
-	          el: styleEl,
-	          cssTextHashesAddedToHead: [(0, _reactLibAdler2.default)(this._style.innerHTML)]
-	        };
-	        this.forceUpdate();
-	      } else if (this._style) {
-	        this.addCSSTextToHead(this._style.innerHTML);
-	        this.forceUpdate();
 	      }
 	    }
 
