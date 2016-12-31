@@ -296,9 +296,9 @@ class Style extends Component {
     if (this.props.children[1].props.children instanceof Array) {
       childInspect = this.props.children[1].props.children.map((child) => (inspect(child.props.children, {depth: 0})));
     } else {
-      childInspect = inspect(this.props.children[1], {depth: 1});
+      childInspect = inspect(this.props.children[1], {depth: 0});
     }
-    return '_scoped-' + adler32(styleString + inspect(this.props.children, {depth: 1}) + childInspect)
+    return '_scoped-' + adler32(styleString + childInspect)
   };
 
   /**
