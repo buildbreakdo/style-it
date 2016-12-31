@@ -281,7 +281,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else {
 	        childInspect = (0, _util.inspect)(_this.props.children[1], { depth: 1 });
 	      }
-	      console.log(childInspect);
 	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString + childInspect);
 	    }, _this.isVoidElement = function (type) {
 	      return ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].some(function (voidType) {
