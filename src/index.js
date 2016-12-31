@@ -291,17 +291,9 @@ class Style extends Component {
    * @param {string} String of style rules
    * @return {!string} A scoping class name
    */
-  getScopeClassName = (styleString) => {
-    let childInspect;
-    if (this.props.children[1].props.children instanceof Array) {
-      childInspect = this.props.children[1].props.children.map((child) => {
-        return inspect(child.props, {depth: 1})
-      });
-    } else {
-      childInspect = inspect(this.props.children[1], {depth: 1});
-    }
-    return '_scoped-' + adler32(styleString + childInspect)
-  };
+  getScopeClassName = (styleString) => (
+    '_scoped-' + adler32(styleString + inspect(this.props.children[1], {depth: 1}))
+  );
 
   /**
    * Checks if a tag type is a self-closing void element
