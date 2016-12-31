@@ -289,9 +289,41 @@ class Style extends Component {
    * @param {string} String of style rules
    * @return {!string} A scoping class name
    */
-  getScopeClassName = (styleString) => (
-    '_scoped-' + adler32(styleString)
-  );
+  getScopeClassName = (styleString) => {
+    const rootElement = this.getRootElement();
+    console.log(rootElement)
+    let pepper = '';
+
+    if (rootElement.hasOwnProperty('props')) {
+      pepper += JSON.stringify(rootElement.props, this.stringifyFilter(rootElement.props));
+    }
+
+    if (rootElement.hasOwnProperty('props') && rootElement.props.hasOwnProperty('children')) {
+      pepper += JSON.stringify(rootElement.props.children, this.stringifyFilter(rootElement.props.children));
+    }
+    console.log(pepper)
+    return '_scoped-' + adler32(
+      styleString +
+      JSON.stringify(rootElement, this.stringifyFilter(rootElement)) +
+      pepper
+    );
+  };
+
+  stringifyFilter = (censor) => {
+    var i = 0;
+
+    return function(key, value) {
+      if(i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value)
+        return '[Circular]';
+
+      if(i >= 1) // seems to be a harded maximum of 30 serialized objects?
+        return '[Unknown]';
+
+      ++i; // so we know we aren't using the original object anymore
+
+    return value;
+    }
+  }
 
   /**
    * Checks if a tag type is a self-closing void element
