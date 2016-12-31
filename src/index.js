@@ -300,7 +300,6 @@ class Style extends Component {
     } else {
       childInspect = inspect(this.props.children[1], {depth: 1});
     }
-    console.log(childInspect)
     return '_scoped-' + adler32(styleString + childInspect)
   };
 
