@@ -9,8 +9,6 @@
 import React, { Component, cloneElement, isValidElement } from 'react';
 import ReactDOM from 'react-dom';
 
-import util, { inspect } from 'util';
-
 import adler32 from 'react-lib-adler32';
 import escapeTextContentForBrowser from 'react-lib-escape-text-content-for-browser';
 
@@ -292,7 +290,7 @@ class Style extends Component {
    * @return {!string} A scoping class name
    */
   getScopeClassName = (styleString) => (
-    '_scoped-' + adler32(styleString + inspect(this.props.children[1], {depth: 1}))
+    '_scoped-' + adler32(styleString)
   );
 
   /**
