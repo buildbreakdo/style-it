@@ -298,9 +298,6 @@ class Style extends Component {
     } else {
       childInspect = inspect(this.props.children[1], {depth: 1});
     }
-    console.log('childInspect', childInspect)
-    console.log(inspect(this.props.children, {depth: 1}))
-    //console.log(inspect(this.props.children[1].props, {depth: 3}));
     return '_scoped-' + adler32(styleString + inspect(this.props.children, {depth: 1}) + childInspect)
   };
 
