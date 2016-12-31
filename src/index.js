@@ -9,6 +9,8 @@
 import React, { Component, cloneElement, isValidElement } from 'react';
 import ReactDOM from 'react-dom';
 
+import util, { inspect } from 'util';
+
 import adler32 from 'react-lib-adler32';
 import escapeTextContentForBrowser from 'react-lib-escape-text-content-for-browser';
 
@@ -289,7 +291,7 @@ class Style extends Component {
    * @param {string} String of style rules
    * @return {!string} A scoping class name
    */
-  getScopeClassName = (styleString) => ('_scoped-' + adler32(styleString));
+  getScopeClassName = (styleString) => ('_scoped-' + adler32(styleString + inspect(this.props)));
 
   /**
    * Checks if a tag type is a self-closing void element
