@@ -273,8 +273,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      return scopedSelector.join(', ');
 	    }, _this.getScopeClassName = function (styleString) {
+	      var childInspect = void 0;
+	      if (_this.props.children[1].props.children instanceof Array) {
+	        childInspect = _this.props.children[1].props.children.map(function (child) {
+	          return (0, _util.inspect)(child.props.children, { depth: 0 });
+	        });
+	      } else {
+	        childInspect = (0, _util.inspect)(_this.props.children[1], { depth: 1 });
+	      }
+	      console.log('childInspect', childInspect);
+	      console.log((0, _util.inspect)(_this.props.children, { depth: 1 }));
 	      //console.log(inspect(this.props.children[1].props, {depth: 3}));
-	      return '_scoped-' + (0, _reactLibAdler2.default)((0, _util.inspect)(_this.props.children, { depth: 3 }));
+	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString + (0, _util.inspect)(_this.props.children, { depth: 1 }) + childInspect);
 	    }, _this.isVoidElement = function (type) {
 	      return ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].some(function (voidType) {
 	        return type === voidType;

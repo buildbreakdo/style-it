@@ -292,8 +292,16 @@ class Style extends Component {
    * @return {!string} A scoping class name
    */
   getScopeClassName = (styleString) => {
+    let childInspect;
+    if (this.props.children[1].props.children instanceof Array) {
+      childInspect = this.props.children[1].props.children.map((child) => (inspect(child.props.children, {depth: 0})));
+    } else {
+      childInspect = inspect(this.props.children[1], {depth: 1});
+    }
+    console.log('childInspect', childInspect)
+    console.log(inspect(this.props.children, {depth: 1}))
     //console.log(inspect(this.props.children[1].props, {depth: 3}));
-    return '_scoped-' + adler32(inspect(this.props.children, {depth: 3}))
+    return '_scoped-' + adler32(styleString + inspect(this.props.children, {depth: 1}) + childInspect)
   };
 
   /**
