@@ -291,7 +291,6 @@ class Style extends Component {
    */
   getScopeClassName = (styleString) => {
     const rootElement = this.getRootElement();
-    console.log(rootElement)
     let pepper = '';
 
     if (rootElement.hasOwnProperty('props')) {
@@ -299,9 +298,15 @@ class Style extends Component {
     }
 
     if (rootElement.hasOwnProperty('props') && rootElement.props.hasOwnProperty('children')) {
-      pepper += JSON.stringify(rootElement.props.children, this.stringifyFilter(rootElement.props.children));
+      if (rootElement.props.children instanceof Array) {
+        rootElement.props.children.forEach((child) => {
+          pepper += JSON.stringify(child, this.stringifyFilter(child));
+        });
+      } else {
+        pepper += JSON.stringify(rootElement.props.children, this.stringifyFilter(rootElement.props.children));
+      }
     }
-    console.log(pepper)
+
     return '_scoped-' + adler32(
       styleString +
       JSON.stringify(rootElement, this.stringifyFilter(rootElement)) +
