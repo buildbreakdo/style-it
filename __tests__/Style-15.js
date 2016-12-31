@@ -26,11 +26,11 @@ describe('Style-15', () => {
 
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
-
+    const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
     expect(rootNode.id).toEqual('heart');
-    expect(rootNode.className).toEqual('_scoped-1061101797');
+    expect(rootNode.className).toEqual(`${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` #heart._scoped-1061101797:before, ._scoped-1061101797  #heart:before,  #heart._scoped-1061101797:after , ._scoped-1061101797  #heart:after { position: absolute; content: ''; }`);
+      .toEqual(` #heart.${scopedClass}:before, .${scopedClass}  #heart:before,  #heart.${scopedClass}:after , .${scopedClass}  #heart:after { position: absolute; content: ''; }`);
   });
 });

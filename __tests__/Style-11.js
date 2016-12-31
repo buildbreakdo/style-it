@@ -29,9 +29,10 @@ describe('Style-11', () => {
 
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
+    const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
-    expect(rootNode.className).toEqual('_scoped-137125138');
+    expect(rootNode.className).toEqual(`${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(' @media all and (orientation: portrait) { #box._scoped-137125138 , ._scoped-137125138  #box { flex: 1 0 50%; }}');
+      .toEqual(` @media all and (orientation: portrait) { #box.${scopedClass} , .${scopedClass}  #box { flex: 1 0 50%; }}`);
   });
 });

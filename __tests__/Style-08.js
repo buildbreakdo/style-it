@@ -21,9 +21,10 @@ describe('Style-08', () => {
 
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
+    const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
-    expect(rootNode.className).toEqual('container _scoped--113176122');
+    expect(rootNode.className).toEqual(`container ${scopedClass}`);
     expect( removeNewlines( styleNode.textContent) )
-      .toEqual('@media (max-width: 480px) { #button._scoped--113176122 , ._scoped--113176122  #button { width: 160px; }}');
+      .toEqual(`@media (max-width: 480px) { #button.${scopedClass} , .${scopedClass}  #button { width: 160px; }}`);
   });
 });

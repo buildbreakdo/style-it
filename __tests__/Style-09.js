@@ -28,9 +28,10 @@ describe('Style-09', () => {
 
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
+    const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
-    expect(rootNode.className).toEqual('_scoped--1609485443');
+    expect(rootNode.className).toEqual(`${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(' @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box._scoped--1609485443 , ._scoped--1609485443  #box { animation: NAME-YOUR-ANIMATION 5s infinite; }');
+      .toEqual(` @keyframes NAME-YOUR-ANIMATION { 0% { opacity: 0; } 100% { opacity: 1; }} #box.${scopedClass} , .${scopedClass}  #box { animation: NAME-YOUR-ANIMATION 5s infinite; }`);
   });
 });

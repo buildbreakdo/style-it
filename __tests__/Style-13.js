@@ -22,9 +22,10 @@ describe('Style-13', () => {
 
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
+    const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
-    expect(rootNode.className).toEqual('rootClass _scoped-1830358384');
+    expect(rootNode.className).toEqual(`rootClass ${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` #box._scoped-1830358384.rootClass , ._scoped-1830358384  #box.rootClass { color: red; }`);
+      .toEqual(` #box.${scopedClass}.rootClass , .${scopedClass}  #box.rootClass { color: red; }`);
   });
 });

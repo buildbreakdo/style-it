@@ -27,9 +27,10 @@ describe('Style-12', () => {
 
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
+    const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
-    expect(rootNode.className).toEqual('_scoped--2064762854');
+    expect(rootNode.className).toEqual(`${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` @media all and (orientation: portrait) { #box._scoped--2064762854 , ._scoped--2064762854  #box { background-image: url(http:\/\/google.com/); font-family: Helvetica, Arial; }}`);
+      .toEqual(` @media all and (orientation: portrait) { #box.${scopedClass} , .${scopedClass}  #box { background-image: url(http:\/\/google.com/); font-family: Helvetica, Arial; }}`);
   });
 });

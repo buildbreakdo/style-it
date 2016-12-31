@@ -26,8 +26,9 @@ describe('Style-02', () => {
 
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
+    const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
-    expect(rootNode.className).toEqual('foo _scoped--989459294');
-    expect(removeNewlines(styleNode.textContent)).toEqual(` .foo._scoped--989459294 , ._scoped--989459294  .foo { color: red; }`);
+    expect(rootNode.className).toEqual(`foo ${scopedClass}`);
+    expect(removeNewlines(styleNode.textContent)).toEqual(` .foo.${scopedClass} , .${scopedClass}  .foo { color: red; }`);
   });
 });
