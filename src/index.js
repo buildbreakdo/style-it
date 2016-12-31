@@ -294,10 +294,13 @@ class Style extends Component {
   getScopeClassName = (styleString) => {
     let childInspect;
     if (this.props.children[1].props.children instanceof Array) {
-      childInspect = this.props.children[1].props.children.map((child) => (inspect(child.props, {depth: 0})));
+      childInspect = this.props.children[1].props.children.map((child) => {
+        return inspect(child.props, {depth: 1})
+      });
     } else {
-      childInspect = inspect(this.props.children[1], {depth: 0});
+      childInspect = inspect(this.props.children[1], {depth: 1});
     }
+    console.log(childInspect)
     return '_scoped-' + adler32(styleString + childInspect)
   };
 
