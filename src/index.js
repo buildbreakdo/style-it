@@ -294,7 +294,7 @@ class Style extends Component {
   getScopeClassName = (styleString) => {
     let childInspect;
     if (this.props.children[1].props.children instanceof Array) {
-      childInspect = this.props.children[1].props.children.map((child) => (inspect(child.props.children, {depth: 0})));
+      childInspect = this.props.children[1].props.children.map((child) => (inspect(child.props, {depth: 0})));
     } else {
       childInspect = inspect(this.props.children[1], {depth: 0});
     }

@@ -279,9 +279,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	          return (0, _util.inspect)(child.props.children, { depth: 0 });
 	        });
 	      } else {
-	        childInspect = (0, _util.inspect)(_this.props.children[1], { depth: 1 });
+	        childInspect = (0, _util.inspect)(_this.props.children[1], { depth: 0 });
 	      }
-	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString + (0, _util.inspect)(_this.props.children, { depth: 1 }) + childInspect);
+	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString + childInspect);
 	    }, _this.isVoidElement = function (type) {
 	      return ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].some(function (voidType) {
 	        return type === voidType;
