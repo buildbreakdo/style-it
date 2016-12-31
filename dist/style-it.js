@@ -62,6 +62,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(3);
@@ -269,7 +271,32 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      return scopedSelector.join(', ');
 	    }, _this.getScopeClassName = function (styleString) {
-	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString);
+	      var rootElement = _this.getRootElement();
+	      console.log(rootElement);
+	      var pepper = '';
+
+	      if (rootElement.hasOwnProperty('props')) {
+	        pepper += JSON.stringify(rootElement.props, _this.stringifyFilter(rootElement.props));
+	      }
+
+	      if (rootElement.hasOwnProperty('props') && rootElement.props.hasOwnProperty('children')) {
+	        pepper += JSON.stringify(rootElement.props.children, _this.stringifyFilter(rootElement.props.children));
+	      }
+	      console.log(pepper);
+	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString + JSON.stringify(rootElement, _this.stringifyFilter(rootElement)) + pepper);
+	    }, _this.stringifyFilter = function (censor) {
+	      var i = 0;
+
+	      return function (key, value) {
+	        if (i !== 0 && (typeof censor === 'undefined' ? 'undefined' : _typeof(censor)) === 'object' && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object' && censor == value) return '[Circular]';
+
+	        if (i >= 1) // seems to be a harded maximum of 30 serialized objects?
+	          return '[Unknown]';
+
+	        ++i; // so we know we aren't using the original object anymore
+
+	        return value;
+	      };
 	    }, _this.isVoidElement = function (type) {
 	      return ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].some(function (voidType) {
 	        return type === voidType;
