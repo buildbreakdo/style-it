@@ -272,7 +272,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return scopedSelector.join(', ');
 	    }, _this.getScopeClassName = function (styleString) {
 	      var rootElement = _this.getRootElement();
-	      console.log(rootElement);
 	      var pepper = '';
 
 	      if (rootElement.hasOwnProperty('props')) {
@@ -280,9 +279,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      if (rootElement.hasOwnProperty('props') && rootElement.props.hasOwnProperty('children')) {
-	        pepper += JSON.stringify(rootElement.props.children, _this.stringifyFilter(rootElement.props.children));
+	        if (rootElement.props.children instanceof Array) {
+	          rootElement.props.children.forEach(function (child) {
+	            pepper += JSON.stringify(child, _this.stringifyFilter(child));
+	          });
+	        } else {
+	          pepper += JSON.stringify(rootElement.props.children, _this.stringifyFilter(rootElement.props.children));
+	        }
 	      }
-	      console.log(pepper);
+
 	      return '_scoped-' + (0, _reactLibAdler2.default)(styleString + JSON.stringify(rootElement, _this.stringifyFilter(rootElement)) + pepper);
 	    }, _this.stringifyFilter = function (censor) {
 	      var i = 0;
