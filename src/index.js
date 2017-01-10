@@ -303,6 +303,7 @@ class Style extends Component {
           pepper += JSON.stringify(child, this.stringifyFilter(child));
         });
       } else {
+        pepper += JSON.stringify(rootElement.props, this.stringifyFilter(rootElement.props));
         pepper += JSON.stringify(rootElement.props.children, this.stringifyFilter(rootElement.props.children));
       }
     }
