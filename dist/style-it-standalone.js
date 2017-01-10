@@ -115,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Style)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.getStyleString = function () {
 	      if (_this.props.children instanceof Array) {
 	        var styleString = _this.props.children.filter(function (child) {
-	          return !(0, _react.isValidElement)(child);
+	          return !(0, _react.isValidElement)(child) && typeof child === 'string';
 	        });
 
 	        if (styleString.length > 1) {
@@ -284,6 +284,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            pepper += JSON.stringify(child, _this.stringifyFilter(child));
 	          });
 	        } else {
+	          pepper += JSON.stringify(rootElement.props, _this.stringifyFilter(rootElement.props));
 	          pepper += JSON.stringify(rootElement.props.children, _this.stringifyFilter(rootElement.props.children));
 	        }
 	      }
