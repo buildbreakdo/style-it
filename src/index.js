@@ -59,7 +59,7 @@ class Style extends Component {
   getStyleString = () => {
     if (this.props.children instanceof Array) {
       const styleString = this.props.children.filter((child) => (
-        !isValidElement(child)
+        !isValidElement(child) && typeof child === 'string'
       ));
 
       if (styleString.length > 1) {
