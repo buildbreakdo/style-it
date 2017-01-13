@@ -56,7 +56,7 @@ module.exports = {
         }
       })
     ]
-  :
+  : // else __PROD__
     [
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.DefinePlugin({
@@ -66,10 +66,18 @@ module.exports = {
       }),
       new webpack.optimize.UglifyJsPlugin({
         compressor: {
-          warnings: false,
+          warnings: true,
+          screw_ie8: true, // React doesn't support IE8
+          unused: true,
+          dead_code: true,
         },
         mangle: {
+          screw_ie8: true,
           except: ['Style', 'exports', 'default']
+        },
+        output: {
+          comments: false,
+          screw_ie8: true,
         }
       })
     ]
