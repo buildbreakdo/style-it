@@ -1,6 +1,6 @@
 {
   "name": "style-it",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "Component for writing plaintext CSS in JavaScript apps",
   "main": "dist/style-it.js",
   "author": "buildbreakdo",
