@@ -10,7 +10,6 @@ import React, { Component, cloneElement, isValidElement } from 'react';
 import ReactDOM from 'react-dom';
 
 import adler32 from 'react-lib-adler32';
-import escapeTextContentForBrowser from 'react-lib-escape-text-content-for-browser';
 
 const __DEV__ = (process.env.NODE_ENV !== 'production');
 
@@ -191,7 +190,7 @@ class Style extends Component {
           // note in docs that selector statements are not escaped and should
           // not be generated from user provided strings
           if (statement.match(isDeclarationBodyPattern)) {
-            return escapeTextContentForBrowser(
+            return this.escapeTextContentForBrowser(
               statement // Have to deal with special case of CSS property "content", breaks without quotes
                 .replace(/lsquo|rsquo/g, '') // Prevent manipulation
                 .replace(/content\s*:\s*['"](.*)['"]\s*;/, 'content: lsquo;$1rsquo;;') // "Entify" content property
@@ -221,6 +220,33 @@ class Style extends Component {
         }).join('{\n')
     }).join('}\n');
   }
+
+  /**
+   * Escaper used in escapeTextContentForBrowser
+   *
+   */
+  escaper = (match) => {
+    const ESCAPE_LOOKUP = {
+      '>': '&gt;',
+      '<': '&lt;',
+      '"': '&quot;',
+      '\'': '&#x27;'
+    };
+
+    return ESCAPE_LOOKUP[match];
+  }
+
+  /**
+   * Escapes text to prevent scripting attacks.
+   *
+   * @param {*} text Text value to escape.
+   * @return {string} An escaped string.
+   */
+  escapeTextContentForBrowser = (text) => {
+    const ESCAPE_REGEX = /[><"']/g;
+    return ('' + text).replace(ESCAPE_REGEX, this.escaper);
+  }
+
 
   /**
    * Scopes a selector with a given scoping className as a union or contains selector
