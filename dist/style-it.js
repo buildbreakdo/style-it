@@ -7,7 +7,7 @@
 		exports["Style"] = factory(require("react"), require("react-dom"));
 	else
 		root["Style"] = factory(root["React"], root["ReactDOM"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -66,21 +66,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(3);
+	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(4);
+	var _reactDom = __webpack_require__(3);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _reactLibAdler = __webpack_require__(1);
 
 	var _reactLibAdler2 = _interopRequireDefault(_reactLibAdler);
-
-	var _reactLibEscapeTextContentForBrowser = __webpack_require__(2);
-
-	var _reactLibEscapeTextContentForBrowser2 = _interopRequireDefault(_reactLibEscapeTextContentForBrowser);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -199,7 +195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          // note in docs that selector statements are not escaped and should
 	          // not be generated from user provided strings
 	          if (statement.match(isDeclarationBodyPattern)) {
-	            return (0, _reactLibEscapeTextContentForBrowser2.default)(statement // Have to deal with special case of CSS property "content", breaks without quotes
+	            return _this.escapeTextContentForBrowser(statement // Have to deal with special case of CSS property "content", breaks without quotes
 	            .replace(/lsquo|rsquo/g, '') // Prevent manipulation
 	            .replace(/content\s*:\s*['"](.*)['"]\s*;/, 'content: lsquo;$1rsquo;;') // "Entify" content property
 	            .replace(/['"]/g, '') // Remove single and double quotes
@@ -226,6 +222,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	          // Pretty print in dev
 	        }).join('{\n');
 	      }).join('}\n');
+	    }, _this.escaper = function (match) {
+	      var ESCAPE_LOOKUP = {
+	        '>': '&gt;',
+	        '<': '&lt;',
+	        '"': '&quot;',
+	        '\'': '&#x27;'
+	      };
+
+	      return ESCAPE_LOOKUP[match];
+	    }, _this.escapeTextContentForBrowser = function (text) {
+	      var ESCAPE_REGEX = /[><"']/g;
+	      return ('' + text).replace(ESCAPE_REGEX, _this.escaper);
 	    }, _this.scopeSelector = function (scopedClassName, selector, rootSelectors) {
 	      var scopedSelector = [];
 
@@ -408,6 +416,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    /**
+	     * Escaper used in escapeTextContentForBrowser
+	     *
+	     */
+
+
+	    /**
+	     * Escapes text to prevent scripting attacks.
+	     *
+	     * @param {*} text Text value to escape.
+	     * @return {string} An escaped string.
+	     */
+
+
+	    /**
 	     * Scopes a selector with a given scoping className as a union or contains selector
 	     *
 	     *    > scopeSelector( '_scoped-1827481', '.root', ['.root', '.foo']  )
@@ -558,56 +580,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 2 */
 /***/ function(module, exports) {
 
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule escapeTextContentForBrowser
-	 */
-
-	'use strict';
-
-	var ESCAPE_LOOKUP = {
-	  '&': '&amp;',
-	  '>': '&gt;',
-	  '<': '&lt;',
-	  '"': '&quot;',
-	  '\'': '&#x27;'
-	};
-
-	var ESCAPE_REGEX = /[&><"']/g;
-
-	function escaper(match) {
-	  return ESCAPE_LOOKUP[match];
-	}
-
-	/**
-	 * Escapes text to prevent scripting attacks.
-	 *
-	 * @param {*} text Text value to escape.
-	 * @return {string} An escaped string.
-	 */
-	function escapeTextContentForBrowser(text) {
-	  return ('' + text).replace(ESCAPE_REGEX, escaper);
-	}
-
-	module.exports = escapeTextContentForBrowser;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 
 /***/ }
 /******/ ])
