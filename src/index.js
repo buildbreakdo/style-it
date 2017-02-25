@@ -170,8 +170,9 @@ class Style extends Component {
     // TODO: If dev lint and provide feedback
     // if linting fails we need to error out because
     // the style string will not be parsed correctly
+
     return styleString
-      .replace(/\s*\/\/(?![^\(]*\)).*/g, '') // Strip javascript style comments
+      .replace(/\s*\/\/(?![^\(]*\)).*|\s*\/\*.*\*\//g, '') // Strip javascript style comments
       .replace(/\s\s+/g, ' ') // Convert multiple to single whitespace
       .split('}') // Start breaking down statements
       .map((fragment) => {
