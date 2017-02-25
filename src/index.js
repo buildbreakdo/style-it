@@ -31,7 +31,7 @@ class Style extends Component {
       return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString, rootElement));
     } else {
       // Style tree of elements
-      const scopeClassName = this.getScopeClassName(styleString);
+      const scopeClassName = this.getScopeClassName(styleString, rootElement);
 
       return cloneElement(
         rootElement,
