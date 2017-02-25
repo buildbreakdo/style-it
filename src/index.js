@@ -28,7 +28,7 @@ class Style extends Component {
       return rootElement.props.children;
     } else if (styleString && !rootElement) {
       // Global styling with no scoping
-      return this.createStyleElement(this.processCSSText(styleString));
+      return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString));
     } else {
       // Style tree of elements
       const scopeClassName = this.getScopeClassName(styleString);
@@ -41,7 +41,8 @@ class Style extends Component {
         },
         this.getNewChildrenForCloneElement(
           this.processCSSText(styleString, `.${scopeClassName}`, this.getRootSelectors(rootElement)),
-          rootElement
+          rootElement,
+          scopeClassName
         )
       );
     }
@@ -158,11 +159,11 @@ class Style extends Component {
   *    ".scoped-1234.foo { color: red; } .scoped-1234 .bar { color: green; }"
   *
   * @param {string} styleString String of style rules
-  * @param {string} scopedClassName Class name used to create a unique scope
+  * @param {string} scopeClassName Class name used to create a unique scope
   * @param {array} rootSelectors Array of selectors on the root element; ids and classNames
   * @return {!string} Scoped style rule string
   */
-  processCSSText = (styleString, scopedClassName, rootSelectors) => {
+  processCSSText = (styleString, scopeClassName, rootSelectors) => {
     // TODO: Look into using memoizeStringOnly from fbjs/lib for escaped strings;
     // can avoid much of the computation as long as scoped doesn't come into play
     // which would be unique
@@ -202,10 +203,10 @@ class Style extends Component {
           } else { // Statement is a selector
             const selector = statement;
 
-            if (scopedClassName) {
+            if (scopeClassName) {
               // Prefix the scope to the selector if it is not an at-rule
               if (!selector.match(isAtRulePattern) && !selector.match(isKeyframeOffsetPattern)) {
-                return this.scopeSelector(scopedClassName, selector, rootSelectors);
+                return this.scopeSelector(scopeClassName, selector, rootSelectors);
               } else {
                 // Is at-rule or keyframe offset and should not be scoped
                 return selector;
@@ -248,19 +249,18 @@ class Style extends Component {
     return ('' + text).replace(ESCAPE_REGEX, this.escaper);
   }
 
-
   /**
    * Scopes a selector with a given scoping className as a union or contains selector
    *
    *    > scopeSelector( '_scoped-1827481', '.root', ['.root', '.foo']  )
    *    ".scoped-1827481.root"
    *
-   * @param {string} scopedClassName Class name used to scope selectors
+   * @param {string} scopeClassName Class name used to scope selectors
    * @param {string} selector Selector to scope
    * @param {array} rootSelectors Array of selectors on the root element; ids and classNames
    * @return {!string} Union or contains selector scoped with the scoping className
    */
-  scopeSelector = (scopedClassName, selector, rootSelectors) => {
+  scopeSelector = (scopeClassName, selector, rootSelectors) => {
     let scopedSelector = [];
 
     // Matches comma-delimiters in multi-selectors (".fooClass, .barClass {...}" => "," );
@@ -291,15 +291,15 @@ class Style extends Component {
             ')'                               // End capture group
           )
         ,
-          '$1' + scopedClassName              // Replace any one root selector match with a union
+          '$1' + scopeClassName              // Replace any one root selector match with a union
         );                                    // of the root selector and scoping class (e.g., .rootSelector._scoped-1). Order matters here because of type-class union support like div._scoped-1
 
         // Do both union and contains selectors because of case <div><div></div></div>
         // or <div className="foo"><div className="foo"></div></div>
-        containsSelector = scopedClassName + ' ' + selectors[i];
+        containsSelector = scopeClassName + ' ' + selectors[i];
         scopedSelector.push(unionSelector, containsSelector);
       } else {
-        containsSelector = scopedClassName + ' ' + selectors[i];
+        containsSelector = scopeClassName + ' ' + selectors[i];
         scopedSelector.push(containsSelector);
       }
     }
@@ -318,46 +318,22 @@ class Style extends Component {
    */
   getScopeClassName = (styleString) => {
     const rootElement = this.getRootElement();
-    let pepper = '';
 
-    if (rootElement.hasOwnProperty('props')) {
-      pepper += JSON.stringify(rootElement.props, this.stringifyFilter(rootElement.props));
-    }
+    this.pepper = '';
+    this.traverseObjectToGeneratePepper(rootElement);
 
-    if (rootElement.hasOwnProperty('props') && rootElement.props.hasOwnProperty('children')) {
-      if (rootElement.props.children instanceof Array) {
-        rootElement.props.children.forEach((child) => {
-          pepper += JSON.stringify(child, this.stringifyFilter(child));
-        });
-      } else {
-        pepper += JSON.stringify(rootElement.props, this.stringifyFilter(rootElement.props));
-        pepper += JSON.stringify(rootElement.props.children, this.stringifyFilter(rootElement.props.children));
-      }
-    }
-
-    return '_scoped-' + adler32(
-      styleString +
-      JSON.stringify(rootElement, this.stringifyFilter(rootElement)) +
-      pepper
-    );
+    return '_scope-' + adler32(styleString + this.pepper);
   };
 
-  stringifyFilter = (censor) => {
-    var i = 0;
-
-    return function(key, value) {
-      if (key.startsWith('_'))
-        return '[Internal]';
-
-      if(i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value)
-        return '[Circular]';
-
-      if(i >= 2) // seems to be a harded maximum of 30 serialized objects?
-        return '[Unknown]';
-
-      ++i; // so we know we aren't using the original object anymore
-
-    return value;
+  traverseObjectToGeneratePepper = (obj) => {
+    for (let prop in obj) {
+      // Avoid internal props that are unreliable
+      const isPropReactInternal = /^[_\$]|type|ref/.test(prop);
+      if (!!obj[prop] && typeof(obj[prop]) === 'object' && !isPropReactInternal) {
+        this.traverseObjectToGeneratePepper(obj[prop]);
+      } else if (!isPropReactInternal) {
+        this.pepper += obj[prop];
+      }
     }
   }
 
@@ -420,8 +396,8 @@ class Style extends Component {
   * @param {string} string CSS string
   * @return {ReactDOMComponent} component
   */
-  createStyleElement = (cssText) => {
-      return <style className="style-it" type="text/css" key="-0" ref={(c) => (this._style = c)}
+  createStyleElement = (cssText, scopeClassName) => {
+      return <style className="style-it" type="text/css" key={scopeClassName} ref={(c) => (this._style = c)}
         dangerouslySetInnerHTML={{
           __html: cssText || ''
       }}/>
@@ -439,8 +415,8 @@ class Style extends Component {
   * @param {string} string CSS string
   * @return {ReactDOMComponent} component
   */
-  getNewChildrenForCloneElement = (cssText, rootElement) => {
-    return [this.createStyleElement(cssText)].concat(rootElement.props.children)
+  getNewChildrenForCloneElement = (cssText, rootElement, scopeClassName) => {
+    return [this.createStyleElement(cssText, scopeClassName)].concat(rootElement.props.children)
   }
 
   /**
