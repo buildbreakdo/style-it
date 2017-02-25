@@ -292,10 +292,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, _this.traverseObjectToGeneratePepper = function (obj) {
 	      for (var prop in obj) {
 	        // Avoid internal props that are unreliable
-	        var isPropReactInternal = /^[_\$]|type|ref|on/.test(prop);
+	        var isPropReactInternal = /^[_\$]|type|ref/.test(prop);
 	        if (!!obj[prop] && _typeof(obj[prop]) === 'object' && !isPropReactInternal) {
 	          _this.traverseObjectToGeneratePepper(obj[prop]);
-	        } else if (!isPropReactInternal) {
+	        } else if (!!obj[prop] && !isPropReactInternal && typeof obj[prop] !== 'function') {
 	          _this.pepper += obj[prop];
 	        }
 	      }
@@ -348,7 +348,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString, rootElement));
 	      } else {
 	        // Style tree of elements
-	        var scopeClassName = this.getScopeClassName(styleString);
+	        var scopeClassName = this.getScopeClassName(styleString, rootElement);
 
 	        return (0, _react.cloneElement)(rootElement, _extends({}, rootElement.props, {
 	          className: '' + (rootElement.props.className ? rootElement.props.className + ' ' : '') + scopeClassName
@@ -436,6 +436,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *
 	     * @param {string} String of style rules
 	     * @return {!string} A scoping class name
+	     */
+
+
+	    /**
+	     * Traverses an object tree looking for anything that is not internal or a circular
+	     * reference. Accumulates values on this.pepper
+	     *
+	     *    > traverseObjectToGeneratePepper(obj)
+	     *    void
+	     * @param {object} object Object to traverse
 	     */
 
 

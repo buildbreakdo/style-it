@@ -328,13 +328,21 @@ class Style extends Component {
     return '_scope-' + adler32(hash);
   };
 
+  /**
+   * Traverses an object tree looking for anything that is not internal or a circular
+   * reference. Accumulates values on this.pepper
+   *
+   *    > traverseObjectToGeneratePepper(obj)
+   *    void
+   * @param {object} object Object to traverse
+   */
   traverseObjectToGeneratePepper = (obj) => {
     for (let prop in obj) {
       // Avoid internal props that are unreliable
-      const isPropReactInternal = /^[_\$]|type|ref|on/.test(prop);
+      const isPropReactInternal = /^[_\$]|type|ref/.test(prop);
       if (!!obj[prop] && typeof(obj[prop]) === 'object' && !isPropReactInternal) {
         this.traverseObjectToGeneratePepper(obj[prop]);
-      } else if (!isPropReactInternal) {
+      } else if (!!obj[prop] && !isPropReactInternal && typeof(obj[prop]) !== 'function') {
         this.pepper += obj[prop];
       }
     }
