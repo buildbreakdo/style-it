@@ -114,13 +114,12 @@
     "react-tools": "^0.13.3",
     "rimraf": "^2.5.2",
     "shx": "^0.1.4",
+    "stylelint": "^7.9.0",
     "uglify-js": "^2.7.0",
+    "util": "^0.10.3",
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "json-stringify-safe": "^5.0.1",
-    "react-lib-adler32": "^1.0.0",
-    "react-lib-escape-text-content-for-browser": "^1.0.0",
-    "util": "^0.10.3"
+    "react-lib-adler32": "^1.0.0"
   }
 }
