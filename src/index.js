@@ -28,7 +28,7 @@ class Style extends Component {
       return rootElement.props.children;
     } else if (styleString && !rootElement) {
       // Global styling with no scoping
-      return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString));
+      return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString, rootElement));
     } else {
       // Style tree of elements
       const scopeClassName = this.getScopeClassName(styleString);
@@ -316,19 +316,22 @@ class Style extends Component {
    * @param {string} String of style rules
    * @return {!string} A scoping class name
    */
-  getScopeClassName = (styleString) => {
-    const rootElement = this.getRootElement();
+  getScopeClassName = (styleString, rootElement) => {
+    let hash = styleString;
 
-    this.pepper = '';
-    this.traverseObjectToGeneratePepper(rootElement);
+    if (rootElement) {
+      this.pepper = '';
+      this.traverseObjectToGeneratePepper(rootElement);
+      hash += this.pepper;
+    }
 
-    return '_scope-' + adler32(styleString + this.pepper);
+    return '_scope-' + adler32(hash);
   };
 
   traverseObjectToGeneratePepper = (obj) => {
     for (let prop in obj) {
       // Avoid internal props that are unreliable
-      const isPropReactInternal = /^[_\$]|type|ref/.test(prop);
+      const isPropReactInternal = /^[_\$]|type|ref|on/.test(prop);
       if (!!obj[prop] && typeof(obj[prop]) === 'object' && !isPropReactInternal) {
         this.traverseObjectToGeneratePepper(obj[prop]);
       } else if (!isPropReactInternal) {
