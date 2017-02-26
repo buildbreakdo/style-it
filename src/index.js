@@ -408,7 +408,7 @@ class Style extends Component {
   * @return {ReactDOMComponent} component
   */
   createStyleElement = (cssText, scopeClassName) => {
-      return <style className="style-it" type="text/css" key={scopeClassName} ref={(c) => (this._style = c)}
+      return <style type="text/css" key={scopeClassName} ref={(c) => (this._style = c)}
         dangerouslySetInnerHTML={{
           __html: cssText || ''
       }}/>
