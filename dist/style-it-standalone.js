@@ -319,7 +319,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        })();
 	      }
 	    }, _this.createStyleElement = function (cssText, scopeClassName) {
-	      return _react2.default.createElement('style', { className: 'style-it', type: 'text/css', key: scopeClassName, ref: function ref(c) {
+	      return _react2.default.createElement('style', { type: 'text/css', key: scopeClassName, ref: function ref(c) {
 	          return _this._style = c;
 	        },
 	        dangerouslySetInnerHTML: {
