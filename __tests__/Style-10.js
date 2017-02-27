@@ -30,7 +30,6 @@ describe('Style-10', () => {
     const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
     expect(rootNode.className).toEqual(`${scopedClass}`);
-    console.log(document.head);
     expect( removeNewlines(styleNode.textContent) )
       .toEqual(` @keyframes NAME-YOUR-ANIMATION { from { opacity: 0; } to { opacity: 1; }} #box.${scopedClass} , .${scopedClass}  #box { animation: NAME-YOUR-ANIMATION 5s infinite; }`);
   });
