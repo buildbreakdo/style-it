@@ -6,7 +6,7 @@ const removeNewlines = (string) => (string.replace(/(\r\n|\n|\r)/gm, ''))
 
 import Style from '../src/index.js';
 
-describe('Style-02', () => {
+describe('Style-16', () => {
   it('does not produce an error when root element children are strings and components', () => {
     const wrapper = TestUtils.renderIntoDocument(
       <div>
