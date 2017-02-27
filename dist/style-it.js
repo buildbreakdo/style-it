@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-dom"));
+		module.exports = factory(require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-dom"], factory);
+		define(["react"], factory);
 	else if(typeof exports === 'object')
-		exports["Style"] = factory(require("react"), require("react-dom"));
+		exports["Style"] = factory(require("react"));
 	else
-		root["Style"] = factory(root["React"], root["ReactDOM"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["Style"] = factory(root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,17 +62,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(3);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _reactLibAdler = __webpack_require__(1);
 
@@ -98,7 +94,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _inherits(Style, _Component);
 
 	  function Style() {
-	    var _Object$getPrototypeO;
+	    var _ref;
 
 	    var _temp, _this, _ret;
 
@@ -108,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Style)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.getStyleString = function () {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Style.__proto__ || Object.getPrototypeOf(Style)).call.apply(_ref, [this].concat(args))), _this), _this.getStyleString = function () {
 	      if (_this.props.children instanceof Array) {
 	        var styleString = _this.props.children.filter(function (child) {
 	          return !(0, _react.isValidElement)(child) && typeof child === 'string';
@@ -203,22 +199,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ).replace(/lsquo;|rsquo;/g, "'") // De-"entify" content property
 	            .replace(/;/g, ';\n'); // Add formatting;
 	          } else {
-	              // Statement is a selector
-	              var selector = statement;
+	            // Statement is a selector
+	            var selector = statement;
 
-	              if (scopeClassName) {
-	                // Prefix the scope to the selector if it is not an at-rule
-	                if (!selector.match(isAtRulePattern) && !selector.match(isKeyframeOffsetPattern)) {
-	                  return _this.scopeSelector(scopeClassName, selector, rootSelectors);
-	                } else {
-	                  // Is at-rule or keyframe offset and should not be scoped
-	                  return selector;
-	                }
+	            if (scopeClassName) {
+	              // Prefix the scope to the selector if it is not an at-rule
+	              if (!selector.match(isAtRulePattern) && !selector.match(isKeyframeOffsetPattern)) {
+	                return _this.scopeSelector(scopeClassName, selector, rootSelectors);
 	              } else {
-	                // No scope; do nothing to the selector
+	                // Is at-rule or keyframe offset and should not be scoped
 	                return selector;
 	              }
+	            } else {
+	              // No scope; do nothing to the selector
+	              return selector;
 	            }
+	          }
 
 	          // Pretty print in dev
 	        }).join('{\n');
@@ -307,16 +303,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!cssText.length) {
 	        return;
 	      } else {
-	        (function () {
-	          var cssTextHash = (0, _reactLibAdler2.default)(cssText);
+	        var cssTextHash = (0, _reactLibAdler2.default)(cssText);
 
-	          if (!window._reactiveStyle.cssTextHashesAddedToHead.some(function (hash) {
-	            return hash === cssTextHash;
-	          })) {
-	            window._reactiveStyle.el.innerHTML += cssText;
-	            window._reactiveStyle.cssTextHashesAddedToHead.push(cssTextHash);
-	          }
-	        })();
+	        if (!window._reactiveStyle.cssTextHashesAddedToHead.some(function (hash) {
+	          return hash === cssTextHash;
+	        })) {
+	          window._reactiveStyle.el.innerHTML += cssText;
+	          window._reactiveStyle.cssTextHashesAddedToHead.push(cssTextHash);
+	        }
 	      }
 	    }, _this.createStyleElement = function (cssText, scopeClassName) {
 	      return _react2.default.createElement('style', { type: 'text/css', key: scopeClassName, ref: function ref(c) {
@@ -577,12 +571,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }
 /******/ ])
