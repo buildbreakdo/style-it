@@ -30,7 +30,7 @@ npm install style-it --save
 Alternatively, if you are not using npm as your package manager the files can be downloaded directly from the [npm content delivery network](https://unpkg.com/style-it/).
 
 ### Usage
-Style It takes advantage of ES2015 / ES6 specification for Template Literals (previously "template strings") to write plaintext CSS in JavaScript. Use of Template Literals enables multi-line strings, string interpolation, and use of curley brackets / braces to declare CSS rules in JSX.
+Style It takes advantage of ES2015 / ES6 specification for Template Literals (previously "template strings") to write plaintext CSS in JavaScript. Use of Template Literals enables multi-line strings, string interpolation, and use of curley brackets / braces to declare CSS rules.
 
 Template Literals are enclosed by the back-tick (\` \`) (grave accent) character instead of double or single quotes. Learn more about Template Literals on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
