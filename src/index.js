@@ -7,10 +7,8 @@
  */
 
 import React, { Component, cloneElement, isValidElement } from 'react';
-import ReactDOM from 'react-dom';
 
 import adler32 from 'react-lib-adler32';
-
 const __DEV__ = (process.env.NODE_ENV !== 'production');
 
 class Style extends Component {
