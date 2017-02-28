@@ -25,7 +25,7 @@ Install with npm.
 ```sh
 npm install style-it --save
 ```
-[![NPM Stats](https://nodei.co/npm/style-it.png?downloads=true)](https://npmjs.org/package/style-it.js)
+[![NPM Stats](https://nodei.co/npm/style-it.png?downloads=true)](https://npmjs.org/package/style-it)
 
 Alternatively, if you are not using npm as your package manager the files can be downloaded directly from the [npm content delivery network](https://unpkg.com/style-it/).
 
