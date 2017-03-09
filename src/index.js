@@ -142,7 +142,7 @@ class Style extends Component {
     }
 
     // Handle no root selector by using type
-    if (!rootSelectors.length) {
+    if (!rootSelectors.length && typeof rootElement.type !== 'function') {
       rootSelectors.push(rootElement.type);
     }
 
