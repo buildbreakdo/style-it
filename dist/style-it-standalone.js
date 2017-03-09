@@ -288,7 +288,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, _this.traverseObjectToGeneratePepper = function (obj) {
 	      for (var prop in obj) {
 	        // Avoid internal props that are unreliable
-	        var isPropReactInternal = /^[_\$]|type|ref/.test(prop);
+	        var isPropReactInternal = /^[_\$]|type|ref|^value$/.test(prop);
 	        if (!!obj[prop] && _typeof(obj[prop]) === 'object' && !isPropReactInternal) {
 	          _this.traverseObjectToGeneratePepper(obj[prop]);
 	        } else if (!!obj[prop] && !isPropReactInternal && typeof obj[prop] !== 'function') {
