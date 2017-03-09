@@ -337,7 +337,7 @@ class Style extends Component {
   traverseObjectToGeneratePepper = (obj) => {
     for (let prop in obj) {
       // Avoid internal props that are unreliable
-      const isPropReactInternal = /^[_\$]|type|ref/.test(prop);
+      const isPropReactInternal = /^[_\$]|type|ref|^value$/.test(prop);
       if (!!obj[prop] && typeof(obj[prop]) === 'object' && !isPropReactInternal) {
         this.traverseObjectToGeneratePepper(obj[prop]);
       } else if (!!obj[prop] && !isPropReactInternal && typeof(obj[prop]) !== 'function') {
