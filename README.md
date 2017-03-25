@@ -34,7 +34,7 @@ Style It takes advantage of ES2015 / ES6 specification for Template Literals (pr
 
 Template Literals are enclosed by the back-tick (\` \`) (grave accent) character instead of double or single quotes. Learn more about Template Literals on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
-####Functional syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/24/)
+#### Functional syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/24/)
 
 In:
 ```js
@@ -69,7 +69,7 @@ Out:
 </p>
 ```
 
-####JSX syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/26/)
+#### JSX syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/26/)
 
 In:
 ```js
