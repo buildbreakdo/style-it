@@ -163,7 +163,7 @@ So all we added was an explicit className assignment from props (this snippet `c
 
 If you would like to play with this scenario online, you can [open this example in JSFIDDLE](https://jsfiddle.net/1332n40w/3/).
 
-### Behind The Scenes
+### Behind The Scenes (optional)
 
 #### How scopes work
 To isolate styles Style It iterates over child component prop data and generates a hash that is used as a scoping class. Preference would be to use `Math.random()` however HTML rendered on the server would not be identical to the HTML rendered on the client. Use of `Math.random()` would create a server-client mismatch and benefits of the serverside render would be lost. Working within these constraints, Style It collects child component props and hashes them to generate a -- unique as possible -- identifier on client and server. Relative to how iterating through children is historically done, by going to the DOM and reading values, React allows us to perform this operation incredibly fast by leveraging the component hierarchy already held in memory. The hash of the prop data is then used to create a class name (e.g., _scope-472614893) which is automatically prefixed to selectors for you.
