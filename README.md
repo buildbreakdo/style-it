@@ -163,6 +163,20 @@ So all we added was an explicit className assignment from props (this snippet `c
 
 If you would like to play with this scenario online, you can [open this example in JSFIDDLE](https://jsfiddle.net/1332n40w/3/).
 
+### Behind The Scenes
+
+#### How scopes work
+To isolate styles Style It iterates over child component prop data and generates a hash that is used as a scoping class. Preference would be to use `Math.random()` however HTML rendered on the server would not be identical to the HTML rendered on the client. Use of `Math.random()` would create a server-client mismatch and benefits of the serverside render would be lost. Working within these constraints, Style It collects child component props and hashes them to generate a -- unique as possible -- identifier on client and server. Relative to how iterating through children is historically done, by going to the DOM and reading values, React allows us to perform this operation incredibly fast by leveraging the component hierarchy already held in memory. The hash of the prop data is then used to create a class name (e.g., _scope-472614893) which is automatically prefixed to selectors for you.
+
+#### Performance
+Firm believer in Don Knuth's Literate Programmer movement: 'the most important function of computer code is to communicate the programmer's intent to a human reader' and that we should not prematurely optimize; optimizations tend to vary and be scenario specific, making code less idiomatic and obtuse, bad for readability and maintainability.
+
+Point being: _You probably do not need to worry about this section._
+
+That said, every usage scenario cannot be predicted, so an escape hatch is built into the library. If performance is sluggish this is potentially due to class name scope thrashing. Prop data used to create the class name scope is changing quickly causing the DOM sub-tree to rerender (e.g., live data). To tell Style It to ignore this prop during hash generation mark the prop as internal by prefixing `_` to the prop name (e.g, `_someProp`).
+
+Props like `value` on `<input />` and `<textarea />` are automatically ignored, as are props internal to React (they are not idempotent and change from server to client).
+
 ### Additional Usage
 
 #### JavaScript variables in your CSS [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/44/)
