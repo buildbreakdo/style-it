@@ -93,18 +93,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Style = function (_Component) {
 	  _inherits(Style, _Component);
 
-	  function Style() {
-	    var _ref;
-
-	    var _temp, _this, _ret;
-
+	  function Style(props) {
 	    _classCallCheck(this, Style);
 
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
+	    var _this = _possibleConstructorReturn(this, (Style.__proto__ || Object.getPrototypeOf(Style)).call(this, props));
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Style.__proto__ || Object.getPrototypeOf(Style)).call.apply(_ref, [this].concat(args))), _this), _this.getStyleString = function () {
+	    _this.getStyleString = function () {
 	      if (_this.props.children instanceof Array) {
 	        var styleString = _this.props.children.filter(function (child) {
 	          return !(0, _react.isValidElement)(child) && typeof child === 'string';
@@ -120,7 +114,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else {
 	        return null;
 	      }
-	    }, _this.getRootElement = function () {
+	    };
+
+	    _this.getRootElement = function () {
 	      if (_this.props.children instanceof Array) {
 	        var rootElement = _this.props.children.filter(function (child) {
 	          return (0, _react.isValidElement)(child);
@@ -143,7 +139,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else {
 	        return null;
 	      }
-	    }, _this.getRootSelectors = function (rootElement) {
+	    };
+
+	    _this.getRootSelectors = function (rootElement) {
 	      var rootSelectors = [];
 
 	      // Handle id
@@ -164,7 +162,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      return rootSelectors;
-	    }, _this.processCSSText = function (styleString, scopeClassName, rootSelectors) {
+	    };
+
+	    _this.processCSSText = function (styleString, scopeClassName, rootSelectors) {
 	      // TODO: Look into using memoizeStringOnly from fbjs/lib for escaped strings;
 	      // can avoid much of the computation as long as scoped doesn't come into play
 	      // which would be unique
@@ -219,7 +219,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	          // Pretty print in dev
 	        }).join('{\n');
 	      }).join('}\n');
-	    }, _this.escaper = function (match) {
+	    };
+
+	    _this.escaper = function (match) {
 	      var ESCAPE_LOOKUP = {
 	        '>': '&gt;',
 	        '<': '&lt;',
@@ -228,10 +230,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      return ESCAPE_LOOKUP[match];
-	    }, _this.escapeTextContentForBrowser = function (text) {
+	    };
+
+	    _this.escapeTextContentForBrowser = function (text) {
 	      var ESCAPE_REGEX = /[><"']/g;
 	      return ('' + text).replace(ESCAPE_REGEX, _this.escaper);
-	    }, _this.scopeSelector = function (scopeClassName, selector, rootSelectors) {
+	    };
+
+	    _this.scopeSelector = function (scopeClassName, selector, rootSelectors) {
 	      var scopedSelector = [];
 
 	      // Matches comma-delimiters in multi-selectors (".fooClass, .barClass {...}" => "," );
@@ -275,7 +281,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      return scopedSelector.join(', ');
-	    }, _this.getScopeClassName = function (styleString, rootElement) {
+	    };
+
+	    _this.getScopeClassName = function (styleString, rootElement) {
 	      var hash = styleString;
 
 	      if (rootElement) {
@@ -285,7 +293,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      return '_scope-' + (0, _reactLibAdler2.default)(hash);
-	    }, _this.traverseObjectToGeneratePepper = function (obj) {
+	    };
+
+	    _this.traverseObjectToGeneratePepper = function (obj) {
 	      for (var prop in obj) {
 	        // Avoid internal props that are unreliable
 	        var isPropReactInternal = /^[_\$]|type|ref|^value$/.test(prop);
@@ -295,11 +305,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _this.pepper += obj[prop];
 	        }
 	      }
-	    }, _this.isVoidElement = function (type) {
+	    };
+
+	    _this.isVoidElement = function (type) {
 	      return ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].some(function (voidType) {
 	        return type === voidType;
 	      });
-	    }, _this.addCSSTextToHead = function (cssText) {
+	    };
+
+	    _this.addCSSTextToHead = function (cssText) {
 	      if (!cssText.length) {
 	        return;
 	      } else {
@@ -312,16 +326,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	          window._reactiveStyle.cssTextHashesAddedToHead.push(cssTextHash);
 	        }
 	      }
-	    }, _this.createStyleElement = function (cssText, scopeClassName) {
+	    };
+
+	    _this.createStyleElement = function (cssText, scopeClassName) {
 	      return _react2.default.createElement('style', { type: 'text/css', key: scopeClassName, ref: function ref(c) {
 	          return _this._style = c;
 	        },
 	        dangerouslySetInnerHTML: {
 	          __html: cssText || ''
 	        } });
-	    }, _this.getNewChildrenForCloneElement = function (cssText, rootElement, scopeClassName) {
+	    };
+
+	    _this.getNewChildrenForCloneElement = function (cssText, rootElement, scopeClassName) {
 	      return [_this.createStyleElement(cssText, scopeClassName)].concat(rootElement.props.children);
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	    };
+
+	    _this.scopeClassNameCache = {};
+	    _this.scopedCSSTextCache = {};
+	    return _this;
 	  }
 
 	  _createClass(Style, [{
@@ -342,11 +364,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString, rootElement));
 	      } else {
 	        // Style tree of elements
-	        var scopeClassName = this.getScopeClassName(styleString, rootElement);
+
+	        // If styleString has already been calculated before and CSS text is unchanged;
+	        // use the cached version. No need to recalculate.
+	        var scopeClassName = void 0;
+	        var scopedCSSText = void 0;
+	        if (this.scopeClassNameCache[styleString]) {
+	          // Use cached scope and scoped CSS Text
+	          scopeClassName = this.scopeClassNameCache[styleString];
+	          scopedCSSText = this.scopedCSSTextCache[scopeClassName];
+	        } else {
+	          // Calculate scope and scoped CSS Text
+	          scopeClassName = this.getScopeClassName(styleString, rootElement);
+	          scopedCSSText = this.processCSSText(styleString, '.' + scopeClassName, this.getRootSelectors(rootElement));
+
+	          // Cache for future use
+	          this.scopeClassNameCache[styleString] = scopeClassName;
+	          this.scopedCSSTextCache[scopeClassName] = scopedCSSText;
+	        }
 
 	        return (0, _react.cloneElement)(rootElement, _extends({}, rootElement.props, {
 	          className: '' + (rootElement.props.className ? rootElement.props.className + ' ' : '') + scopeClassName
-	        }), this.getNewChildrenForCloneElement(this.processCSSText(styleString, '.' + scopeClassName, this.getRootSelectors(rootElement)), rootElement, scopeClassName));
+	        }), this.getNewChildrenForCloneElement(scopedCSSText, rootElement, scopeClassName));
 	      }
 	    }
 
