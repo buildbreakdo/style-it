@@ -12,6 +12,12 @@ import adler32 from 'react-lib-adler32';
 const __DEV__ = (process.env.NODE_ENV !== 'production');
 
 class Style extends Component {
+  constructor(props) {
+    super(props);
+
+    this.scopeClassNameCache = {};
+    this.scopedCSSTextCache = {};
+  }
 
   render() {
     if (!this.props.children) {
@@ -29,7 +35,24 @@ class Style extends Component {
       return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString, rootElement));
     } else {
       // Style tree of elements
-      const scopeClassName = this.getScopeClassName(styleString, rootElement);
+
+       // If styleString has already been calculated before and CSS text is unchanged;
+      // use the cached version. No need to recalculate.
+      let scopeClassName;
+      let scopedCSSText;
+      if (this.scopeClassNameCache[styleString]) {
+        // Use cached scope and scoped CSS Text
+        scopeClassName = this.scopeClassNameCache[styleString];
+        scopedCSSText = this.scopedCSSTextCache[scopeClassName];
+      } else {
+        // Calculate scope and scoped CSS Text
+        scopeClassName = this.getScopeClassName(styleString, rootElement);
+        scopedCSSText = this.processCSSText(styleString, `.${scopeClassName}`, this.getRootSelectors(rootElement));
+
+        // Cache for future use
+        this.scopeClassNameCache[styleString] = scopeClassName;
+        this.scopedCSSTextCache[scopeClassName] = scopedCSSText;
+      }
 
       return cloneElement(
         rootElement,
@@ -38,7 +61,7 @@ class Style extends Component {
           className: `${rootElement.props.className ? rootElement.props.className + ' ' : ''}${scopeClassName}`
         },
         this.getNewChildrenForCloneElement(
-          this.processCSSText(styleString, `.${scopeClassName}`, this.getRootSelectors(rootElement)),
+          scopedCSSText,
           rootElement,
           scopeClassName
         )
