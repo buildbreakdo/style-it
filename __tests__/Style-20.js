@@ -8,7 +8,7 @@ const __DEV__ = (process.env.NODE_ENV !== 'production');
 
 import Style from '../src/index.js';
 
-describe('Style-19', () => {
+describe('Style-20', () => {
   it('Base64 images used in backgrounds should not have their semicolons altered', () => {
 
     const wrapper = TestUtils.renderIntoDocument(
@@ -31,7 +31,6 @@ describe('Style-19', () => {
     const rootNode = findDOMNode(wrapper).children[0];
     const styleNode = rootNode.children[0];
 
-    console.log(styleNode.textContent)
     expect(/data\:image\/gif\;base64\,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw\=\=/g.test(styleNode.textContent)).toBeTruthy();
   });
 });
