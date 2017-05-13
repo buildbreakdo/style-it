@@ -364,15 +364,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString, rootElement));
 	      } else {
 	        // Style tree of elements
+	        var rootElementClassNames = rootElement.props.className ? rootElement.props.className + ' ' : '';
+	        var rootElementId = rootElement.props.id ? rootElement.props.id : '';
 
 	        // If styleString has already been calculated before and CSS text is unchanged;
 	        // use the cached version. No need to recalculate.
 	        var scopeClassName = void 0;
 	        var scopedCSSText = void 0;
-	        console.log(rootElement.props.className, rootElement.props.id);
-	        if (this.scopeClassNameCache[styleString]) {
+	        // Include rootElementClassName and rootElementId as part of cache address
+	        // to ensure upon state/prop change resulting in new id/class on root element
+	        // will properly generate a union selector.
+	        // WARNING: May be a preoptimization; cost of adding union selector to all selectors
+	        // could be so low that its worth doing so to avoid surface space for bugs
+	        var scopeClassNameAddress = rootElementClassNames + rootElementId + styleString;
+	        if (this.scopeClassNameCache[scopeClassNameAddress]) {
 	          // Use cached scope and scoped CSS Text
-	          scopeClassName = this.scopeClassNameCache[styleString];
+	          scopeClassName = this.scopeClassNameCache[scopeClassNameAddress];
 	          scopedCSSText = this.scopedCSSTextCache[scopeClassName];
 	        } else {
 	          // Calculate scope and scoped CSS Text
@@ -380,12 +387,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	          scopedCSSText = this.processCSSText(styleString, '.' + scopeClassName, this.getRootSelectors(rootElement));
 
 	          // Cache for future use
-	          this.scopeClassNameCache[styleString] = scopeClassName;
+	          this.scopeClassNameCache[scopeClassNameAddress] = scopeClassName;
 	          this.scopedCSSTextCache[scopeClassName] = scopedCSSText;
 	        }
 
 	        return (0, _react.cloneElement)(rootElement, _extends({}, rootElement.props, {
-	          className: '' + (rootElement.props.className ? rootElement.props.className + ' ' : '') + scopeClassName
+	          className: '' + rootElementClassNames + scopeClassName
 	        }), this.getNewChildrenForCloneElement(scopedCSSText, rootElement, scopeClassName));
 	      }
 	    }
