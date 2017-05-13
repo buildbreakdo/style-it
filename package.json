@@ -22,7 +22,8 @@
     "prebuild": "rimraf dist lib",
     "prepublish": "npm run build && npm run test",
     "lint": "eslint .",
-    "test": "clear && jest --runInBand || true",
+    "test": "yarn test:jest && NODE_ENV=production yarn test:jest",
+    "test:jest": "jest --runInBand || true",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
