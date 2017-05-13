@@ -8,8 +8,8 @@ const __DEV__ = (process.env.NODE_ENV !== 'production');
 
 import Style from '../src/index.js';
 
-describe('Style-18', () => {
-  it('Should use a minified scope className in prod and verbose one in dev', () => {
+describe('Style-19', () => {
+  it('', () => {
 
     const wrapper = TestUtils.renderIntoDocument(
       <div>
