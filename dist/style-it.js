@@ -292,7 +292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        hash += _this.pepper;
 	      }
 
-	      return '_scope-' + (0, _reactLibAdler2.default)(hash);
+	      return (__DEV__ ? '_scope-' : '_') + (0, _reactLibAdler2.default)(hash);
 	    };
 
 	    _this.traverseObjectToGeneratePepper = function (obj) {
