@@ -1,6 +1,6 @@
 {
   "name": "style-it",
-  "version": "1.6.8",
+  "version": "1.6.9",
   "description": "Component for writing plaintext CSS in React apps -- isomorphic, scoped, FOUC-free, fully featured, CSS-in-JS",
   "main": "dist/style-it.js",
   "author": "buildbreakdo",
