@@ -24,6 +24,6 @@ describe('Style-07', () => {
     const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
     expect(rootNode.className).toEqual(`container ${scopedClass}`);
-    expect(styleNode.textContent).toEqual(`@media (max-width: 480px) {\n.${scopedClass}  .button {\n width: 160px;\n }\n}\n`);
+    expect(styleNode.textContent).toEqual(`@media (max-width: 480px) {\n.${scopedClass}  .button {\n width: 160px; \n}\n}\n`);
   });
 });
