@@ -224,7 +224,7 @@ class Style extends Component {
           } else { // Statement is a selector
             const selector = statement;
 
-            if (scopeClassName) {
+            if (scopeClassName && !/:target/gi.test(selector)) {
               // Prefix the scope to the selector if it is not an at-rule
               if (!selector.match(isAtRulePattern) && !selector.match(isKeyframeOffsetPattern)) {
                 return this.scopeSelector(scopeClassName, selector, rootSelectors);
