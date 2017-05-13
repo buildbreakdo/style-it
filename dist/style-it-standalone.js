@@ -197,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            .replace(/content\s*:\s*['"](.*)['"]\s*;/, 'content: lsquo;$1rsquo;;') // "Entify" content property
 	            .replace(/['"]/g, '') // Remove single and double quotes
 	            ).replace(/lsquo;|rsquo;/g, "'") // De-"entify" content property
-	            .replace(/;/g, ';\n'); // Add formatting;
+	            .replace(/$/g, '\n'); // Add formatting;
 	          } else {
 	            // Statement is a selector
 	            var selector = statement;
