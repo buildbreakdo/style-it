@@ -4,7 +4,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 
 [<img title="Version" src="https://img.shields.io/npm/v/style-it.svg?style=flat-square" />](https://www.npmjs.org/package/style-it) [<img title="Maintenance Status" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?style=flat-square" />](https://github.com/buildbreakdo/style-it/pulse) [<img title="Build Status" src="https://travis-ci.org/buildbreakdo/style-it.svg?branch=master" />](https://travis-ci.org/buildbreakdo/style-it/) [![Coverage Status](https://coveralls.io/repos/github/buildbreakdo/style-it/badge.svg?branch=master)](https://coveralls.io/github/buildbreakdo/style-it?branch=master)
 
-Proponent of eat your own dog food. If you want to see Style It live head on over to [Pholder.com](https://pholder.com/r/oldschoolcool), serving thousands daily. Question, issue, or request? [Open an issue](https://github.com/buildbreakdo/style-it/issues) or [reach out on gitter](https://gitter.im/Style-It/Lobby). 
+Proponent of eat your own dog food. If you want to see Style It live head over to [Pholder.com](https://pholder.com/r/oldschoolcool), serving thousands daily. Question, issue, or request? [Open an issue](https://github.com/buildbreakdo/style-it/issues) or [reach out on gitter](https://gitter.im/Style-It/Lobby). 
 
 | Feature               | Style It | Inline Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
