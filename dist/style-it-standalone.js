@@ -202,7 +202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Statement is a selector
 	            var selector = statement;
 
-	            if (scopeClassName) {
+	            if (scopeClassName && !/:target/gi.test(selector)) {
 	              // Prefix the scope to the selector if it is not an at-rule
 	              if (!selector.match(isAtRulePattern) && !selector.match(isKeyframeOffsetPattern)) {
 	                return _this.scopeSelector(scopeClassName, selector, rootSelectors);
