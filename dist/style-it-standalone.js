@@ -369,6 +369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // use the cached version. No need to recalculate.
 	        var scopeClassName = void 0;
 	        var scopedCSSText = void 0;
+	        console.log(rootElement.props.className, rootElement.props.id);
 	        if (this.scopeClassNameCache[styleString]) {
 	          // Use cached scope and scoped CSS Text
 	          scopeClassName = this.scopeClassNameCache[styleString];

@@ -35,14 +35,22 @@ class Style extends Component {
       return this.createStyleElement(this.processCSSText(styleString), this.getScopeClassName(styleString, rootElement));
     } else {
       // Style tree of elements
+      const rootElementClassNames = rootElement.props.className ? rootElement.props.className + ' ' : '';
+      const rootElementId = rootElement.props.id ? rootElement.props.id : '';
 
-       // If styleString has already been calculated before and CSS text is unchanged;
+      // If styleString has already been calculated before and CSS text is unchanged;
       // use the cached version. No need to recalculate.
       let scopeClassName;
       let scopedCSSText;
-      if (this.scopeClassNameCache[styleString]) {
+      // Include rootElementClassName and rootElementId as part of cache address
+      // to ensure upon state/prop change resulting in new id/class on root element
+      // will properly generate a union selector.
+      // WARNING: May be a preoptimization; cost of adding union selector to all selectors
+      // could be so low that its worth doing so to avoid surface space for bugs
+      const scopeClassNameAddress = rootElementClassNames + rootElementId + styleString;
+      if (this.scopeClassNameCache[scopeClassNameAddress]) {
         // Use cached scope and scoped CSS Text
-        scopeClassName = this.scopeClassNameCache[styleString];
+        scopeClassName = this.scopeClassNameCache[scopeClassNameAddress];
         scopedCSSText = this.scopedCSSTextCache[scopeClassName];
       } else {
         // Calculate scope and scoped CSS Text
@@ -50,7 +58,7 @@ class Style extends Component {
         scopedCSSText = this.processCSSText(styleString, `.${scopeClassName}`, this.getRootSelectors(rootElement));
 
         // Cache for future use
-        this.scopeClassNameCache[styleString] = scopeClassName;
+        this.scopeClassNameCache[scopeClassNameAddress] = scopeClassName;
         this.scopedCSSTextCache[scopeClassName] = scopedCSSText;
       }
 
@@ -58,7 +66,7 @@ class Style extends Component {
         rootElement,
         {
           ...rootElement.props,
-          className: `${rootElement.props.className ? rootElement.props.className + ' ' : ''}${scopeClassName}`
+          className: `${rootElementClassNames}${scopeClassName}`
         },
         this.getNewChildrenForCloneElement(
           scopedCSSText,
