@@ -346,7 +346,7 @@ class Style extends Component {
       hash += this.pepper;
     }
 
-    return '_scope-' + adler32(hash);
+    return (__DEV__ ? '_scope-' : '_') + adler32(hash);
   };
 
   /**
