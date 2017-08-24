@@ -296,11 +296,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    _this.traverseObjectToGeneratePepper = function (obj) {
+	      var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+	      if (depth > 32 || _this.pepper.length > 10000) return;
+
 	      for (var prop in obj) {
 	        // Avoid internal props that are unreliable
 	        var isPropReactInternal = /^[_\$]|type|ref|^value$/.test(prop);
 	        if (!!obj[prop] && _typeof(obj[prop]) === 'object' && !isPropReactInternal) {
-	          _this.traverseObjectToGeneratePepper(obj[prop]);
+	          _this.traverseObjectToGeneratePepper(obj[prop], depth + 1);
 	        } else if (!!obj[prop] && !isPropReactInternal && typeof obj[prop] !== 'function') {
 	          _this.pepper += obj[prop];
 	        }

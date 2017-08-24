@@ -365,12 +365,16 @@ class Style extends Component {
    *    void
    * @param {object} object Object to traverse
    */
-  traverseObjectToGeneratePepper = (obj) => {
+  traverseObjectToGeneratePepper = (obj, depth = 0) => {
+    // Max depth is equal to max depth of JSON.stringify
+    // Max length of 10,000 is arbitrary
+		if (depth > 32 || this.pepper.length > 10000) return;
+
     for (let prop in obj) {
       // Avoid internal props that are unreliable
       const isPropReactInternal = /^[_\$]|type|ref|^value$/.test(prop);
       if (!!obj[prop] && typeof(obj[prop]) === 'object' && !isPropReactInternal) {
-        this.traverseObjectToGeneratePepper(obj[prop]);
+        this.traverseObjectToGeneratePepper(obj[prop], depth+1);
       } else if (!!obj[prop] && !isPropReactInternal && typeof(obj[prop]) !== 'function') {
         this.pepper += obj[prop];
       }
