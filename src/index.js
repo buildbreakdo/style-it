@@ -202,33 +202,26 @@ class Style extends Component {
     // the style string will not be parsed correctly
 
     return styleString
-      .replace(/\s*\/\/(?![^\(]*\)).*|\s*\/\*.*\*\//g, '') // Strip javascript style comments
+      .replace(/\s*\/\/(?![^(]*\)).*|\s*\/\*.*\*\//g, '') // Strip javascript style comments
       .replace(/\s\s+/g, ' ') // Convert multiple to single whitespace
       .split('}') // Start breaking down statements
       .map((fragment) => {
         const isDeclarationBodyPattern = /.*:.*;/g;
         const isAtRulePattern = /\s*@/g;
         const isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
-        // const isContent
+
         // Split fragment into selector and declarationBody; escape declaration body
         return fragment.split('{').map((statement) => {
           // Avoid processing whitespace
           if (!statement.trim().length) {
-            return;
+            return '';
           }
 
           // Skip escaping selectors statements since that would break them;
           // note in docs that selector statements are not escaped and should
           // not be generated from user provided strings
           if (statement.match(isDeclarationBodyPattern)) {
-            return this.escapeTextContentForBrowser(
-              statement // Have to deal with special case of CSS property "content", breaks without quotes
-                .replace(/lsquo|rsquo/g, '') // Prevent manipulation
-                .replace(/content\s*:\s*['"](.*)['"]\s*;/, 'content: lsquo;$1rsquo;;') // "Entify" content property
-                .replace(/['"]/g, '') // Remove single and double quotes
-              ).replace(/lsquo;|rsquo;/g, "'") // De-"entify" content property
-               .replace(/$/g, '\n'); // Add formatting;
-
+            return this.escapeTextContentForBrowser(statement);
           } else { // Statement is a selector
             const selector = statement;
 
@@ -259,9 +252,7 @@ class Style extends Component {
   escaper = (match) => {
     const ESCAPE_LOOKUP = {
       '>': '&gt;',
-      '<': '&lt;',
-      '"': '&quot;',
-      '\'': '&#x27;'
+      '<': '&lt;'
     };
 
     return ESCAPE_LOOKUP[match];
@@ -274,7 +265,7 @@ class Style extends Component {
    * @return {string} An escaped string.
    */
   escapeTextContentForBrowser = (text) => {
-    const ESCAPE_REGEX = /[><"']/g;
+    const ESCAPE_REGEX = /[><]/g;
     return ('' + text).replace(ESCAPE_REGEX, this.escaper);
   }
 
@@ -294,7 +285,7 @@ class Style extends Component {
 
     // Matches comma-delimiters in multi-selectors (".fooClass, .barClass {...}" => "," );
     // ignores commas-delimiters inside of brackets and parenthesis ([attr=value], :not()..)
-    const groupOfSelectorsPattern = /,(?![^\(|\[]*\)|\])/g;
+    const groupOfSelectorsPattern = /,(?![^(|[]*\)|\])/g;
 
     const selectors = selector.split(groupOfSelectorsPattern);
 
@@ -311,7 +302,7 @@ class Style extends Component {
 
         // Escape valid CSS special characters that are also RegExp special characters
         const escapedRootSelectors = rootSelectors.map(rootSelector => (
-          rootSelector.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+          rootSelector.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
         ));
 
         unionSelector = unionSelector.replace(new RegExp(
@@ -354,7 +345,7 @@ class Style extends Component {
       hash += this.pepper;
     }
 
-    return (__DEV__ ? '_scope-' : '_') + adler32(hash);
+    return (__DEV__ ? 'scope-' : 's') + adler32(hash);
   };
 
   /**
@@ -368,11 +359,11 @@ class Style extends Component {
   traverseObjectToGeneratePepper = (obj, depth = 0) => {
     // Max depth is equal to max depth of JSON.stringify
     // Max length of 10,000 is arbitrary
-		if (depth > 32 || this.pepper.length > 10000) return;
+    if (depth > 32 || this.pepper.length > 10000) return;
 
     for (let prop in obj) {
       // Avoid internal props that are unreliable
-      const isPropReactInternal = /^[_\$]|type|ref|^value$/.test(prop);
+      const isPropReactInternal = /^[_$]|type|ref|^value$/.test(prop);
       if (!!obj[prop] && typeof(obj[prop]) === 'object' && !isPropReactInternal) {
         this.traverseObjectToGeneratePepper(obj[prop], depth+1);
       } else if (!!obj[prop] && !isPropReactInternal && typeof(obj[prop]) !== 'function') {

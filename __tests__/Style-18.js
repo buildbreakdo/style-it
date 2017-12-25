@@ -32,9 +32,9 @@ describe('Style-18', () => {
     const scopedClass = rootNode.className.split(' ').slice(-1)[0];
 
     if (__DEV__) {
-      expect(/\_scope\-[\-0-9]+/.test(scopedClass)).toBeTruthy();
+      expect(/scope\-[\-0-9]+/.test(scopedClass)).toBeTruthy();
     } else {
-      expect(/_[\-0-9]+/.test(scopedClass)).toBeTruthy();
+      expect(/s[\-0-9]+/.test(scopedClass)).toBeTruthy();
     }
 
     expect(removeNewlines(styleNode.textContent)).toEqual(` .foo.${scopedClass} , .${scopedClass}  .foo { color: red; }`);

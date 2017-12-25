@@ -4,7 +4,7 @@ familiar CSS syntax you already know and love -- now inside of your components.
 
 [<img title="Version" src="https://img.shields.io/npm/v/style-it.svg?style=flat-square" />](https://www.npmjs.org/package/style-it) [<img title="Maintenance Status" src="https://img.shields.io/badge/status-maintained-brightgreen.svg?style=flat-square" />](https://github.com/buildbreakdo/style-it/pulse) [<img title="Build Status" src="https://travis-ci.org/buildbreakdo/style-it.svg?branch=master" />](https://travis-ci.org/buildbreakdo/style-it/) [![Coverage Status](https://coveralls.io/repos/github/buildbreakdo/style-it/badge.svg?branch=master)](https://coveralls.io/github/buildbreakdo/style-it?branch=master)
 
-Proponent of eat your own dog food. If you want to see Style It live head over to [Pholder.com](https://pholder.com/r/oldschoolcool), serving thousands daily. Question, issue, or request? [Open an issue](https://github.com/buildbreakdo/style-it/issues) or [reach out on gitter](https://gitter.im/Style-It/Lobby). 
+Proponent of eat your own dog food. If you want to see Style It live head over to [Pholder.com](https://pholder.com/r/oldschoolcool), serving thousands daily. Question, issue, or request? [Open an issue](https://github.com/buildbreakdo/style-it/issues) or [reach out on gitter](https://gitter.im/Style-It/Lobby).
 
 | Feature               | Style It | Inline Style |           |
 | :-------------------- | :------------: | :----------: | :--------- |
@@ -85,7 +85,7 @@ class Intro extends React.Component {
             font-size: 40px;
           }
         `}
-      
+
         <p className="intro">CSS-in-JS made simple -- just Style It.</p>
       </Style>
     );
@@ -159,7 +159,7 @@ class ChildComponent extends Component {
 ...
 ```
 
-So all we added was an explicit className assignment from props (this snippet `className={this.props.className}`). Would argue that this is best practices anyway for a component that can be a root node; likely should use the spread operator (e.g., `{...this.props}`) to cover all your bases and include events a would be user of your component may attach. 
+So all we added was an explicit className assignment from props (this snippet `className={this.props.className}`). Would argue that this is best practices anyway for a component that can be a root node; likely should use the spread operator (e.g., `{...this.props}`) to cover all your bases and include events a would be user of your component may attach.
 
 If you would like to play with this scenario online, you can [open this example in JSFIDDLE](https://jsfiddle.net/1332n40w/3/).
 
@@ -294,7 +294,6 @@ Out:
 
 | Feature                                   | Style It    | Inline Style |            |
 | :----------------------------------------- | :---------------: | :----------: | :--------- |
-| Safe by default       | &#10004;       | &#10004;     | Escaping of CSS property-values is automatically handled for you using the same library React uses for inline styles. Like with React inline styles, Style It CSS property-values are safe by default. |
 | Increase cohesion     | &#10004;       | &#10004;     | Self contained and complete components. With Style It there is no need to fragment your component by creating an external CSS file when you need to use pseudo-classes, pseudo-selectors, at-media rules, or one of Reacts unsupported vendor prefixes (like flexbox or cursor grab). |
 | Write less code       | &#10004;       |              | Use the right tool for the right job. With Style It the full power of CSS is available so we can stop reimplementing CSS language features like `:hover` and `nth-of-type` in JavaScript. |
 | Faster build times                        | &#10004;          | &#10004;     | Remove the preprocessor middle man -- this is just CSS. Style It brings back the simplicity of writing CSS and removes the need for managing and executing a build step. |

@@ -31,6 +31,6 @@ describe('Style-12', () => {
 
     expect(rootNode.className).toEqual(`${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` @media all and (orientation: portrait) { #box.${scopedClass} , .${scopedClass}  #box { background-image: url(http:\/\/google.com/); font-family: Helvetica, Arial; }}`);
+      .toEqual(` @media all and (orientation: portrait) { #box.${scopedClass} , .${scopedClass}  #box { background-image: url('http:\/\/google.com/'); font-family: 'Helvetica', "Arial"; }}`);
   });
 });

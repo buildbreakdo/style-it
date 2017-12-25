@@ -38,7 +38,7 @@ describe('Style-14', () => {
 
     expect(rootNode.className).toEqual(`Slide ${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` .Slide.${scopedClass}:before , .${scopedClass}  .Slide:before { content: ' test '; } .Slide.${scopedClass}:after , .${scopedClass}  .Slide:after { content: ' '; }.${scopedClass}  .Foo:after { position: absolute; content: ''; width: 100%; height: 100%; backgroud-color: rgba( 0, 0, 0, .7); top: 0; left: 0; z-index: 1; }`);
+      .toEqual(` .Slide.${scopedClass}:before , .${scopedClass}  .Slide:before { content: " test "; } .Slide.${scopedClass}:after , .${scopedClass}  .Slide:after { content: " "; }.${scopedClass}  .Foo:after { position: absolute; content: ""; width: 100%; height: 100%; backgroud-color: rgba( 0, 0, 0, .7); top: 0; left: 0; z-index: 1; }`);
   });
 
 });

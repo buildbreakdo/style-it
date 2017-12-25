@@ -19,6 +19,6 @@ describe('Style-01', () => {
     const styleNode = rootNode.children[0];
 
     // Verify that stylecontent
-    expect(styleNode.textContent).toEqual(`body {\n font-size: 13px; \n}\n`);
+    expect(styleNode.textContent).toEqual(`body {\n font-size: 13px; }\n`);
   });
 });

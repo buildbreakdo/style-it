@@ -31,6 +31,6 @@ describe('Style-15', () => {
     expect(rootNode.id).toEqual('heart');
     expect(rootNode.className).toEqual(`${scopedClass}`);
     expect( removeNewlines(styleNode.textContent) )
-      .toEqual(` #heart.${scopedClass}:before, .${scopedClass}  #heart:before,  #heart.${scopedClass}:after , .${scopedClass}  #heart:after { position: absolute; content: ''; }`);
+      .toEqual(` #heart.${scopedClass}:before, .${scopedClass}  #heart:before,  #heart.${scopedClass}:after , .${scopedClass}  #heart:after { position: absolute; content: ""; }`);
   });
 });

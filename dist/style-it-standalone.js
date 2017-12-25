@@ -298,6 +298,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _this.traverseObjectToGeneratePepper = function (obj) {
 	      var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
+	      // Max depth is equal to max depth of JSON.stringify
+	      // Max length of 10,000 is arbitrary
 	      if (depth > 32 || _this.pepper.length > 10000) return;
 
 	      for (var prop in obj) {
