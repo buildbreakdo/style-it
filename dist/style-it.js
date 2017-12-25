@@ -173,31 +173,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // if linting fails we need to error out because
 	      // the style string will not be parsed correctly
 
-	      return styleString.replace(/\s*\/\/(?![^\(]*\)).*|\s*\/\*.*\*\//g, '') // Strip javascript style comments
+	      return styleString.replace(/\s*\/\/(?![^(]*\)).*|\s*\/\*.*\*\//g, '') // Strip javascript style comments
 	      .replace(/\s\s+/g, ' ') // Convert multiple to single whitespace
 	      .split('}') // Start breaking down statements
 	      .map(function (fragment) {
 	        var isDeclarationBodyPattern = /.*:.*;/g;
 	        var isAtRulePattern = /\s*@/g;
 	        var isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
-	        // const isContent
+
 	        // Split fragment into selector and declarationBody; escape declaration body
 	        return fragment.split('{').map(function (statement) {
 	          // Avoid processing whitespace
 	          if (!statement.trim().length) {
-	            return;
+	            return '';
 	          }
 
 	          // Skip escaping selectors statements since that would break them;
 	          // note in docs that selector statements are not escaped and should
 	          // not be generated from user provided strings
 	          if (statement.match(isDeclarationBodyPattern)) {
-	            return _this.escapeTextContentForBrowser(statement // Have to deal with special case of CSS property "content", breaks without quotes
-	            .replace(/lsquo|rsquo/g, '') // Prevent manipulation
-	            .replace(/content\s*:\s*['"](.*)['"]\s*;/, 'content: lsquo;$1rsquo;;') // "Entify" content property
-	            .replace(/['"]/g, '') // Remove single and double quotes
-	            ).replace(/lsquo;|rsquo;/g, "'") // De-"entify" content property
-	            .replace(/$/g, '\n'); // Add formatting;
+	            return _this.escapeTextContentForBrowser(statement);
 	          } else {
 	            // Statement is a selector
 	            var selector = statement;
@@ -224,16 +219,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _this.escaper = function (match) {
 	      var ESCAPE_LOOKUP = {
 	        '>': '&gt;',
-	        '<': '&lt;',
-	        '"': '&quot;',
-	        '\'': '&#x27;'
+	        '<': '&lt;'
 	      };
 
 	      return ESCAPE_LOOKUP[match];
 	    };
 
 	    _this.escapeTextContentForBrowser = function (text) {
-	      var ESCAPE_REGEX = /[><"']/g;
+	      var ESCAPE_REGEX = /[><]/g;
 	      return ('' + text).replace(ESCAPE_REGEX, _this.escaper);
 	    };
 
@@ -242,7 +235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      // Matches comma-delimiters in multi-selectors (".fooClass, .barClass {...}" => "," );
 	      // ignores commas-delimiters inside of brackets and parenthesis ([attr=value], :not()..)
-	      var groupOfSelectorsPattern = /,(?![^\(|\[]*\)|\])/g;
+	      var groupOfSelectorsPattern = /,(?![^(|[]*\)|\])/g;
 
 	      var selectors = selector.split(groupOfSelectorsPattern);
 
@@ -261,7 +254,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	          // Escape valid CSS special characters that are also RegExp special characters
 	          var escapedRootSelectors = rootSelectors.map(function (rootSelector) {
-	            return rootSelector.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+	            return rootSelector.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 	          });
 
 	          unionSelector = unionSelector.replace(new RegExp('(' + // Start capture group
@@ -292,7 +285,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        hash += _this.pepper;
 	      }
 
-	      return (__DEV__ ? '_scope-' : '_') + (0, _reactLibAdler2.default)(hash);
+	      return (__DEV__ ? 'scope-' : 's') + (0, _reactLibAdler2.default)(hash);
 	    };
 
 	    _this.traverseObjectToGeneratePepper = function (obj) {
@@ -304,7 +297,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      for (var prop in obj) {
 	        // Avoid internal props that are unreliable
-	        var isPropReactInternal = /^[_\$]|type|ref|^value$/.test(prop);
+	        var isPropReactInternal = /^[_$]|type|ref|^value$/.test(prop);
 	        if (!!obj[prop] && _typeof(obj[prop]) === 'object' && !isPropReactInternal) {
 	          _this.traverseObjectToGeneratePepper(obj[prop], depth + 1);
 	        } else if (!!obj[prop] && !isPropReactInternal && typeof obj[prop] !== 'function') {
