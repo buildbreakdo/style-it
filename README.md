@@ -34,7 +34,7 @@ Style It takes advantage of ES2015 / ES6 specification for Template Literals (pr
 
 Template Literals are enclosed by the back-tick (\` \`) (grave accent) character instead of double or single quotes. Learn more about Template Literals on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
-#### Functional syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/24/)
+#### Functional syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/9ckvkeec/1/)
 
 In:
 ```js
@@ -69,7 +69,7 @@ Out:
 </p>
 ```
 
-#### JSX syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/26/)
+#### JSX syntax [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/8mjcqv6e/1/)
 
 In:
 ```js
@@ -108,7 +108,7 @@ Out:
 </p>
 ```
 
-#### Component with Component Root Node [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/1332n40w/3/)
+#### Component with Component Root Node [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/2vo4yov4/1/)
 Let's say we have two components `ParentComponent` and `ChildComponent` defined as follows (note the root node in the `ParentComponent` is another component):
 
 ```js
@@ -161,11 +161,11 @@ class ChildComponent extends Component {
 
 So all we added was an explicit className assignment from props (this snippet `className={this.props.className}`). Would argue that this is best practices anyway for a component that can be a root node; likely should use the spread operator (e.g., `{...this.props}`) to cover all your bases and include events a would be user of your component may attach.
 
-If you would like to play with this scenario online, you can [open this example in JSFIDDLE](https://jsfiddle.net/1332n40w/3/).
+If you would like to play with this scenario online, you can [open this example in JSFIDDLE](https://jsfiddle.net/pk9L2j4d/1/).
 
 ### Additional Usage
 
-#### JavaScript variables in your CSS [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/44/)
+#### JavaScript variables in your CSS [<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/jw9hpfxm/1/)
 In:
 ```js
 import React from 'react';
@@ -213,7 +213,7 @@ Out:
 </p>
 ```
 
-#### Layout styling[<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/y2pnqh9e/45/)
+#### Layout styling[<img title="OPEN IN JSFIDDLE" align="right" src="https://img.shields.io/badge/OPEN%20IN%20JSFIDDLE--eaeff2.svg" />](https://jsfiddle.net/r3hhzaze/1/)
 Style your layout without using an external CSS file. Style It makes keeping all of your CSS in the App component hierarchy easy -- from global layout to component specific styles (uses JSX syntax).
 
 In:
