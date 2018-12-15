@@ -21,9 +21,11 @@
     "build:umd:production": "NODE_ENV='production' webpack && babel src --out-dir lib",
     "prebuild": "rimraf dist lib",
     "prepublish": "npm run build && npm run test",
+    "watch": "webpack --watch",
     "lint": "eslint .",
     "test": "yarn test:jest && NODE_ENV=production yarn test:jest",
     "test:jest": "jest --runInBand || true",
+    "test:watch": "jest --watch --verbose=false",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
@@ -105,8 +107,8 @@
     "coveralls": "^2.11.12",
     "eslint": "^2.13.0",
     "eslint-plugin-react": "^5.2.2",
-    "jest": "^14.1.0",
-    "jest-cli": "^12.1.1",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
     "npm-run-all": "^2.3.0",
     "react": "^15.2.1",
     "react-addons-test-utils": "^15.3.0",
