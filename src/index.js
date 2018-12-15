@@ -207,20 +207,27 @@ class Style extends Component {
       .split('}') // Start breaking down statements
       .map((fragment) => {
         const isDeclarationBodyPattern = /.*:.*;/g;
+        const isLastItemDeclarationBodyPattern = /.*:.*(;|$)/g;
         const isAtRulePattern = /\s*@/g;
         const isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
 
         // Split fragment into selector and declarationBody; escape declaration body
-        return fragment.split('{').map((statement) => {
+        return fragment.split('{').map((statement, i, arr) => {
           // Avoid processing whitespace
           if (!statement.trim().length) {
             return '';
           }
 
+          const isDeclarationBodyItemWithOptionalSemicolon = (
+            // Only for the last property-value in a
+            // CSS declaration body is a semicolon optional
+            (arr.length - 1) === i &&
+            statement.match(isLastItemDeclarationBodyPattern)
+          );
           // Skip escaping selectors statements since that would break them;
           // note in docs that selector statements are not escaped and should
           // not be generated from user provided strings
-          if (statement.match(isDeclarationBodyPattern)) {
+          if (statement.match(isDeclarationBodyPattern) || isDeclarationBodyItemWithOptionalSemicolon) {
             return this.escapeTextContentForBrowser(statement);
           } else { // Statement is a selector
             const selector = statement;
