@@ -178,20 +178,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	      .split('}') // Start breaking down statements
 	      .map(function (fragment) {
 	        var isDeclarationBodyPattern = /.*:.*;/g;
+	        var isLastItemDeclarationBodyPattern = /.*:.*(;|$)/g;
 	        var isAtRulePattern = /\s*@/g;
 	        var isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
 
 	        // Split fragment into selector and declarationBody; escape declaration body
-	        return fragment.split('{').map(function (statement) {
+	        return fragment.split('{').map(function (statement, i, arr) {
 	          // Avoid processing whitespace
 	          if (!statement.trim().length) {
 	            return '';
 	          }
 
+	          var isDeclarationBodyItemWithOptionalSemicolon =
+	          // Only for the last property-value in a
+	          // CSS declaration body is a semicolon optional
+	          arr.length - 1 === i && statement.match(isLastItemDeclarationBodyPattern);
 	          // Skip escaping selectors statements since that would break them;
 	          // note in docs that selector statements are not escaped and should
 	          // not be generated from user provided strings
-	          if (statement.match(isDeclarationBodyPattern)) {
+	          if (statement.match(isDeclarationBodyPattern) || isDeclarationBodyItemWithOptionalSemicolon) {
 	            return _this.escapeTextContentForBrowser(statement);
 	          } else {
 	            // Statement is a selector
