@@ -207,7 +207,7 @@ class Style extends Component {
       .split('}') // Start breaking down statements
       .map((fragment) => {
         const isDeclarationBodyPattern = /.*:.*;/g;
-        const isLastItemDeclarationBodyPattern = /.*:.*(;|$|[\n\t\s]+)/g;
+        const isLastItemDeclarationBodyPattern = /.*:.*(;|$|\s+)/g;
         const isAtRulePattern = /\s*@/g;
         const isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
 
