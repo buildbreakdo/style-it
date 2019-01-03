@@ -28,6 +28,9 @@
     "test:watch": "jest --watch --verbose=false",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "jest": {
     "automock": false,
     "bail": true
