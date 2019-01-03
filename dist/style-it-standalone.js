@@ -178,7 +178,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      .split('}') // Start breaking down statements
 	      .map(function (fragment) {
 	        var isDeclarationBodyPattern = /.*:.*;/g;
-	        var isLastItemDeclarationBodyPattern = /.*:.*(;|$)/g;
+	        var isLastItemDeclarationBodyPattern = /.*:.*(;|$|[\n\t\s]+)/g;
 	        var isAtRulePattern = /\s*@/g;
 	        var isKeyframeOffsetPattern = /\s*(([0-9][0-9]?|100)\s*%)|\s*(to|from)\s*$/g;
 
