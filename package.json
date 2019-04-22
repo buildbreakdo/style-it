@@ -1,6 +1,6 @@
 {
   "name": "style-it",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Component for writing plaintext CSS in React apps -- isomorphic, scoped, FOUC-free, fully featured, CSS-in-JS",
   "main": "dist/style-it.js",
   "author": "buildbreakdo",
@@ -126,6 +126,6 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "react-lib-adler32": "^1.0.0"
+    "react-lib-adler32": "^1.0.3"
   }
 }
