@@ -1,6 +1,6 @@
 {
   "name": "style-it",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Component for writing plaintext CSS in React apps -- isomorphic, scoped, FOUC-free, fully featured, CSS-in-JS",
   "main": "dist/style-it.js",
   "author": "buildbreakdo",
@@ -107,8 +107,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-standalone": "^6.10.3",
-    "coveralls": "^2.11.12",
-    "eslint": "^2.13.0",
+    "coveralls": "^3.0.5",
+    "eslint": "^4.18.2",
     "eslint-plugin-react": "^5.2.2",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
